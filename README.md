@@ -1,14 +1,10 @@
 Project 1
 ================
 
-``` r
-knitr::opts_chunk$set(fig.path = "../images/")
-```
-
-This is my .Rmd file.
+This is my .Rmd file. Test.
 
 ``` r
 plot(iris)
 ```
 
-![](../images/plot-1.png)<!-- -->
+![](README_files/figure-gfm/plot-1.png)<!-- -->
