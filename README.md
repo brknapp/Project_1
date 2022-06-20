@@ -138,10 +138,6 @@ get_data <- function(mykey,title){
 
 You should get a tibble that looks like this:
 
-``` r
-get_data("5c7f9206","star_wars")
-```
-
     ## # A tibble: 30 × 26
     ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
     ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
@@ -162,10 +158,10 @@ Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
 handle a list of several titles or one title.
 
-Note: the parameter “type” has three options: movie, series, episode. If
-“type” is not specified, it will give everything (including movies,
-series, and episodes). I’m making the default for “type” be “movie”, but
-you can change this if you want.
+Note: the parameter “type” has three options: movie, series, and
+episode. If “type” is not specified, it will give everything (including
+movies, series, and episodes). I’m making the default for “type” be
+“movie”, but you can change this if you want.
 
 ``` r
 library(tidyverse)
@@ -259,6 +255,8 @@ You would get this tibble:
     ##  8 Avatar                                 2005        tt0497595     movie       https://m.media-ama… 68           True    
     ##  9 Avatar                                 2011        tt1775309     movie       https://m.media-ama… 68           True    
     ## 10 Capturing Avatar                       2010        tt1778212     movie       https://m.media-ama… 68           True
+
+Now, lets get all of the data for both Star Wars and Indiana Jones:
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
