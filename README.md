@@ -7,7 +7,7 @@ key](http://www.omdbapi.com/apikey.aspx).
 Next, there are two ways to get information from the OMDb API. You can
 either build your search “By ID or Title” or “By Search”.
 
-Lets say you have a movie title in mind, like Star Wars. Here’s a
+Let’s say you have a movie title in mind, like Star Wars. Here’s a
 function you can use to get data from the OMDb API about Star Wars:
 
 ``` r
@@ -18,7 +18,6 @@ search_by_title <- function(mykey,title){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title) 
   full_url <- paste0(base_url, info_url)
-  full_url
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -57,7 +56,6 @@ search_by_IMDb_ID <- function(mykey,IMDb_ID){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&i=",IMDb_ID) 
   full_url <- paste0(base_url, info_url)
-  full_url
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -78,6 +76,46 @@ You should get a tibble that looks like this:
     ## 3 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+Let’s say you wanted to get all of the titles for all of the Star Wars
+movies. You would then need to build your URL “By Search” instead.
+
+Here’s a function you can use if you wanted to search for multiple movie
+titles:
+
+``` r
+library(tidyverse)
+library(jsonlite)
+library(httr)
+by_search <- function(mykey,title){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&s=",title) 
+  full_url <- paste0(base_url, info_url)
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+```
+
+You should get a tibble that looks like this:
+
+    ## # A tibble: 10 × 7
+    ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
+    ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
+    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 735          True    
+    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 735          True    
+    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 735          True    
+    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 735          True    
+    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 735          True    
+    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 735          True    
+    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 735          True    
+    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 735          True    
+    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 735          True    
+    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 735          True
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
