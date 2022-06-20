@@ -204,7 +204,7 @@ just one. For example, if you wanted to search for both Star Wars and
 Indiana Jones, you would run the function like this:
 
 ``` r
-by_search("mykey",c("star_wars","indiana_jones"))
+by_search("mykey",c("star_wars","indiana_jones"),type="movie")
 ```
 
 You would get the tibble below:
@@ -237,7 +237,7 @@ If you wanted to search for one title, like Avatar, you would run the
 function like this:
 
 ``` r
-by_search("mykey",c("avatar"))
+by_search("mykey","avatar",type="movie")
 ```
 
 You would get this tibble:
