@@ -87,9 +87,9 @@ titles:
 library(tidyverse)
 library(jsonlite)
 library(httr)
-by_search <- function(mykey,title){
+by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
-  info_url <- paste0("&s=",title) 
+  info_url <- paste0("&s=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   
   movie_api_call <- GET(full_url)
@@ -106,16 +106,16 @@ You should get a tibble that looks like this:
     ## # A tibble: 10 × 7
     ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
     ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
-    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 735          True    
-    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 735          True    
-    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 735          True    
-    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 735          True    
-    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 735          True    
-    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 735          True    
-    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 735          True    
-    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 735          True    
-    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 735          True    
-    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 735          True
+    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 539          True    
+    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 539          True    
+    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 539          True    
+    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 539          True    
+    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 539          True    
+    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 539          True    
+    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 539          True    
+    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 539          True    
+    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
+    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True
 
 That’s great! Now, lets get the data for all of the titles:
 
