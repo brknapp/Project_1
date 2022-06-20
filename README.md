@@ -117,6 +117,55 @@ You should get a tibble that looks like this:
     ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 735          True    
     ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 735          True
 
+That’s great! Now, lets get the data for all of the titles:
+
+``` r
+library(tidyverse)
+library(jsonlite)
+library(httr)
+mat=NULL
+by_search <- function(mykey,title){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&s=",title) 
+  full_url <- paste0(base_url, info_url)
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  list_of_titles <- movie_JSON$Search.Title
+  list_of_titles <- unique(list_of_titles)
+  
+  for(movie_title in list_of_titles){
+  table <- search_by_title(mykey,movie_title)
+  mat=rbind(mat,table)
+  }
+  return(mat)
+}
+```
+
+You should get a tibble that looks like this:
+
+``` r
+by_search("5c7f9206","star_wars")
+```
+
+    ## # A tibble: 30 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ##  2 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ##  3 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ##  4 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ##  5 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ##  6 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ##  7 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
+    ##  8 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
+    ##  9 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
+    ## 10 Star War… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
+    ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 
