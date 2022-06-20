@@ -2,14 +2,48 @@
 title: "Project 1"
 ---
 
-
-
 ```{r render, echo = FALSE, eval = FALSE}
 rmarkdown::render("README.Rmd",
                   output_format = "github_document",
                   output_options = list(html_preview=FALSE) 
 )
 ```
+
+In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx).
+
+Next, there are two ways to get information from the OMDb API. You can either build your search "By ID or Title" or "By Search". 
+
+Lets say you have a movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
+
+```{r search_by_title_Star_Wars, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+search_by_title <- function(mykey,title){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&t=",title) #I want to search for movies with the title "Star Wars"
+  full_url <- paste0(base_url, info_url)
+  full_url
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 This is my .Rmd file. Test. Test 2
