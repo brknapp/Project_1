@@ -155,8 +155,8 @@ You should get a tibble that looks like this:
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Now, what if you want to get all of the data for all of the Star Wars
-movies and all of the Indiana Jones movies. The function below can
-handle a list of several titles or one title.
+movies and all of the Avatar movies. The function below can handle a
+list of several titles or one title.
 
 Note: the parameter “type” has three options: movie, series, and
 episode. If “type” is not specified, it will give everything (including
@@ -204,7 +204,7 @@ just one. For example, if you wanted to search for both Star Wars and
 Indiana Jones, you would run the function like this:
 
 ``` r
-by_search("mykey",c("star_wars","indiana_jones"),type="movie")
+by_search("mykey",c("star_wars","avatar"),type="movie")
 ```
 
 You would get the tibble below:
@@ -222,41 +222,61 @@ You would get the tibble below:
     ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 539          True    
     ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
     ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True    
-    ## 11 Indiana Jones and the Raiders of the Lost Ark 1981        tt0082971     movie       https://m.me… 83           True    
-    ## 12 Indiana Jones and the Last Crusade            1989        tt0097576     movie       https://m.me… 83           True    
-    ## 13 Indiana Jones and the Temple of Doom          1984        tt0087469     movie       https://m.me… 83           True    
-    ## 14 Indiana Jones and the Kingdom of the Crystal… 2008        tt0367882     movie       https://m.me… 83           True    
-    ## 15 Indiana Jones and the Temple of the Forbidde… 1995        tt0764648     movie       https://m.me… 83           True    
-    ## 16 The Adventures of Young Indiana Jones: Treas… 1995        tt0115031     movie       https://m.me… 83           True    
-    ## 17 The Adventures of Young Indiana Jones: Trave… 1996        tt0154003     movie       https://m.me… 83           True    
-    ## 18 The Adventures of Young Indiana Jones: Attac… 1995        tt0154004     movie       https://m.me… 83           True    
-    ## 19 Mr. Plinkett's Indiana Jones and the Kingdom… 2011        tt6330122     movie       https://m.me… 83           True    
-    ## 20 The Adventures of Young Indiana Jones: Holly… 1994        tt0111806     movie       https://m.me… 83           True
+    ## 11 Avatar                                        2009        tt0499549     movie       https://m.me… 68           True    
+    ## 12 Avatar Purusha                                2022        tt11651768    movie       https://m.me… 68           True    
+    ## 13 The King's Avatar: For the Glory              2019        tt10736726    movie       https://m.me… 68           True    
+    ## 14 Avatar: Creating the World of Pandora         2010        tt1599280     movie       https://m.me… 68           True    
+    ## 15 Avatar Spirits                                2010        tt1900832     movie       https://m.me… 68           True    
+    ## 16 The Guild: Do You Wanna Date My Avatar        2009        tt3051150     movie       N/A           68           True    
+    ## 17 The Last Avatar                               2014        tt4727514     movie       https://m.me… 68           True    
+    ## 18 Avatar                                        2005        tt0497595     movie       https://m.me… 68           True    
+    ## 19 Avatar                                        2011        tt1775309     movie       https://m.me… 68           True    
+    ## 20 Capturing Avatar                              2010        tt1778212     movie       https://m.me… 68           True
 
-If you wanted to search for one title, like Avatar, you would run the
-function like this:
+If you wanted to search for one title, like Spider-Man, you would run
+the function like this:
 
 ``` r
-by_search("mykey","avatar",type="movie")
+by_search("mykey","spider-man",type="movie")
 ```
 
 You would get this tibble:
 
     ## # A tibble: 10 × 7
-    ##    Search.Title                           Search.Year Search.imdbID Search.Type Search.Poster        totalResults Response
-    ##    <chr>                                  <chr>       <chr>         <chr>       <chr>                <chr>        <chr>   
-    ##  1 Avatar                                 2009        tt0499549     movie       https://m.media-ama… 68           True    
-    ##  2 Avatar Purusha                         2022        tt11651768    movie       https://m.media-ama… 68           True    
-    ##  3 The King's Avatar: For the Glory       2019        tt10736726    movie       https://m.media-ama… 68           True    
-    ##  4 Avatar: Creating the World of Pandora  2010        tt1599280     movie       https://m.media-ama… 68           True    
-    ##  5 Avatar Spirits                         2010        tt1900832     movie       https://m.media-ama… 68           True    
-    ##  6 The Guild: Do You Wanna Date My Avatar 2009        tt3051150     movie       N/A                  68           True    
-    ##  7 The Last Avatar                        2014        tt4727514     movie       https://m.media-ama… 68           True    
-    ##  8 Avatar                                 2005        tt0497595     movie       https://m.media-ama… 68           True    
-    ##  9 Avatar                                 2011        tt1775309     movie       https://m.media-ama… 68           True    
-    ## 10 Capturing Avatar                       2010        tt1778212     movie       https://m.media-ama… 68           True
+    ##    Search.Title                      Search.Year Search.imdbID Search.Type Search.Poster             totalResults Response
+    ##    <chr>                             <chr>       <chr>         <chr>       <chr>                     <chr>        <chr>   
+    ##  1 Spider-Man                        2002        tt0145487     movie       https://m.media-amazon.c… 226          True    
+    ##  2 Spider-Man: No Way Home           2021        tt10872600    movie       https://m.media-amazon.c… 226          True    
+    ##  3 The Amazing Spider-Man            2012        tt0948470     movie       https://m.media-amazon.c… 226          True    
+    ##  4 Spider-Man 2                      2004        tt0316654     movie       https://m.media-amazon.c… 226          True    
+    ##  5 Spider-Man: Homecoming            2017        tt2250912     movie       https://m.media-amazon.c… 226          True    
+    ##  6 Spider-Man 3                      2007        tt0413300     movie       https://m.media-amazon.c… 226          True    
+    ##  7 Spider-Man: Into the Spider-Verse 2018        tt4633694     movie       https://m.media-amazon.c… 226          True    
+    ##  8 The Amazing Spider-Man 2          2014        tt1872181     movie       https://m.media-amazon.c… 226          True    
+    ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 226          True    
+    ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 226          True
 
-Now, lets get all of the data for both Star Wars and Indiana Jones:
+Now, lets get all of the data for both Star Wars and Avatar:
+
+``` r
+get_data("5c7f9206",c("star_wars","avatar"))
+```
+
+    ## # A tibble: 40 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ##  2 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ##  3 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ##  4 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ##  5 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ##  6 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ##  7 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
+    ##  8 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
+    ##  9 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
+    ## 10 Star War… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
+    ## # … with 30 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
