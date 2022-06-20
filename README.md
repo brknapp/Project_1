@@ -202,8 +202,13 @@ by_search <- function(mykey,title){
 
 You can use this new by_search function to look for multiple titles or
 just one. For example, if you wanted to search for both Star Wars and
-Indiana Jones, you would need to define `title` as
-`title <- c("star_wars","indiana_jones")` before running the function.
+Indiana Jones, you would run the function like this:
+
+``` r
+by_search("mykey",c("star_wars","indiana_jones"))
+```
+
+You would get the tibble below:
 
     ## # A tibble: 20 × 7
     ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
