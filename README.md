@@ -12,31 +12,8 @@ function you can use to get data from the OMDb API about Star Wars:
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-    ## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
-    ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-    ## ✔ readr   2.1.2     ✔ forcats 0.5.1
-
-    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 library(jsonlite)
-```
-
-    ## 
-    ## Attaching package: 'jsonlite'
-
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     flatten
-
-``` r
+library(httr)
 search_by_title <- function(mykey,title){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title) #I want to search for movies with the title "Star Wars"
