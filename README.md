@@ -52,9 +52,9 @@ Here’s a function you can use if you have a valid IMDb ID:
 library(tidyverse)
 library(jsonlite)
 library(httr)
-search_by_IMDb_ID <- function(mykey,IMDb_ID){
+search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
-  info_url <- paste0("&i=",IMDb_ID) 
+  info_url <- paste0("&i=",IMDb_ID,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   
   movie_api_call <- GET(full_url)
