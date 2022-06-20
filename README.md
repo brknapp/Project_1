@@ -16,7 +16,7 @@ library(jsonlite)
 library(httr)
 search_by_title <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
-  info_url <- paste0("&t=",title,"type=",type) 
+  info_url <- paste0("&t=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   
   movie_api_call <- GET(full_url)
@@ -30,10 +30,14 @@ search_by_title <- function(mykey,title,type="movie"){
 
 You should get a tibble that looks like this:
 
-    ## # A tibble: 1 × 2
-    ##   Response Error           
-    ##   <chr>    <chr>           
-    ## 1 False    Movie not found!
+    ## # A tibble: 3 × 26
+    ##   Title     Year  Rated Released  Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##   <chr>     <chr> <chr> <chr>     <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ## 1 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ## 2 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ## 3 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Lets say you have a valid IMDb ID. You can find an IMDb ID by searching
 for a title on the [IMDb website](www.imdb.com). After you find a movie
@@ -134,19 +138,21 @@ get_data <- function(mykey,title){
 
 You should get a tibble that looks like this:
 
-    ## # A tibble: 10 × 2
-    ##    Response Error           
-    ##    <chr>    <chr>           
-    ##  1 False    Movie not found!
-    ##  2 False    Movie not found!
-    ##  3 False    Movie not found!
-    ##  4 False    Movie not found!
-    ##  5 False    Movie not found!
-    ##  6 False    Movie not found!
-    ##  7 False    Movie not found!
-    ##  8 False    Movie not found!
-    ##  9 False    Movie not found!
-    ## 10 False    Movie not found!
+    ## # A tibble: 30 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ##  2 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ##  3 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ##  4 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ##  5 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ##  6 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ##  7 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
+    ##  8 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
+    ##  9 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
+    ## 10 Star War… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
+    ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
