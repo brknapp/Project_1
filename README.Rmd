@@ -13,7 +13,7 @@ In order to access the OMDb API, you need to get a free [api key](http://www.omd
 
 Next, there are two ways to get information from the OMDb API. You can either build your search "By ID or Title" or "By Search". 
 
-Lets say you have a movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
+Let's say you have a movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
 
 ```{r search_by_title_Star_Wars, message=FALSE,warning=FALSE}
 library(tidyverse)
@@ -21,9 +21,38 @@ library(jsonlite)
 library(httr)
 search_by_title <- function(mykey,title){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
-  info_url <- paste0("&t=",title) #I want to search for movies with the title "Star Wars"
+  info_url <- paste0("&t=",title) 
   full_url <- paste0(base_url, info_url)
-  full_url
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+
+```
+
+You should get a tibble that looks like this:
+
+```{r example_search_by_title_Star_Wars, eval=TRUE, echo=FALSE}
+search_by_title("5c7f9206","star_wars")
+```
+
+
+Lets say you have a valid IMDb ID. You can find an IMDb ID by searching for a title on the [IMDb website](www.imdb.com). After you find a movie you like, the IMDb ID will be in the URL. For example, the URL for the IMDb page for Star Wars: Episode V - The Empire Strikes Back is https://www.imdb.com/title/tt0080684/?ref_=nv_sr_srsg_0. Therefore, its IMDb ID is tt0080684.
+
+Here's a function you can use if you have a valid IMDb ID:
+
+```{r search_by_IMDb_ID_Star_Wars, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+search_by_IMDb_ID <- function(mykey,IMDb_ID){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&i=",IMDb_ID) 
+  full_url <- paste0(base_url, info_url)
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -36,13 +65,138 @@ search_by_title <- function(mykey,title){
 ```
 
 
+You should get a tibble that looks like this:
+
+```{r example_search_by_IMDb_ID_Star_Wars, eval=TRUE, echo=FALSE}
+search_by_IMDb_ID("5c7f9206","tt0080684")
+```
+
+
+Let's say you wanted to get all of the titles for all of the Star Wars movies. You would then need to build your URL "By Search" instead.
+
+Here's a function you can use if you wanted to search for multiple movie titles:
+
+
+```{r by_search, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+by_search <- function(mykey,title){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&s=",title) 
+  full_url <- paste0(base_url, info_url)
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+```
+
+You should get a tibble that looks like this:
+
+```{r example_by_search, eval=TRUE, echo=FALSE}
+by_search("5c7f9206","star_wars")
+```
+
+That's great! Now, lets get the data for all of the titles:
+
+```{r get_data}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+mat=NULL
+get_data <- function(mykey,title){
+  temp_table <- by_search(mykey,title)
+  list_of_titles <- unique(temp_table$Search.Title)
+  
+  for(movie_title in list_of_titles){
+  table <- search_by_title(mykey,movie_title)
+  mat=rbind(mat,table)
+  }
+  return(mat)
+}
+```
+
+You should get a tibble that looks like this:
+
+```{r example_get_data,eval=TRUE,echo=FALSE}
+get_data("5c7f9206","star_wars")
+```
+
+Now, what if you want to get all of the data for all of the Star Wars movies and all of the Indiana Jones movies. The function below can handle a list of several titles or one title.
+
+Note: the parameter "type" has three options: movie, series, and episode. If "type" is not specified, it will give everything (including movies, series, and episodes). I'm making the default for "type" be "movie", but you can change this if you want.
+
+```{r test_3_35_6_20_2022}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+mat=NULL
+by_search <- function(mykey,title,type="movie"){
+ if(length(title)<=1){ 
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+    info_url <- paste0("&s=",title,"&type=",type) 
+    full_url <- paste0(base_url, info_url)
+    
+    movie_api_call <- GET(full_url)
+    movie_api_call_char <- rawToChar(movie_api_call$content)
+    movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+    movie_JSON <- as.data.frame(movie_JSON)
+    movie_JSON <- as_tibble(movie_JSON)
+    return(movie_JSON)
+ }
+  if(length(title)>1){
+  for(i in title){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&s=",i,"&type=",type) 
+  full_url <- paste0(base_url, info_url)
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  mat=rbind(mat,movie_JSON)
+  mat=as_tibble(mat)
+  }
+    }
+  return(mat)
+}
+```
+
+You can use this new by_search function to look for multiple titles or just one. For example, if you wanted to search for both Star Wars and Indiana Jones, you would run the function like this:
+
+```{r ex_test_3_50_6_20_2022,eval=FALSE}
+by_search("mykey",c("star_wars","indiana_jones"))
+```
+
+You would get the tibble below: 
+
+```{r ex_test_3_35_6_20_2022,eval=TRUE,echo=FALSE}
+by_search("5c7f9206",c("star_wars","indiana_jones"))
+```
+
+If you wanted to search for one title, like Avatar, you would run the function like this:
+
+```{r ex_test_3_54_6_20_2022,eval=FALSE}
+by_search("mykey",c("avatar"))
+```
+
+You would get this tibble:
+
+```{r ex_test_3_55_6_20_2022,eval=TRUE,echo=FALSE}
+by_search("5c7f9206",c("avatar"))
+```
+
+Now, lets get all of the data for both Star Wars and Indiana Jones:
 
 
 
 
 
-
-
+movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
 
 
 
