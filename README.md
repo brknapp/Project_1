@@ -125,11 +125,11 @@ library(jsonlite)
 library(httr)
 mat=NULL
 get_data <- function(mykey,title){
-  temp_table <- by_search(mykey,title)
+  temp_table <- by_search(mykey,title,type="movie")
   list_of_titles <- unique(temp_table$Search.Title)
   
   for(movie_title in list_of_titles){
-  table <- search_by_title(mykey,movie_title)
+  table <- search_by_title(mykey,movie_title,type="movie")
   mat=rbind(mat,table)
   }
   return(mat)
