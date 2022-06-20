@@ -241,10 +241,19 @@ by_search("mykey",c("avatar"))
 
 You would get this tibble:
 
-    ## # A tibble: 1 × 2
-    ##   Response Error           
-    ##   <chr>    <chr>           
-    ## 1 False    Invalid API key!
+    ## # A tibble: 10 × 7
+    ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
+    ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
+    ##  1 Avatar                                        2009        tt0499549     movie       https://m.me… 93           True    
+    ##  2 Avatar: The Last Airbender                    2005–2008   tt0417299     series      https://m.me… 93           True    
+    ##  3 The King's Avatar                             2017–       tt6859260     series      https://m.me… 93           True    
+    ##  4 The King's Avatar                             2019        tt10732794    series      https://m.me… 93           True    
+    ##  5 Avatar: The Last Airbender - The Legend of A… 2006        tt0959552     game        https://m.me… 93           True    
+    ##  6 Avatar: The Game                              2009        tt1517155     game        https://m.me… 93           True    
+    ##  7 Avatar Purusha                                2022        tt11651768    movie       https://m.me… 93           True    
+    ##  8 The King's Avatar: For the Glory              2019        tt10736726    movie       https://m.me… 93           True    
+    ##  9 Avatar: The Last Airbender - Into the Inferno 2008        tt1459460     game        https://m.me… 93           True    
+    ## 10 Avatar: Creating the World of Pandora         2010        tt1599280     movie       https://m.me… 93           True
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
