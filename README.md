@@ -53,7 +53,7 @@ Here’s a function you can use if you have a valid IMDb ID:
 library(tidyverse)
 library(jsonlite)
 library(httr)
-IMDb_ID <- function(mykey,IMDb_ID){
+search_by_IMDb_ID <- function(mykey,IMDb_ID){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&i=",IMDb_ID) 
   full_url <- paste0(base_url, info_url)
@@ -70,10 +70,14 @@ IMDb_ID <- function(mykey,IMDb_ID){
 
 You should get a tibble that looks like this:
 
-    ## # A tibble: 1 × 2
-    ##   Response Error           
-    ##   <chr>    <chr>           
-    ## 1 False    Movie not found!
+    ## # A tibble: 3 × 26
+    ##   Title      Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##   <chr>      <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ## 1 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ## 2 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ## 3 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
