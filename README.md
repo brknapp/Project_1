@@ -200,13 +200,10 @@ by_search <- function(mykey,title){
 }
 ```
 
-You should get a tibble that looks like this:
-
-``` r
-mat=NULL
-title <- c("star_wars","indiana_jones")
-by_search("5c7f9206",title)
-```
+You can use this new by_search function to look for multiple titles or
+just one. For example, if you wanted to search for both Star Wars and
+Indiana Jones, you would need to define `title` as
+`title <- c("star_wars","indiana_jones")` before running the function.
 
     ## # A tibble: 20 × 7
     ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
@@ -231,6 +228,8 @@ by_search("5c7f9206",title)
     ## 18 Indiana Jones and the Temple of the Forbidde… 1995        tt0764648     movie       https://m.me… 104          True    
     ## 19 The Adventures of Young Indiana Jones: Treas… 1995        tt0115031     movie       https://m.me… 104          True    
     ## 20 The Adventures of Young Indiana Jones: Trave… 1996        tt0154003     movie       https://m.me… 104          True
+
+If you wanted to search for one title
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
