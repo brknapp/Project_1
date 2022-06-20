@@ -162,15 +162,20 @@ Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
 handle a list of several titles or one title.
 
+Note: the parameter “type” has three options: movie, series, episode. If
+“type” is not specified, it will give everything (including movies,
+series, and episodes). I’m making the default for “type” be “movie”, but
+you can change this if you want.
+
 ``` r
 library(tidyverse)
 library(jsonlite)
 library(httr)
 mat=NULL
-by_search <- function(mykey,title){
+by_search <- function(mykey,title,type="movie"){
  if(length(title)<=1){ 
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
-    info_url <- paste0("&s=",title) 
+    info_url <- paste0("&s=",title,"&type=",type) 
     full_url <- paste0(base_url, info_url)
     
     movie_api_call <- GET(full_url)
@@ -242,18 +247,18 @@ by_search("mykey",c("avatar"))
 You would get this tibble:
 
     ## # A tibble: 10 × 7
-    ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
-    ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
-    ##  1 Avatar                                        2009        tt0499549     movie       https://m.me… 93           True    
-    ##  2 Avatar: The Last Airbender                    2005–2008   tt0417299     series      https://m.me… 93           True    
-    ##  3 The King's Avatar                             2017–       tt6859260     series      https://m.me… 93           True    
-    ##  4 The King's Avatar                             2019        tt10732794    series      https://m.me… 93           True    
-    ##  5 Avatar: The Last Airbender - The Legend of A… 2006        tt0959552     game        https://m.me… 93           True    
-    ##  6 Avatar: The Game                              2009        tt1517155     game        https://m.me… 93           True    
-    ##  7 Avatar Purusha                                2022        tt11651768    movie       https://m.me… 93           True    
-    ##  8 The King's Avatar: For the Glory              2019        tt10736726    movie       https://m.me… 93           True    
-    ##  9 Avatar: The Last Airbender - Into the Inferno 2008        tt1459460     game        https://m.me… 93           True    
-    ## 10 Avatar: Creating the World of Pandora         2010        tt1599280     movie       https://m.me… 93           True
+    ##    Search.Title                           Search.Year Search.imdbID Search.Type Search.Poster        totalResults Response
+    ##    <chr>                                  <chr>       <chr>         <chr>       <chr>                <chr>        <chr>   
+    ##  1 Avatar                                 2009        tt0499549     movie       https://m.media-ama… 68           True    
+    ##  2 Avatar Purusha                         2022        tt11651768    movie       https://m.media-ama… 68           True    
+    ##  3 The King's Avatar: For the Glory       2019        tt10736726    movie       https://m.media-ama… 68           True    
+    ##  4 Avatar: Creating the World of Pandora  2010        tt1599280     movie       https://m.media-ama… 68           True    
+    ##  5 Avatar Spirits                         2010        tt1900832     movie       https://m.media-ama… 68           True    
+    ##  6 The Guild: Do You Wanna Date My Avatar 2009        tt3051150     movie       N/A                  68           True    
+    ##  7 The Last Avatar                        2014        tt4727514     movie       https://m.media-ama… 68           True    
+    ##  8 Avatar                                 2005        tt0497595     movie       https://m.media-ama… 68           True    
+    ##  9 Avatar                                 2011        tt1775309     movie       https://m.media-ama… 68           True    
+    ## 10 Capturing Avatar                       2010        tt1778212     movie       https://m.media-ama… 68           True
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
