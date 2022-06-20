@@ -158,11 +158,9 @@ get_data("5c7f9206","star_wars")
     ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-Now, what is you want to get all of the data for all of the Star Wars
+Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
 handle a list of several titles or one title.
-
-Test:
 
 ``` r
 library(tidyverse)
@@ -234,7 +232,19 @@ You would get the tibble below:
     ## 19 The Adventures of Young Indiana Jones: Treas… 1995        tt0115031     movie       https://m.me… 104          True    
     ## 20 The Adventures of Young Indiana Jones: Trave… 1996        tt0154003     movie       https://m.me… 104          True
 
-If you wanted to search for one title
+If you wanted to search for one title, like Avatar, you would run the
+function like this:
+
+``` r
+by_search("mykey",c("avatar"))
+```
+
+You would get this tibble:
+
+    ## # A tibble: 1 × 2
+    ##   Response Error           
+    ##   <chr>    <chr>           
+    ## 1 False    Invalid API key!
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
