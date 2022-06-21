@@ -278,6 +278,18 @@ get_data("5c7f9206",c("star_wars","avatar"))
     ## # … with 30 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
+Before we can analyze this data, we need to make it more usable:
+
+``` r
+format_data <- function(mykey,title){
+  data <- get_data(mykey,title)
+  
+  
+  
+  
+}
+```
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 
