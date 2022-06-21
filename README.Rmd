@@ -37,10 +37,17 @@ search_by_title <- function(mykey,title,type="movie"){
 
 ```
 
+You should run the function like this:
+
+```{r 3_50_6_21_2022,eval=FALSE}
+search_by_title("mykey","star_wars",type="movie")
+```
+
+
 You should get a tibble that looks like this:
 
 ```{r example_search_by_title_Star_Wars, eval=TRUE, echo=FALSE}
-search_by_title("5c7f9206","star_wars")
+search_by_title("5c7f9206","star_wars",type="movie")
 ```
 
 

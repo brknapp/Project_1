@@ -34,6 +34,12 @@ search_by_title <- function(mykey,title,type="movie"){
 }
 ```
 
+You should run the function like this:
+
+``` r
+search_by_title("mykey","star_wars",type="movie")
+```
+
 You should get a tibble that looks like this:
 
     ## # A tibble: 3 × 26
