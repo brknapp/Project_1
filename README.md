@@ -18,6 +18,7 @@ search_by_title <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -56,6 +57,7 @@ search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&i=",IMDb_ID,"&type=",type) 
   full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -91,6 +93,7 @@ by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -173,6 +176,7 @@ by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
     info_url <- paste0("&s=",title,"&type=",type) 
     full_url <- paste0(base_url, info_url)
+    full_url <- gsub(full_url, pattern = " ", replacement = "%20")
     
     movie_api_call <- GET(full_url)
     movie_api_call_char <- rawToChar(movie_api_call$content)
@@ -186,6 +190,7 @@ by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",i,"&type=",type) 
   full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
