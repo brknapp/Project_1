@@ -163,8 +163,8 @@ You should get a tibble that looks like this:
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Now, what if you want to get all of the data for all of the Star Wars
-movies and all of the Avatar movies. The function below can handle a
-list of several titles or one title.
+movies and all of the Indiana Jones movies. The function below can
+handle a list of several titles or one title.
 
 ``` r
 library(tidyverse)

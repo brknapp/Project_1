@@ -131,7 +131,7 @@ You should get a tibble that looks like this:
 get_data("5c7f9206","star_wars")
 ```
 
-Now, what if you want to get all of the data for all of the Star Wars movies and all of the Avatar movies. The function below can handle a list of several titles or one title.
+Now, what if you want to get all of the data for all of the Star Wars movies and all of the Indiana Jones movies. The function below can handle a list of several titles or one title.
 
 
 ```{r test_3_35_6_20_2022}
