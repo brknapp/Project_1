@@ -79,6 +79,12 @@ search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
 }
 ```
 
+You should run the function like this:
+
+``` r
+search_by_IMDb_ID("mykey","tt0080684",type="movie")
+```
+
 You should get a tibble that looks like this:
 
     ## # A tibble: 3 × 26

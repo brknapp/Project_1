@@ -76,10 +76,16 @@ search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
 ```
 
 
+You should run the function like this:
+
+```{r 3_54_6_21_2022,eval=FALSE}
+search_by_IMDb_ID("mykey","tt0080684",type="movie")
+```
+
 You should get a tibble that looks like this:
 
 ```{r example_search_by_IMDb_ID_Star_Wars, eval=TRUE, echo=FALSE}
-search_by_IMDb_ID("5c7f9206","tt0080684")
+search_by_IMDb_ID("5c7f9206","tt0080684",type="movie")
 ```
 
 
