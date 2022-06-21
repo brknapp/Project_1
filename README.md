@@ -2,7 +2,8 @@ Project 1
 ================
 
 In order to access the OMDb API, you need to get a free [api
-key](http://www.omdbapi.com/apikey.aspx).
+key](http://www.omdbapi.com/apikey.aspx). In the rest of this document,
+“mykey” refers to your OMDb API key.
 
 Next, there are two ways to get information from the OMDb API. You can
 either build your search “By ID or Title” or “By Search”.
@@ -119,6 +120,12 @@ by_search <- function(mykey,title,type="movie"){
   tibble_movie_JSON <- as_tibble(movie_JSON)
   return(tibble_movie_JSON)
 }
+```
+
+You should run the function like this:
+
+``` r
+by_search("mykey","star_wars",type="movie")
 ```
 
 You should get a tibble that looks like this:

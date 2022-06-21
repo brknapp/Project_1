@@ -9,7 +9,7 @@ rmarkdown::render("README.Rmd",
 )
 ```
 
-In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx).
+In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx). In the rest of this document, "mykey" refers to your OMDb API key.
 
 Next, there are two ways to get information from the OMDb API. You can either build your search "By ID or Title" or "By Search". 
 
@@ -113,10 +113,16 @@ by_search <- function(mykey,title,type="movie"){
 }
 ```
 
+You should run the function like this:
+
+```{r 3_57_6_21_2022,eval=FALSE}
+by_search("mykey","star_wars",type="movie")
+```
+
 You should get a tibble that looks like this:
 
 ```{r example_by_search, eval=TRUE, echo=FALSE}
-by_search("5c7f9206","star_wars")
+by_search("5c7f9206","star_wars",type="movie")
 ```
 
 That's great! Now, lets get the data for all of the titles:
