@@ -1,9 +1,16 @@
 Project 1
 ================
 
+-   [Lets Get Started: OMDb API Key](#lets-get-started-omdb-api-key)
+-   [Build URL for One Movie Title](#build-url-for-one-movie-title)
+
+# Lets Get Started: OMDb API Key
+
 In order to access the OMDb API, you need to get a free [api
 key](http://www.omdbapi.com/apikey.aspx). In the rest of this document,
 “mykey” refers to your OMDb API key.
+
+# Build URL for One Movie Title
 
 Next, there are two ways to get information from the OMDb API. You can
 either build your search “By ID or Title” or “By Search”.
@@ -269,16 +276,16 @@ You would get this tibble:
     ## # A tibble: 10 × 7
     ##    Search.Title                      Search.Year Search.imdbID Search.Type Search.Poster             totalResults Response
     ##    <chr>                             <chr>       <chr>         <chr>       <chr>                     <chr>        <chr>   
-    ##  1 Spider-Man                        2002        tt0145487     movie       https://m.media-amazon.c… 226          True    
-    ##  2 Spider-Man: No Way Home           2021        tt10872600    movie       https://m.media-amazon.c… 226          True    
-    ##  3 The Amazing Spider-Man            2012        tt0948470     movie       https://m.media-amazon.c… 226          True    
-    ##  4 Spider-Man 2                      2004        tt0316654     movie       https://m.media-amazon.c… 226          True    
-    ##  5 Spider-Man: Homecoming            2017        tt2250912     movie       https://m.media-amazon.c… 226          True    
-    ##  6 Spider-Man 3                      2007        tt0413300     movie       https://m.media-amazon.c… 226          True    
-    ##  7 Spider-Man: Into the Spider-Verse 2018        tt4633694     movie       https://m.media-amazon.c… 226          True    
-    ##  8 The Amazing Spider-Man 2          2014        tt1872181     movie       https://m.media-amazon.c… 226          True    
-    ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 226          True    
-    ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 226          True
+    ##  1 Spider-Man                        2002        tt0145487     movie       https://m.media-amazon.c… 225          True    
+    ##  2 Spider-Man: No Way Home           2021        tt10872600    movie       https://m.media-amazon.c… 225          True    
+    ##  3 The Amazing Spider-Man            2012        tt0948470     movie       https://m.media-amazon.c… 225          True    
+    ##  4 Spider-Man 2                      2004        tt0316654     movie       https://m.media-amazon.c… 225          True    
+    ##  5 Spider-Man: Homecoming            2017        tt2250912     movie       https://m.media-amazon.c… 225          True    
+    ##  6 Spider-Man 3                      2007        tt0413300     movie       https://m.media-amazon.c… 225          True    
+    ##  7 Spider-Man: Into the Spider-Verse 2018        tt4633694     movie       https://m.media-amazon.c… 225          True    
+    ##  8 The Amazing Spider-Man 2          2014        tt1872181     movie       https://m.media-amazon.c… 225          True    
+    ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 225          True    
+    ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 225          True
 
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 
