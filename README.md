@@ -11,9 +11,9 @@ key](http://www.omdbapi.com/apikey.aspx). In the rest of this document,
 “mykey” refers to your OMDb API key.
 
 You should also “turn on” these packages by running the code below. If
-you don’t have them installed yet, run ‘install.packages()’ with the
+you don’t have them installed yet, run `install.packages()` with the
 package in quotes. For example, to install `tidyverse`, you would run
-‘install.packages(tidyverse)’.
+`install.packages(tidyverse)`.
 
 ``` r
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
@@ -22,15 +22,13 @@ library(tidyverse) #this package will help us work with our nicely formatted dat
 ```
 
 In order to get information from the OMDb API, we have to build a URL
-with our search criteria. It’s similar to doing a Google search.
+with our search criteria. It’s similar to doing a Google search. There
+are two ways to build a URL: “By ID or Title” or “By Search”.
 
 # Build URL for One Movie Title
 
-Next, there are two ways to get information from the OMDb API. You can
-either build your search “By ID or Title” or “By Search”.
-
-Let’s say you have a movie title in mind, like Star Wars. Here’s a
-function you can use to get data from the OMDb API about Star Wars:
+Let’s say you have a movie title in mind, like Star Wars (1977). Here’s
+a function you can use to get data from the OMDb API about Star Wars:
 
 Note: the parameter “type” has three options: movie, series, and
 episode. If “type” is not specified, it will give everything (including
@@ -38,9 +36,6 @@ movies, series, and episodes). I’m making the default for “type” be
 “movie”, but you can change this if you want.
 
 ``` r
-library(tidyverse)
-library(jsonlite)
-library(httr)
 search_by_title <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title,"&type=",type) 
@@ -70,6 +65,39 @@ You should get a tibble that looks like this:
     ## 1 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
     ## 2 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
     ## 3 Star Wars 1977  PG    25 May 1… 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+Test (6_22_2022): search by title and date:
+
+``` r
+search_by_title_and_date <- function(mykey,title,type="movie",date){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&t=",title,"&type=",type,"&y=",date) 
+  full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+```
+
+Get a tibble like this:
+
+``` r
+search_by_title_and_date("5c7f9206","star_wars",type="movie",date=1980)
+```
+
+    ## # A tibble: 3 × 26
+    ##   Title      Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##   <chr>      <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ## 1 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ## 2 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ## 3 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 

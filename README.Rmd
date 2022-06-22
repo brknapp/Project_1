@@ -25,7 +25,7 @@ rmarkdown::render("README.Rmd",
 
 In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx). In the rest of this document, "mykey" refers to your OMDb API key.
 
-You should also "turn on" these packages by running the code below. If you don't have them installed yet, run 'install.packages()' with the package in quotes. For example, to install `tidyverse`, you would run 'install.packages(tidyverse)'.
+You should also "turn on" these packages by running the code below. If you don't have them installed yet, run `install.packages()` with the package in quotes. For example, to install `tidyverse`, you would run `install.packages(tidyverse)`.
 
 ```{r 7_03_6_22_2022}
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
@@ -33,20 +33,15 @@ library(jsonlite) #this package will help us convert the data we get from the OM
 library(tidyverse) #this package will help us work with our nicely formatted data.
 ```
 
-In order to get information from the OMDb API, we have to build a URL with our search criteria. It's similar to doing a Google search.
+In order to get information from the OMDb API, we have to build a URL with our search criteria. It's similar to doing a Google search. There are two ways to build a URL: "By ID or Title" or "By Search".
 
 # Build URL for One Movie Title
 
-Next, there are two ways to get information from the OMDb API. You can either build your search "By ID or Title" or "By Search". 
-
-Let's say you have a movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
+Let's say you have a movie title in mind, like Star Wars (1977). Here's a function you can use to get data from the OMDb API about Star Wars:
 
 Note: the parameter “type” has three options: movie, series, and episode. If “type” is not specified, it will give everything (including movies, series, and episodes). I’m making the default for “type” be “movie”, but you can change this if you want.
 
-```{r search_by_title_Star_Wars, message=FALSE,warning=FALSE}
-library(tidyverse)
-library(jsonlite)
-library(httr)
+```{r search_by_title_Star_Wars}
 search_by_title <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title,"&type=",type) 
@@ -60,7 +55,6 @@ search_by_title <- function(mykey,title,type="movie"){
   tibble_movie_JSON <- as_tibble(movie_JSON)
   return(tibble_movie_JSON)
 }
-
 ```
 
 You should run the function like this:
@@ -75,6 +69,34 @@ You should get a tibble that looks like this:
 ```{r example_search_by_title_Star_Wars, eval=TRUE, echo=FALSE}
 search_by_title("5c7f9206","star_wars",type="movie")
 ```
+
+Test (6_22_2022): search by title and date:
+
+
+```{r 7_11_6_22_2022}
+search_by_title_and_date <- function(mykey,title,type="movie",date){
+  base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
+  info_url <- paste0("&t=",title,"&type=",type,"&y=",date) 
+  full_url <- paste0(base_url, info_url)
+  full_url <- gsub(full_url, pattern = " ", replacement = "%20")
+  
+  movie_api_call <- GET(full_url)
+  movie_api_call_char <- rawToChar(movie_api_call$content)
+  movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
+  movie_JSON <- as.data.frame(movie_JSON)
+  tibble_movie_JSON <- as_tibble(movie_JSON)
+  return(tibble_movie_JSON)
+}
+```
+
+
+Get a tibble like this:
+
+```{r 7_13_6_22_2022}
+search_by_title_and_date("5c7f9206","star_wars",type="movie",date=1980)
+```
+
+
 
 
 Lets say you have a valid IMDb ID. You can find an IMDb ID by searching for a title on the [IMDb website](www.imdb.com). After you find a movie you like, the IMDb ID will be in the URL. For example, the URL for the IMDb page for Star Wars: Episode V - The Empire Strikes Back is https://www.imdb.com/title/tt0080684/?ref_=nv_sr_srsg_0. Therefore, its IMDb ID is tt0080684.
