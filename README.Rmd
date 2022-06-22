@@ -25,6 +25,16 @@ rmarkdown::render("README.Rmd",
 
 In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx). In the rest of this document, "mykey" refers to your OMDb API key.
 
+You should also "turn on" these packages by running the code below. If you don't have them installed yet, run 'install.packages()' with the package in quotes. For example, to install `tidyverse`, you would run 'install.packages(tidyverse)'.
+
+```{r 7_03_6_22_2022}
+library(httr) #this package will help use use the URL we built to get information from the OMDb API
+library(jsonlite) #this package will help us convert the data we get from the OMDb API to a more usable format
+library(tidyverse) #this package will help us work with our nicely formatted data.
+```
+
+In order to get information from the OMDb API, we have to build a URL with our search criteria. It's similar to doing a Google search.
+
 # Build URL for One Movie Title
 
 Next, there are two ways to get information from the OMDb API. You can either build your search "By ID or Title" or "By Search". 
