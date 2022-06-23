@@ -357,13 +357,18 @@ format_data <- function(mykey,titles,series){
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
   data$Runtime <- gsub(" min","",data$Runtime)
-  return(data)
+  data$Runtime <- as.numeric(data$Runtime)
+  
+  for(i in length(data$Ratings.Value)){
+    temp=data[is.element(data$Ratings.Value,i),]
+    }
+  return(temp)
 }
 
 ```
 
 
-```{r 12_16_6_23_2022,echo=FALSE}
+```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
 format_data("5c7f9206",titles,series)
 ```
 
