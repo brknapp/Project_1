@@ -11,6 +11,7 @@ Project 1
 -   [Get the data!](#get-the-data)
 -   [Build URL to search for More than One Title or
     Series](#build-url-to-search-for-more-than-one-title-or-series)
+-   [Let’s make a data set!](#lets-make-a-data-set)
 
 # Lets Get Started: OMDb API Key
 
@@ -387,37 +388,69 @@ get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
     ## # … with 38 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-Let’s make a data set!
+# Let’s make a data set!
+
+First, I’m going to make two lists of movies:
 
 ``` r
-by_search_one_or_more_titles("5c7f9206",c("the_godfather",
-                                          "casablanca",
-                                          "star_wars",
-                                          "the_wizard_of_oz",
-                                          "it's_a_wonderful_life",
-                                          "goodfellas",
-                                          "taxi_driver",
-                                          "psycho",
-                                          "singin_in_the_rain",
-                                          "2001:_a_space_odyssey",
-                                          "vertigo"),
-                             type="movie")
+#for these movies, I just want the first result it gives me:
+titles <- c("casablanca",
+            "the_wizard_of_oz",
+            "it's_a_wonderful_life",
+            "goodfellas",
+            "taxi_driver",
+            "psycho",
+            "singin_in_the_rain",
+            "2001:_a_space_odyssey",
+            "vertigo")
+
+#for these movies, I want all of them in the series:
+series <- c("the_godfather",
+            "star_wars",
+            "alien",
+            "fast_and_furious",
+            "final_destination",
+            "friday_the_13th")
 ```
 
-    ## # A tibble: 97 × 7
-    ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
-    ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
-    ##  1 The Godfather                                 1972        tt0068646     movie       https://m.me… 49           True    
-    ##  2 The Godfather: Part II                        1974        tt0071562     movie       https://m.me… 49           True    
-    ##  3 The Godfather: Part III                       1990        tt0099674     movie       https://m.me… 49           True    
-    ##  4 The Godfather Trilogy: 1901-1980              1992        tt0150742     movie       https://m.me… 49           True    
-    ##  5 The Godfather Family: A Look Inside           1990        tt0101961     movie       https://m.me… 49           True    
-    ##  6 The Godfather Legacy                          2012        tt2311160     movie       https://m.me… 49           True    
-    ##  7 Herschell Gordon Lewis: The Godfather of Gore 2010        tt1683431     movie       https://m.me… 49           True    
-    ##  8 The Godfather of Green Bay                    2005        tt0385727     movie       https://m.me… 49           True    
-    ##  9 Paul Mooney: The Godfather of Comedy          2012        tt2221825     movie       https://m.me… 49           True    
-    ## 10 The Godfather: Behind the Scenes              1971        tt1113794     movie       N/A           49           True    
-    ## # … with 87 more rows
+Here is the function I’m going to use to get all of the data for all of
+my movies:
+
+``` r
+mat1=NULL
+mat2=NULL
+mat3=NULL
+get_data_one_or_more_titles <- function(mykey,titles,series){
+  for(i in titles){
+    temp_table <- search_by_title(mykey,i,type="movie")
+    # list_of_titles <- unique(temp_table$Search.Title)
+    # for(movie_title in list_of_titles){
+    #   table1 <- search_by_title(mykey,movie_title,type="movie")
+      mat1=rbind(mat1,temp_table)
+  #}
+      
+  }
+  for(j in series){
+    temp_table <- by_search_series(mykey,j,type="movie")
+    list_of_titles <- unique(temp_table$Search.Title)
+    for(movie_title in list_of_titles){
+      table2 <- search_by_title(mykey,movie_title,type="movie")
+      mat2=rbind(mat2,table2)
+    }
+    
+  }
+  
+  mat3=rbind(mat3,mat1,mat2)
+}
+```
+
+I’m going to run the function like this:
+
+``` r
+get_data_one_or_more_titles("mykey",titles,series)
+```
+
+Here is the tibble I get:
 
 Before we can analyze this data, we need to make it more usable:
 
