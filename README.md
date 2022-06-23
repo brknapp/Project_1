@@ -420,15 +420,10 @@ my movies:
 mat1=NULL
 mat2=NULL
 mat3=NULL
-get_data_one_or_more_titles <- function(mykey,titles,series){
+get_data_titles_and_series <- function(mykey,titles,series){
   for(i in titles){
     temp_table <- search_by_title(mykey,i,type="movie")
-    # list_of_titles <- unique(temp_table$Search.Title)
-    # for(movie_title in list_of_titles){
-    #   table1 <- search_by_title(mykey,movie_title,type="movie")
       mat1=rbind(mat1,temp_table)
-  #}
-      
   }
   for(j in series){
     temp_table <- by_search_series(mykey,j,type="movie")
@@ -437,9 +432,7 @@ get_data_one_or_more_titles <- function(mykey,titles,series){
       table2 <- search_by_title(mykey,movie_title,type="movie")
       mat2=rbind(mat2,table2)
     }
-    
   }
-  
   mat3=rbind(mat3,mat1,mat2)
   return(mat3)
 }
@@ -448,7 +441,7 @@ get_data_one_or_more_titles <- function(mykey,titles,series){
 I’m going to run the function like this:
 
 ``` r
-get_data_one_or_more_titles("mykey",titles,series)
+get_data_titles_and_series("mykey",titles,series)
 ```
 
 Here is the tibble I get:
