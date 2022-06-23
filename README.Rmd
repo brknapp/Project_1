@@ -356,13 +356,10 @@ format_data <- function(mykey,titles,series){
   data <- get_data_titles_and_series(mykey,titles,series)
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
-  data$Runtime <- gsub(" min","",data$Runtime)
-  data$Runtime <- as.numeric(data$Runtime)
+  data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
+  #data$Runtime <- as.numeric(data$Runtime)
   
-  for(i in length(data$Ratings.Value)){
-    temp=data[is.element(data$Ratings.Value,i),]
-    }
-  return(temp)
+    return(data)
 }
 
 ```

@@ -30,6 +30,18 @@ library(jsonlite) #this package will help us convert the data we get from the OM
 library(tidyverse) #this package will help us work with our nicely formatted data.
 ```
 
+    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+    ## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
+    ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+    ## ✔ readr   2.1.2     ✔ forcats 0.5.1
+
+    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter()  masks stats::filter()
+    ## ✖ purrr::flatten() masks jsonlite::flatten()
+    ## ✖ dplyr::lag()     masks stats::lag()
+
 In order to get information from the OMDb API, we have to build a URL
 with our search criteria. It’s similar to doing a Google search. There
 are two ways to build a URL: “By ID or Title” or “By Search”.
@@ -468,25 +480,42 @@ Before we can analyze this data, we need to make it more usable:
 
 ``` r
 library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
 format_data <- function(mykey,titles,series){
   data <- get_data_titles_and_series(mykey,titles,series)
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
-  data$Runtime <- gsub(" min","",data$Runtime)
-  data$Runtime <- as.numeric(data$Runtime)
+  data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
+  #data$Runtime <- as.numeric(data$Runtime)
   
-  for(i in length(data$Ratings.Value)){
-    temp=data[is.element(data$Ratings.Value,i),]
-    }
-  return(temp)
+    return(data)
 }
 ```
 
-    ## # A tibble: 0 × 26
-    ## # … with 26 variables: Title <chr>, Year <dbl>, Rated <chr>, Released <date>, Runtime <dbl>, Genre <chr>, Director <chr>,
-    ## #   Writer <chr>, Actors <chr>, Plot <chr>, Language <chr>, Country <chr>, Awards <chr>, Poster <chr>,
-    ## #   Ratings.Source <chr>, Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
-    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+    ## # A tibble: 152 × 26
+    ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Internet Movi…
+    ##  2 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Rotten Tomato…
+    ##  3 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Metacritic    
+    ##  4 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Internet Movi…
+    ##  5 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Rotten Tomato…
+    ##  6 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Metacritic    
+    ##  7 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Internet Movi…
+    ##  8 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Rotten Tomato…
+    ##  9 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Metacritic    
+    ## 10 Goodfe…  1990 R     1990-09-21     145 Biog… Martin … Nicho… Rober… The … English… United… Won 1… https… Internet Movi…
+    ## # … with 142 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
