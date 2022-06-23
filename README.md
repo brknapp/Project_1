@@ -441,6 +441,7 @@ get_data_one_or_more_titles <- function(mykey,titles,series){
   }
   
   mat3=rbind(mat3,mat1,mat2)
+  return(mat3)
 }
 ```
 
@@ -451,6 +452,22 @@ get_data_one_or_more_titles("mykey",titles,series)
 ```
 
 Here is the tibble I get:
+
+    ## # A tibble: 152 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Casablan… 1942  PG    23 Jan … 102 min Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Internet Movi…
+    ##  2 Casablan… 1942  PG    23 Jan … 102 min Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Rotten Tomato…
+    ##  3 Casablan… 1942  PG    23 Jan … 102 min Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Metacritic    
+    ##  4 The Wiza… 1939  G     25 Aug … 102 min Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Internet Movi…
+    ##  5 The Wiza… 1939  G     25 Aug … 102 min Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Rotten Tomato…
+    ##  6 The Wiza… 1939  G     25 Aug … 102 min Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Metacritic    
+    ##  7 It's a W… 1946  PG    07 Jan … 130 min Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Internet Movi…
+    ##  8 It's a W… 1946  PG    07 Jan … 130 min Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Rotten Tomato…
+    ##  9 It's a W… 1946  PG    07 Jan … 130 min Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Metacritic    
+    ## 10 Goodfell… 1990  R     21 Sep … 145 min Biog… Martin … Nicho… Rober… The … English… United… Won 1… https… Internet Movi…
+    ## # … with 142 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Before we can analyze this data, we need to make it more usable:
 
