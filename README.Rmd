@@ -9,16 +9,6 @@ rmarkdown::render("README.Rmd",
                       toc = TRUE,
                       html_preview=FALSE) 
 )
-
-# rmarkdown::render("C:/Users/Bridget/OneDrive/R_Scripts/R_Markdown_Homework_PDF.Rmd", 
-#                   output_format = "pdf_document", 
-#                   output_options = list(
-#                       toc = TRUE,
-#                       toc_depth = 2,
-#                       number_sections = TRUE,
-#                       df_print = "tibble"
-#                   )
-# )
 ```
 
 # Lets Get Started: OMDb API Key
@@ -70,8 +60,9 @@ You should get a tibble that looks like this:
 search_by_title("5c7f9206","star_wars",type="movie")
 ```
 
-Test (6_22_2022): search by title and date:
+# Build URL for One Movie Title and One Date
 
+If you don't specify a date, the OMDb API will give the first result. So, since Star Wars (1977) was the first Star Wars movie ever made, it gives Star Wars (1977) as the result. But, what if you wanted a different Star Wars movie like Star Wars: Episode VII - The Force Awakens (2015). You can use this funciton:
 
 ```{r 7_11_6_22_2022}
 search_by_title_and_date <- function(mykey,title,type="movie",date){
@@ -90,10 +81,16 @@ search_by_title_and_date <- function(mykey,title,type="movie",date){
 ```
 
 
+You should run the function like this:
+
+```{r 8_00_6_22_2022,eval=FALSE}
+search_by_title_and_date("mykey","star_wars",type="movie",date=2015)
+```
+
 Get a tibble like this:
 
 ```{r 7_13_6_22_2022}
-search_by_title_and_date("5c7f9206","star_wars",type="movie",date=1980)
+search_by_title_and_date("5c7f9206","star_wars",type="movie",date=2015)
 ```
 
 

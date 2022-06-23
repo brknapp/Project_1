@@ -3,6 +3,8 @@ Project 1
 
 -   [Lets Get Started: OMDb API Key](#lets-get-started-omdb-api-key)
 -   [Build URL for One Movie Title](#build-url-for-one-movie-title)
+-   [Build URL for One Movie Title and One
+    Date](#build-url-for-one-movie-title-and-one-date)
 
 # Lets Get Started: OMDb API Key
 
@@ -68,7 +70,13 @@ You should get a tibble that looks like this:
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-Test (6_22_2022): search by title and date:
+# Build URL for One Movie Title and One Date
+
+If you don’t specify a date, the OMDb API will give the first result.
+So, since Star Wars (1977) was the first Star Wars movie ever made, it
+gives Star Wars (1977) as the result. But, what if you wanted a
+different Star Wars movie like Star Wars: Episode VII - The Force
+Awakens (2015). You can use this funciton:
 
 ``` r
 search_by_title_and_date <- function(mykey,title,type="movie",date){
@@ -86,18 +94,24 @@ search_by_title_and_date <- function(mykey,title,type="movie",date){
 }
 ```
 
+You should run the function like this:
+
+``` r
+search_by_title_and_date("mykey","star_wars",type="movie",date=2015)
+```
+
 Get a tibble like this:
 
 ``` r
-search_by_title_and_date("5c7f9206","star_wars",type="movie",date=1980)
+search_by_title_and_date("5c7f9206","star_wars",type="movie",date=2015)
 ```
 
     ## # A tibble: 3 × 26
     ##   Title      Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
     ##   <chr>      <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
-    ## 1 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
-    ## 2 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
-    ## 3 Star Wars… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ## 1 Star Wars… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
+    ## 2 Star Wars… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Rotten Tomato…
+    ## 3 Star Wars… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Metacritic    
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
