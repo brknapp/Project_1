@@ -231,7 +231,7 @@ by_search_one_or_more_titles <- function(mykey,title,type="movie"){
 }
 ```
 
-You can use this new by_search function to look for multiple titles or just one. For example, if you wanted to search for both Star Wars and Indiana Jones, you would run the function like this:
+You can use this function to look for multiple titles or just one. For example, if you wanted to search for both Star Wars and Indiana Jones, you would run the function like this:
 
 ```{r ex_test_3_50_6_20_2022,eval=FALSE}
 by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
@@ -278,7 +278,7 @@ get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
 ```
 
 
-```{r test_5_11_6_20_2022}
+```{r test_5_11_6_20_2022,echo=FALSE}
 get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 ```
 

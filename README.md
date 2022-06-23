@@ -292,9 +292,9 @@ by_search_one_or_more_titles <- function(mykey,title,type="movie"){
 }
 ```
 
-You can use this new by_search function to look for multiple titles or
-just one. For example, if you wanted to search for both Star Wars and
-Indiana Jones, you would run the function like this:
+You can use this function to look for multiple titles or just one. For
+example, if you wanted to search for both Star Wars and Indiana Jones,
+you would run the function like this:
 
 ``` r
 by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
@@ -369,10 +369,6 @@ You would run the function like this:
 
 ``` r
 get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
-```
-
-``` r
-get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 ```
 
     ## # A tibble: 48 × 26
