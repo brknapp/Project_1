@@ -469,13 +469,31 @@ Before we can analyze this data, we need to make it more usable:
 ``` r
 library(lubridate)
 format_data <- function(mykey,titles,series){
-  data <- get_data_titles_and_series("5c7f9206",titles,series)
+  data <- get_data_titles_and_series(mykey,titles,series)
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
   data$Runtime <- gsub(" min","",data$Runtime)
   return(data)
 }
 ```
+
+    ## Warning: 2 failed to parse.
+
+    ## # A tibble: 152 × 26
+    ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>   <dbl> <chr> <date>     <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Casabl…  1942 PG    1943-01-23 102     Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Internet Movi…
+    ##  2 Casabl…  1942 PG    1943-01-23 102     Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Rotten Tomato…
+    ##  3 Casabl…  1942 PG    1943-01-23 102     Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Metacritic    
+    ##  4 The Wi…  1939 G     1939-08-25 102     Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Internet Movi…
+    ##  5 The Wi…  1939 G     1939-08-25 102     Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Rotten Tomato…
+    ##  6 The Wi…  1939 G     1939-08-25 102     Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Metacritic    
+    ##  7 It's a…  1946 PG    1947-01-07 130     Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Internet Movi…
+    ##  8 It's a…  1946 PG    1947-01-07 130     Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Rotten Tomato…
+    ##  9 It's a…  1946 PG    1947-01-07 130     Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Metacritic    
+    ## 10 Goodfe…  1990 R     1990-09-21 145     Biog… Martin … Nicho… Rober… The … English… United… Won 1… https… Internet Movi…
+    ## # … with 142 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:

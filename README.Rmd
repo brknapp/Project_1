@@ -353,20 +353,19 @@ Before we can analyze this data, we need to make it more usable:
 ```{r 12_02_6_23_2022}
 library(lubridate)
 format_data <- function(mykey,titles,series){
-  data <- get_data_titles_and_series("5c7f9206",titles,series)
+  data <- get_data_titles_and_series(mykey,titles,series)
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
   data$Runtime <- gsub(" min","",data$Runtime)
   return(data)
 }
 
-
-
-
-
 ```
 
 
+```{r 12_16_6_23_2022,echo=FALSE}
+format_data("5c7f9206",titles,series)
+```
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
 
