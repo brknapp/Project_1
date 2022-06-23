@@ -391,7 +391,8 @@ format_data <- function(mykey,titles,series){
 
 
 ```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
-format_data("5c7f9206",titles,series)
+formatted_data<-format_data("5c7f9206",titles,series)
+str(formatted_data)
 ```
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
