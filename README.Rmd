@@ -343,24 +343,49 @@ Here is the tibble I get:
 get_data_titles_and_series("5c7f9206",titles,series)
 ```
 
-Before we can analyze this data, we need to make it more usable:
+Before we make this data more usable, we need to write a few more helper functions:
 
-"Title": Stay character
-"Year": change to numeric
+```{r 7_46_6_23_2022}
+#this will help us convert the Ratings.Value column to numeric
+parse_number <- function(S){
+  if(grepl("/", S)){
+    A<-str_split(S, "/")
+    A<-as.numeric(unlist(A))
+    A<-A[[1]]/A[[2]]
+    A<-A*100
+  } else {
+    A<-as.numeric(gsub("%","",S))
+  }
+  return(A)
+}
+```
 
+Here's our complete formatting function:
 
-
-```{r 12_02_6_23_2022}
+```{r 12_02_6_23_2022,message=FALSE}
 library(lubridate)
 format_data <- function(mykey,titles,series){
   data <- get_data_titles_and_series(mykey,titles,series)
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
-  #data$Runtime <- as.numeric(data$Runtime)
+  #data$test <- grepl("/", data$Ratings.Value)
+  data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
   
-    return(data)
+  return(data)
 }
+
+
+# library(lubridate)
+# format_data <- function(mykey,titles,series){
+#   data <- get_data_titles_and_series(mykey,titles,series)
+#   data$Year <- as.numeric(data$Year)
+#   data$Released <- dmy(data$Released)
+#   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
+#   #data$Runtime <- as.numeric(data$Runtime)
+#   
+#     return(data)
+# }
 
 ```
 
