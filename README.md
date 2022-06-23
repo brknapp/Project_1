@@ -537,6 +537,8 @@ format_data <- function(mykey,titles,series){
     ##  $ Website       : chr [1:152] "N/A" "N/A" "N/A" "N/A" ...
     ##  $ Response      : chr [1:152] "True" "True" "True" "True" ...
 
+    ## [1] 65.08553
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 
