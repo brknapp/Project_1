@@ -5,6 +5,10 @@ Project 1
 -   [Build URL for One Movie Title](#build-url-for-one-movie-title)
 -   [Build URL for One Movie Title and One
     Date](#build-url-for-one-movie-title-and-one-date)
+-   [Build URL for One IMDb ID](#build-url-for-one-imdb-id)
+-   [Build URL to Search for More than One
+    Title](#build-url-to-search-for-more-than-one-title)
+-   [Get the data!](#get-the-data)
 
 # Lets Get Started: OMDb API Key
 
@@ -102,10 +106,6 @@ search_by_title_and_date("mykey","star_wars",type="movie",date=2015)
 
 Get a tibble like this:
 
-``` r
-search_by_title_and_date("5c7f9206","star_wars",type="movie",date=2015)
-```
-
     ## # A tibble: 3 × 26
     ##   Title      Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
     ##   <chr>      <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
@@ -115,10 +115,12 @@ search_by_title_and_date("5c7f9206","star_wars",type="movie",date=2015)
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
+# Build URL for One IMDb ID
+
 Lets say you have a valid IMDb ID. You can find an IMDb ID by searching
 for a title on the [IMDb website](www.imdb.com). After you find a movie
 you like, the IMDb ID will be in the URL. For example, the URL for the
-IMDb page for Star Wars: Episode V - The Empire Strikes Back is
+IMDb page for Star Wars: Episode V - The Empire Strikes Back (1980) is
 <https://www.imdb.com/title/tt0080684/?ref_=nv_sr_srsg_0>. Therefore,
 its IMDb ID is tt0080684.
 
@@ -160,16 +162,14 @@ You should get a tibble that looks like this:
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
+# Build URL to Search for More than One Title
+
 Let’s say you wanted to get all of the titles for all of the Star Wars
 movies. You would then need to build your URL “By Search” instead.
-
 Here’s a function you can use if you wanted to search for multiple movie
 titles:
 
 ``` r
-library(tidyverse)
-library(jsonlite)
-library(httr)
 by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
@@ -206,6 +206,8 @@ You should get a tibble that looks like this:
     ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 539          True    
     ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
     ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True
+
+# Get the data!
 
 That’s great! Now, lets get the data for all of the titles:
 

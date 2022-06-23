@@ -89,14 +89,13 @@ search_by_title_and_date("mykey","star_wars",type="movie",date=2015)
 
 Get a tibble like this:
 
-```{r 7_13_6_22_2022}
+```{r 7_13_6_22_2022,eval=TRUE,echo=FALSE}
 search_by_title_and_date("5c7f9206","star_wars",type="movie",date=2015)
 ```
 
+# Build URL for One IMDb ID
 
-
-
-Lets say you have a valid IMDb ID. You can find an IMDb ID by searching for a title on the [IMDb website](www.imdb.com). After you find a movie you like, the IMDb ID will be in the URL. For example, the URL for the IMDb page for Star Wars: Episode V - The Empire Strikes Back is https://www.imdb.com/title/tt0080684/?ref_=nv_sr_srsg_0. Therefore, its IMDb ID is tt0080684.
+Lets say you have a valid IMDb ID. You can find an IMDb ID by searching for a title on the [IMDb website](www.imdb.com). After you find a movie you like, the IMDb ID will be in the URL. For example, the URL for the IMDb page for Star Wars: Episode V - The Empire Strikes Back (1980) is https://www.imdb.com/title/tt0080684/?ref_=nv_sr_srsg_0. Therefore, its IMDb ID is tt0080684.
 
 Here's a function you can use if you have a valid IMDb ID:
 
@@ -117,9 +116,7 @@ search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
   tibble_movie_JSON <- as_tibble(movie_JSON)
   return(tibble_movie_JSON)
 }
-
 ```
-
 
 You should run the function like this:
 
@@ -133,16 +130,11 @@ You should get a tibble that looks like this:
 search_by_IMDb_ID("5c7f9206","tt0080684",type="movie")
 ```
 
+# Build URL to Search for More than One Title
 
-Let's say you wanted to get all of the titles for all of the Star Wars movies. You would then need to build your URL "By Search" instead.
-
-Here's a function you can use if you wanted to search for multiple movie titles:
-
+Let's say you wanted to get all of the titles for all of the Star Wars movies. You would then need to build your URL "By Search" instead. Here's a function you can use if you wanted to search for multiple movie titles:
 
 ```{r by_search, message=FALSE,warning=FALSE}
-library(tidyverse)
-library(jsonlite)
-library(httr)
 by_search <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
@@ -170,6 +162,8 @@ You should get a tibble that looks like this:
 by_search("5c7f9206","star_wars",type="movie")
 ```
 
+# Get the data!
+
 That's great! Now, lets get the data for all of the titles:
 
 ```{r get_data}
@@ -196,7 +190,6 @@ get_data("5c7f9206","star_wars")
 ```
 
 Now, what if you want to get all of the data for all of the Star Wars movies and all of the Indiana Jones movies. The function below can handle a list of several titles or one title.
-
 
 ```{r test_3_35_6_20_2022}
 library(tidyverse)
