@@ -15,7 +15,7 @@ rmarkdown::render("README.Rmd",
 
 In order to access the OMDb API, you need to get a free [api key](http://www.omdbapi.com/apikey.aspx). In the rest of this document, "mykey" refers to your OMDb API key.
 
-You should also "turn on" these packages by running the code below. If you don't have them installed yet, run `install.packages()` with the package in quotes. For example, to install `tidyverse`, you would run `install.packages(tidyverse)`.
+You should also "turn on" these packages by running the code below. If you don't have them installed yet, run `install.packages()` with the package in quotes. For example, to install `tidyverse`, you would run `install.packages("tidyverse")`.
 
 ```{r 7_03_6_22_2022}
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
@@ -62,7 +62,7 @@ search_by_title("5c7f9206","star_wars",type="movie")
 
 # Build URL for One Movie Title and One Date
 
-If you don't specify a date, the OMDb API will give the first result. So, since Star Wars (1977) was the first Star Wars movie ever made, it gives Star Wars (1977) as the result. But, what if you wanted a different Star Wars movie like Star Wars: Episode VII - The Force Awakens (2015). You can use this funciton:
+If you don't specify a date, the OMDb API will give the first result. So, since Star Wars (1977) was the first Star Wars movie ever made, it gives Star Wars (1977) as the result. But, what if you wanted a different Star Wars movie like Star Wars: Episode VII - The Force Awakens (2015)? You can use this funciton:
 
 ```{r 7_11_6_22_2022}
 search_by_title_and_date <- function(mykey,title,type="movie",date){
@@ -130,12 +130,12 @@ You should get a tibble that looks like this:
 search_by_IMDb_ID("5c7f9206","tt0080684",type="movie")
 ```
 
-# Build URL to Search for More than One Title
+# Build URL to Search for More than One Title in a Series
 
 Let's say you wanted to get all of the titles for all of the Star Wars movies. You would then need to build your URL "By Search" instead. Here's a function you can use if you wanted to search for multiple movie titles:
 
 ```{r by_search, message=FALSE,warning=FALSE}
-by_search <- function(mykey,title,type="movie"){
+by_search_series <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
@@ -153,13 +153,13 @@ by_search <- function(mykey,title,type="movie"){
 You should run the function like this:
 
 ```{r 3_57_6_21_2022,eval=FALSE}
-by_search("mykey","star_wars",type="movie")
+by_search_series("mykey","star_wars",type="movie")
 ```
 
 You should get a tibble that looks like this:
 
 ```{r example_by_search, eval=TRUE, echo=FALSE}
-by_search("5c7f9206","star_wars",type="movie")
+by_search_series("5c7f9206","star_wars",type="movie")
 ```
 
 # Get the data!
@@ -167,12 +167,9 @@ by_search("5c7f9206","star_wars",type="movie")
 That's great! Now, lets get the data for all of the titles:
 
 ```{r get_data}
-library(tidyverse)
-library(jsonlite)
-library(httr)
 mat=NULL
-get_data <- function(mykey,title){
-  temp_table <- by_search(mykey,title,type="movie")
+get_data_series <- function(mykey,title){
+  temp_table <- by_search_series(mykey,title,type="movie")
   list_of_titles <- unique(temp_table$Search.Title)
   
   for(movie_title in list_of_titles){
@@ -183,20 +180,25 @@ get_data <- function(mykey,title){
 }
 ```
 
+You should run the function like this:
+
+```{r 8_54_6_22_2022,eval=FALSE}
+get_data_series("mykey","star_wars")
+```
+
 You should get a tibble that looks like this:
 
 ```{r example_get_data,eval=TRUE,echo=FALSE}
-get_data("5c7f9206","star_wars")
+get_data_series("5c7f9206","star_wars")
 ```
+
+# Build URL to search for More than One Title or Series
 
 Now, what if you want to get all of the data for all of the Star Wars movies and all of the Indiana Jones movies. The function below can handle a list of several titles or one title.
 
 ```{r test_3_35_6_20_2022}
-library(tidyverse)
-library(jsonlite)
-library(httr)
 mat=NULL
-by_search <- function(mykey,title,type="movie"){
+by_search_one_or_more_titles <- function(mykey,title,type="movie"){
  if(length(title)<=1){ 
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
     info_url <- paste0("&s=",title,"&type=",type) 
@@ -232,31 +234,52 @@ by_search <- function(mykey,title,type="movie"){
 You can use this new by_search function to look for multiple titles or just one. For example, if you wanted to search for both Star Wars and Indiana Jones, you would run the function like this:
 
 ```{r ex_test_3_50_6_20_2022,eval=FALSE}
-by_search("mykey",c("star_wars","indiana_jones"),type="movie")
+by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
 ```
 
 You would get the tibble below: 
 
 ```{r ex_test_3_35_6_20_2022,eval=TRUE,echo=FALSE}
-by_search("5c7f9206",c("star_wars","indiana_jones"),type="movie")
+by_search_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"),type="movie")
 ```
 
 If you wanted to search for one title, like Spider-Man, you would run the function like this:
 
 ```{r ex_test_3_54_6_20_2022,eval=FALSE}
-by_search("mykey","spider-man",type="movie")
+by_search_one_or_more_titles("mykey","spider-man",type="movie")
 ```
 
 You would get this tibble:
 
-```{r ex_test_3_55_6_20_2022,eval=TRUE,echo=FALSE}
-by_search("5c7f9206","spider-man",type="movie")
+```{r 9_04_6_22_2022,eval=TRUE,echo=FALSE}
+by_search_one_or_more_titles("5c7f9206","spider-man",type="movie")
 ```
 
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 
+```{r 9_03_6_22_2022}
+mat=NULL
+get_data_one_or_more_titles <- function(mykey,title){
+  temp_table <- by_search_one_or_more_titles(mykey,title,type="movie")
+  list_of_titles <- unique(temp_table$Search.Title)
+  
+  for(movie_title in list_of_titles){
+  table <- search_by_title(mykey,movie_title,type="movie")
+  mat=rbind(mat,table)
+  }
+  return(mat)
+}
+```
+
+You would run the function like this:
+
+```{r 9_05_6_22_2022,eval=FALSE}
+get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
+```
+
+
 ```{r test_5_11_6_20_2022}
-get_data("5c7f9206",c("star_wars","indiana_jones"))
+get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 ```
 
 Before we can analyze this data, we need to make it more usable:

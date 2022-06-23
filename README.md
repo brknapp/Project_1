@@ -6,9 +6,11 @@ Project 1
 -   [Build URL for One Movie Title and One
     Date](#build-url-for-one-movie-title-and-one-date)
 -   [Build URL for One IMDb ID](#build-url-for-one-imdb-id)
--   [Build URL to Search for More than One
-    Title](#build-url-to-search-for-more-than-one-title)
+-   [Build URL to Search for More than One Title in a
+    Series](#build-url-to-search-for-more-than-one-title-in-a-series)
 -   [Get the data!](#get-the-data)
+-   [Build URL to search for More than One Title or
+    Series](#build-url-to-search-for-more-than-one-title-or-series)
 
 # Lets Get Started: OMDb API Key
 
@@ -19,7 +21,7 @@ key](http://www.omdbapi.com/apikey.aspx). In the rest of this document,
 You should also “turn on” these packages by running the code below. If
 you don’t have them installed yet, run `install.packages()` with the
 package in quotes. For example, to install `tidyverse`, you would run
-`install.packages(tidyverse)`.
+`install.packages("tidyverse")`.
 
 ``` r
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
@@ -80,7 +82,7 @@ If you don’t specify a date, the OMDb API will give the first result.
 So, since Star Wars (1977) was the first Star Wars movie ever made, it
 gives Star Wars (1977) as the result. But, what if you wanted a
 different Star Wars movie like Star Wars: Episode VII - The Force
-Awakens (2015). You can use this funciton:
+Awakens (2015)? You can use this funciton:
 
 ``` r
 search_by_title_and_date <- function(mykey,title,type="movie",date){
@@ -162,7 +164,7 @@ You should get a tibble that looks like this:
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-# Build URL to Search for More than One Title
+# Build URL to Search for More than One Title in a Series
 
 Let’s say you wanted to get all of the titles for all of the Star Wars
 movies. You would then need to build your URL “By Search” instead.
@@ -170,7 +172,7 @@ Here’s a function you can use if you wanted to search for multiple movie
 titles:
 
 ``` r
-by_search <- function(mykey,title,type="movie"){
+by_search_series <- function(mykey,title,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
@@ -188,7 +190,7 @@ by_search <- function(mykey,title,type="movie"){
 You should run the function like this:
 
 ``` r
-by_search("mykey","star_wars",type="movie")
+by_search_series("mykey","star_wars",type="movie")
 ```
 
 You should get a tibble that looks like this:
@@ -212,12 +214,9 @@ You should get a tibble that looks like this:
 That’s great! Now, lets get the data for all of the titles:
 
 ``` r
-library(tidyverse)
-library(jsonlite)
-library(httr)
 mat=NULL
-get_data <- function(mykey,title){
-  temp_table <- by_search(mykey,title,type="movie")
+get_data_series <- function(mykey,title){
+  temp_table <- by_search_series(mykey,title,type="movie")
   list_of_titles <- unique(temp_table$Search.Title)
   
   for(movie_title in list_of_titles){
@@ -226,6 +225,12 @@ get_data <- function(mykey,title){
   }
   return(mat)
 }
+```
+
+You should run the function like this:
+
+``` r
+get_data_series("mykey","star_wars")
 ```
 
 You should get a tibble that looks like this:
@@ -246,16 +251,15 @@ You should get a tibble that looks like this:
     ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
+# Build URL to search for More than One Title or Series
+
 Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
 handle a list of several titles or one title.
 
 ``` r
-library(tidyverse)
-library(jsonlite)
-library(httr)
 mat=NULL
-by_search <- function(mykey,title,type="movie"){
+by_search_one_or_more_titles <- function(mykey,title,type="movie"){
  if(length(title)<=1){ 
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
     info_url <- paste0("&s=",title,"&type=",type) 
@@ -293,7 +297,7 @@ just one. For example, if you wanted to search for both Star Wars and
 Indiana Jones, you would run the function like this:
 
 ``` r
-by_search("mykey",c("star_wars","indiana_jones"),type="movie")
+by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
 ```
 
 You would get the tibble below:
@@ -326,7 +330,7 @@ If you wanted to search for one title, like Spider-Man, you would run
 the function like this:
 
 ``` r
-by_search("mykey","spider-man",type="movie")
+by_search_one_or_more_titles("mykey","spider-man",type="movie")
 ```
 
 You would get this tibble:
@@ -348,7 +352,27 @@ You would get this tibble:
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 
 ``` r
-get_data("5c7f9206",c("star_wars","indiana_jones"))
+mat=NULL
+get_data_one_or_more_titles <- function(mykey,title){
+  temp_table <- by_search_one_or_more_titles(mykey,title,type="movie")
+  list_of_titles <- unique(temp_table$Search.Title)
+  
+  for(movie_title in list_of_titles){
+  table <- search_by_title(mykey,movie_title,type="movie")
+  mat=rbind(mat,table)
+  }
+  return(mat)
+}
+```
+
+You would run the function like this:
+
+``` r
+get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
+```
+
+``` r
+get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 ```
 
     ## # A tibble: 48 × 26
