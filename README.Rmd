@@ -282,6 +282,25 @@ get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
 get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 ```
 
+Let's make a data set!
+
+```{r 9_41_6_22_2022}
+by_search_one_or_more_titles("5c7f9206",c("the_godfather",
+                                          "casablanca",
+                                          "star_wars",
+                                          "the_wizard_of_oz",
+                                          "it's_a_wonderful_life",
+                                          "goodfellas",
+                                          "taxi_driver",
+                                          "psycho",
+                                          "singin_in_the_rain",
+                                          "2001:_a_space_odyssey",
+                                          "vertigo"),
+                             type="movie")
+```
+
+
+
 Before we can analyze this data, we need to make it more usable:
 
 ```{r 6:01_6_20_2022}
