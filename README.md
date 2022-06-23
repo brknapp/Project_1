@@ -464,13 +464,16 @@ Here is the tibble I get:
 
 Before we can analyze this data, we need to make it more usable:
 
+“Title”: Stay character “Year”: change to numeric
+
 ``` r
-format_data <- function(mykey,title){
-  data <- get_data(mykey,title)
-  
-  
-  
-  
+library(lubridate)
+format_data <- function(mykey,titles,series){
+  data <- get_data_titles_and_series("5c7f9206",titles,series)
+  data$Year <- as.numeric(data$Year)
+  data$Released <- dmy(data$Released)
+  data$Runtime <- gsub(" min","",data$Runtime)
+  return(data)
 }
 ```
 
