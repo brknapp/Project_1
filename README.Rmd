@@ -438,7 +438,7 @@ Let's say I wanted to summarize how many movies fell under each genre listed. I 
 ```{r 11_50_6_23_2022}
 A<-data.frame(formatted_data$Title,formatted_data$Genre)
 B<-unique(A)
-table(formatted_data$formatted_data.Genre)
+table(B$formatted_data.Genre)
 ```
 
 So, for example, there 
