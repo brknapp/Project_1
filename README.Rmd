@@ -426,7 +426,7 @@ str(formatted_data) #this shows you the structure of formatted_data
 Let's say I wanted to know how many movies are rated "PG-13" in my data set. I would make a contingency table summarizing the ratings for all of the movies: 
 
 ```{r 11_45_6_23_2022}
-A<-data.frame(unique(formatted_data$Title,formatted_data$Rated))
+A<-data.frame(formatted_data$Title,formatted_data$Rated)
 table(A$Rated)
 ```
 

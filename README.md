@@ -577,7 +577,7 @@ set. I would make a contingency table summarizing the ratings for all of
 the movies:
 
 ``` r
-A<-data.frame(unique(formatted_data$Title,formatted_data$Rated))
+A<-data.frame(formatted_data$Title,formatted_data$Rated)
 table(A$Rated)
 ```
 
