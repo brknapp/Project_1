@@ -735,7 +735,7 @@ test
 Here’s the bar graph:
 
 ``` r
-g<-ggplot(data = test, aes(x = Actors))
+g<-ggplot(data = test, aes(x = Director))
 g + geom_bar()
 ```
 
