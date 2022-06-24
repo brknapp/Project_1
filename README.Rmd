@@ -358,6 +358,22 @@ parse_number <- function(S){
   }
   return(A)
 }
+
+#this will help us make the Awards column more usable
+award <- function(S){
+  if(is.na(S)){
+    A<-"none"
+    return(A)
+  }
+  S=tolower(S)
+  if(grepl("won", S) | grepl("win", S)){
+    A<-"won"
+  }else if (grepl("nomina", S)){
+    A<-"nomination"
+  }else {(A<-"none")
+     return(A)
+  }
+}
 ```
 
 Here's our complete formatting function:
@@ -371,6 +387,7 @@ format_data <- function(mykey,titles,series){
   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
   #data$test <- grepl("/", data$Ratings.Value)
   data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
+  data$Awards <- as.factor(sapply(data$Awards, FUN=award))
   
   return(data)
 }
@@ -393,7 +410,6 @@ format_data <- function(mykey,titles,series){
 ```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
 formatted_data<-format_data("5c7f9206",titles,series)
 str(formatted_data)
-mean(formatted_data$Ratings.Value)
 ```
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:

@@ -478,6 +478,22 @@ parse_number <- function(S){
   }
   return(A)
 }
+
+#this will help us make the Awards column more usable
+award <- function(S){
+  if(is.na(S)){
+    A<-"none"
+    return(A)
+  }
+  S=tolower(S)
+  if(grepl("won", S) | grepl("win", S)){
+    A<-"won"
+  }else if (grepl("nomina", S)){
+    A<-"nomination"
+  }else {(A<-"none")
+     return(A)
+  }
+}
 ```
 
 Here’s our complete formatting function:
@@ -491,6 +507,7 @@ format_data <- function(mykey,titles,series){
   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
   #data$test <- grepl("/", data$Ratings.Value)
   data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
+  data$Awards <- as.factor(sapply(data$Awards, FUN=award))
   
   return(data)
 }
@@ -521,7 +538,8 @@ format_data <- function(mykey,titles,series){
     ##  $ Plot          : chr [1:152] "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fu"| __truncated__ "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fu"| __truncated__ "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fu"| __truncated__ "Young Dorothy Gale and her dog are swept away by a tornado from their Kansas farm to the magical Land of Oz, an"| __truncated__ ...
     ##  $ Language      : chr [1:152] "English, French, German, Italian" "English, French, German, Italian" "English, French, German, Italian" "English" ...
     ##  $ Country       : chr [1:152] "United States" "United States" "United States" "United States" ...
-    ##  $ Awards        : chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
+    ##  $ Awards        : Factor w/ 3 levels "nomination","none",..: 3 3 3 3 3 3 3 3 3 3 ...
+    ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
     ##  $ Poster        : chr [1:152] "https://m.media-amazon.com/images/M/MV5BY2IzZGY2YmEtYzljNS00NTM5LTgwMzUtMzM1NjQ4NGI0OTk0XkEyXkFqcGdeQXVyNDYyMDk"| __truncated__ "https://m.media-amazon.com/images/M/MV5BY2IzZGY2YmEtYzljNS00NTM5LTgwMzUtMzM1NjQ4NGI0OTk0XkEyXkFqcGdeQXVyNDYyMDk"| __truncated__ "https://m.media-amazon.com/images/M/MV5BY2IzZGY2YmEtYzljNS00NTM5LTgwMzUtMzM1NjQ4NGI0OTk0XkEyXkFqcGdeQXVyNDYyMDk"| __truncated__ "https://m.media-amazon.com/images/M/MV5BNjUyMTc4MDExMV5BMl5BanBnXkFtZTgwNDg0NDIwMjE@._V1_SX300.jpg" ...
     ##  $ Ratings.Source: chr [1:152] "Internet Movie Database" "Rotten Tomatoes" "Metacritic" "Internet Movie Database" ...
     ##  $ Ratings.Value : Named num [1:152] 85 99 100 81 98 92 86 94 89 87 ...
@@ -536,8 +554,6 @@ format_data <- function(mykey,titles,series){
     ##  $ Production    : chr [1:152] "N/A" "N/A" "N/A" "N/A" ...
     ##  $ Website       : chr [1:152] "N/A" "N/A" "N/A" "N/A" ...
     ##  $ Response      : chr [1:152] "True" "True" "True" "True" ...
-
-    ## [1] 65.08553
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
