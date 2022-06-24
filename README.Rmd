@@ -394,10 +394,15 @@ format_data <- function(mykey,titles,series){
   data$Year <- as.numeric(data$Year)
   data$Released <- dmy(data$Released)
   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
-  #data$test <- grepl("/", data$Ratings.Value)
   data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
   data$Summary_Awards <- as.factor(sapply(data$Awards, FUN=award))
-  
+  data$Metascore <- as.numeric(data$Metascore)
+  data$imdbRating <- as.numeric(data$imdbRating)*10
+  data$imdbVotes <- as.numeric(gsub(",","",data$imdbVotes))
+  data$DVD <- dmy(data$DVD)
+  data$BoxOffice <- gsub("\\$","",data$BoxOffice)
+  data$BoxOffice <- as.numeric(gsub(",","",data$BoxOffice))
+  data$Average_Rating <- ((data$Ratings.Value) + (data$Metascore) + (data$imdbRating))/3
   return(data)
 }
 
@@ -419,7 +424,6 @@ format_data <- function(mykey,titles,series){
 ```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
 formatted_data<-format_data("5c7f9206",titles,series)
 str(formatted_data)
-head(formatted_data$Summary_Awards)
 ```
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
