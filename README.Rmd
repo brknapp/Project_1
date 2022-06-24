@@ -17,7 +17,7 @@ In order to access the OMDb API, you need to get a free [api key](http://www.omd
 
 You should also "turn on" these packages by running the code below. If you don't have them installed yet, run `install.packages()` with the package in quotes. For example, to install `tidyverse`, you would run `install.packages("tidyverse")`.
 
-```{r 7_03_6_22_2022}
+```{r 7_03_6_22_2022,message=FALSE,warning=FALSE}
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
 library(jsonlite) #this package will help us convert the data we get from the OMDb API to a more usable format
 library(tidyverse) #this package will help us work with our nicely formatted data.
