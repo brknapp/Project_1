@@ -436,12 +436,20 @@ As you can see, 9 movies from my data set are "PG-13".
 Let's say I wanted to summarize how many movies fell under each genre listed. I would make the contingency table below:
 
 ```{r 11_50_6_23_2022}
-A<-data.frame(formatted_data$Title,formatted_data$Genre)
-B<-unique(A)
-table(B$formatted_data.Genre)
+C<-data.frame(formatted_data$Title,formatted_data$Genre)
+D<-unique(C)
+table(D$formatted_data.Genre)
 ```
 
-So, for example, there 
+So, for example, it looks like there are 7 movies that are classified under the "Horror, Thriller" genre.
+
+What if we wanted to see both the rating and the genre in the same table? We could make a two-way contingency table:
+
+```{r 12_11_6_24_2022}
+table(B$formatted_data.Rated, D$formatted_data.Genre)
+```
+
+
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
 

@@ -592,9 +592,9 @@ Let’s say I wanted to summarize how many movies fell under each genre
 listed. I would make the contingency table below:
 
 ``` r
-A<-data.frame(formatted_data$Title,formatted_data$Genre)
-B<-unique(A)
-table(B$formatted_data.Genre)
+C<-data.frame(formatted_data$Title,formatted_data$Genre)
+D<-unique(C)
+table(D$formatted_data.Genre)
 ```
 
     ## 
@@ -619,7 +619,86 @@ table(B$formatted_data.Genre)
     ##                       Horror, Thriller             Mystery, Romance, Thriller                         Short, Fantasy 
     ##                                      7                                      1                                      1
 
-So, for example, there
+So, for example, it looks like there are 7 movies that are classified
+under the “Horror, Thriller” genre.
+
+What if we wanted to see both the rating and the genre in the same
+table? We could make a two-way contingency table:
+
+``` r
+table(B$formatted_data.Rated, D$formatted_data.Genre)
+```
+
+    ##            
+    ##             Action, Adventure, Fantasy Action, Adventure, Horror Action, Adventure, Sci-Fi Action, Horror, Sci-Fi
+    ##   G                                  0                         0                         0                      0
+    ##   N/A                                0                         0                         0                      0
+    ##   Not Rated                          0                         1                         0                      0
+    ##   Passed                             0                         0                         0                      0
+    ##   PG                                 5                         0                         0                      0
+    ##   PG-13                              3                         1                         2                      0
+    ##   R                                  0                         0                         0                      3
+    ##   TV-14                              0                         0                         0                      0
+    ##            
+    ##             Action, Horror, Thriller Action, Sci-Fi Adventure, Family, Fantasy Adventure, Horror, Thriller
+    ##   G                                0              0                          1                           0
+    ##   N/A                              0              0                          0                           0
+    ##   Not Rated                        0              0                          0                           0
+    ##   Passed                           0              0                          0                           0
+    ##   PG                               0              0                          0                           0
+    ##   PG-13                            0              0                          0                           0
+    ##   R                                1              1                          0                           1
+    ##   TV-14                            0              0                          0                           0
+    ##            
+    ##             Adventure, Sci-Fi Biography, Comedy, Sci-Fi Biography, Crime, Drama Comedy Comedy, Crime, Mystery
+    ##   G                         1                         0                       0      0                      0
+    ##   N/A                       0                         0                       0      1                      0
+    ##   Not Rated                 0                         0                       0      0                      0
+    ##   Passed                    0                         0                       0      0                      1
+    ##   PG                        0                         0                       0      0                      0
+    ##   PG-13                     0                         1                       0      0                      0
+    ##   R                         0                         0                       1      1                      0
+    ##   TV-14                     0                         0                       0      0                      0
+    ##            
+    ##             Comedy, Musical, Romance Comedy, Sci-Fi Crime, Drama Crime, Drama, Thriller Documentary
+    ##   G                                1              0            0                      0           0
+    ##   N/A                              0              0            0                      0           1
+    ##   Not Rated                        0              0            0                      0           1
+    ##   Passed                           0              0            0                      0           0
+    ##   PG                               0              0            0                      0           0
+    ##   PG-13                            0              1            0                      0           0
+    ##   R                                0              0            4                      1           0
+    ##   TV-14                            0              0            0                      0           1
+    ##            
+    ##             Documentary, Biography, Crime, History Documentary, Horror Documentary, Short Drama, Family, Fantasy
+    ##   G                                              0                   0                  0                      0
+    ##   N/A                                            1                   0                  4                      0
+    ##   Not Rated                                      0                   1                  1                      0
+    ##   Passed                                         0                   0                  0                      0
+    ##   PG                                             0                   0                  0                      1
+    ##   PG-13                                          0                   0                  0                      0
+    ##   R                                              0                   0                  0                      0
+    ##   TV-14                                          0                   0                  0                      0
+    ##            
+    ##             Drama, Romance Drama, Romance, War Horror, Mystery, Thriller Horror, Sci-Fi Horror, Sci-Fi, Thriller
+    ##   G                      0                   0                         0              0                        0
+    ##   N/A                    0                   0                         0              0                        0
+    ##   Not Rated              0                   0                         0              0                        0
+    ##   Passed                 0                   0                         0              0                        0
+    ##   PG                     0                   1                         0              0                        0
+    ##   PG-13                  1                   0                         0              0                        0
+    ##   R                      0                   0                         5              1                        1
+    ##   TV-14                  0                   0                         0              0                        0
+    ##            
+    ##             Horror, Thriller Mystery, Romance, Thriller Short, Fantasy
+    ##   G                        0                          0              0
+    ##   N/A                      0                          0              1
+    ##   Not Rated                0                          0              0
+    ##   Passed                   0                          0              0
+    ##   PG                       0                          1              0
+    ##   PG-13                    0                          0              0
+    ##   R                        7                          0              0
+    ##   TV-14                    0                          0              0
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
