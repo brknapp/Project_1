@@ -578,10 +578,13 @@ the movies:
 
 ``` r
 A<-data.frame(formatted_data$Title,formatted_data$Rated)
-table(A$Rated)
+B<-unique(A)
+table(B$formatted_data.Rated)
 ```
 
-    ## < table of extent 0 >
+    ## 
+    ##         G       N/A Not Rated    Passed        PG     PG-13         R     TV-14 
+    ##         3         8         4         1         8         9        27         1
 
 As you can see, 26 movies from my data set are “PG-13”.
 

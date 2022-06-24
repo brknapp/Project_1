@@ -427,7 +427,8 @@ Let's say I wanted to know how many movies are rated "PG-13" in my data set. I w
 
 ```{r 11_45_6_23_2022}
 A<-data.frame(formatted_data$Title,formatted_data$Rated)
-table(A$Rated)
+B<-unique(A)
+table(B$formatted_data.Rated)
 ```
 
 As you can see, 26 movies from my data set are "PG-13".
