@@ -13,6 +13,7 @@ Project 1
     Series](#build-url-to-search-for-more-than-one-title-or-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
+-   [Bar Plot](#bar-plot)
 
 # Lets Get Started: OMDb API Key
 
@@ -699,6 +700,11 @@ table(B$formatted_data.Rated, D$formatted_data.Genre)
     ##   PG-13                    0                          0              0
     ##   R                        7                          0              0
     ##   TV-14                    0                          0              0
+
+So, for example, it looks like 5 movies were rated PG and fell under the
+“Action, Adventure, Fantasy” genre.
+
+# Bar Plot
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:

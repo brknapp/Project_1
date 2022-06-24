@@ -449,6 +449,11 @@ What if we wanted to see both the rating and the genre in the same table? We cou
 table(B$formatted_data.Rated, D$formatted_data.Genre)
 ```
 
+So, for example, it looks like 5 movies were rated PG and fell under the "Action, Adventure, Fantasy" genre.
+
+# Bar Plot
+
+
 
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
