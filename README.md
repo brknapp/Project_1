@@ -12,6 +12,7 @@ Project 1
 -   [Build URL to search for More than One Title or
     Series](#build-url-to-search-for-more-than-one-title-or-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
+-   [Contingency Tables](#contingency-tables)
 
 # Lets Get Started: OMDb API Key
 
@@ -525,19 +526,16 @@ format_data <- function(mykey,titles,series){
   data$Average_Rating <- ((data$Ratings.Value) + (data$Metascore) + (data$imdbRating))/3
   return(data)
 }
-
-
-# library(lubridate)
-# format_data <- function(mykey,titles,series){
-#   data <- get_data_titles_and_series(mykey,titles,series)
-#   data$Year <- as.numeric(data$Year)
-#   data$Released <- dmy(data$Released)
-#   data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
-#   #data$Runtime <- as.numeric(data$Runtime)
-#   
-#     return(data)
-# }
 ```
+
+Here’s how I ran it:
+
+``` r
+formatted_data<-format_data("5c7f9206",titles,series)
+str(formatted_data)
+```
+
+Here’s the tibble I got:
 
     ## tibble [152 × 28] (S3: tbl_df/tbl/data.frame)
     ##  $ Title         : chr [1:152] "Casablanca" "Casablanca" "Casablanca" "The Wizard of Oz" ...
@@ -571,6 +569,16 @@ format_data <- function(mykey,titles,series){
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
     ##  $ Average_Rating: Named num [1:152] 90 94.7 95 84.7 90.3 ...
     ##   ..- attr(*, "names")= chr [1:152] "8.5/10" "99%" "100/100" "8.1/10" ...
+
+# Contingency Tables
+
+``` r
+table(formatted_data$Rated)
+```
+
+    ## 
+    ##         G       N/A Not Rated    Passed        PG     PG-13         R     TV-14 
+    ##         9         8         7         1        24        26        76         1
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
