@@ -453,13 +453,19 @@ So, for example, it looks like 5 movies were rated PG and fell under the "Action
 
 # Bar Plot
 
-To find all of the movies with a certin actor in it:
+To find all of the movies with a certian actor in it:
 
 ```{r 8_15_6_24_2022}
-test<-unique(formatted_data[grep("Mark Hamill", formatted_data$Actors), ])
+test<-formatted_data[grep("Mark Hamill", formatted_data$Actors), ]
 test
 ```
 
+Here's the bar graph:
+
+```{r 8_18_6_24_2022}
+g<-ggplot(data = test, aes(x = Actors))
+g + geom_bar()
+```
 
 
 movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:

@@ -706,10 +706,10 @@ So, for example, it looks like 5 movies were rated PG and fell under the
 
 # Bar Plot
 
-To find all of the movies with a certin actor in it:
+To find all of the movies with a certian actor in it:
 
 ``` r
-test<-unique(formatted_data[grep("Mark Hamill", formatted_data$Actors), ])
+test<-formatted_data[grep("Mark Hamill", formatted_data$Actors), ]
 test
 ```
 
@@ -731,6 +731,15 @@ test
     ## # … with 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>, imdbID <chr>,
     ## #   Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>, Summary_Awards <fct>,
     ## #   Average_Rating <dbl>
+
+Here’s the bar graph:
+
+``` r
+g<-ggplot(data = test, aes(x = Actors))
+g + geom_bar()
+```
+
+![](README_files/figure-gfm/8_18_6_24_2022-1.png)<!-- -->
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
