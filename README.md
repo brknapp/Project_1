@@ -556,6 +556,14 @@ format_data <- function(mykey,titles,series){
     ##  $ Summary_Awards: Factor w/ 3 levels "nomination","none",..: 3 3 3 3 3 3 3 3 3 3 ...
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
 
+    ##  Won 3 Oscars. 10 wins & 9 nominations total  Won 3 Oscars. 10 wins & 9 nominations total 
+    ##                                          won                                          won 
+    ##  Won 3 Oscars. 10 wins & 9 nominations total Won 2 Oscars. 13 wins & 16 nominations total 
+    ##                                          won                                          won 
+    ## Won 2 Oscars. 13 wins & 16 nominations total Won 2 Oscars. 13 wins & 16 nominations total 
+    ##                                          won                                          won 
+    ## Levels: nomination none won
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 
