@@ -577,14 +577,16 @@ set. I would make a contingency table summarizing the ratings for all of
 the movies:
 
 ``` r
-table(formatted_data$Rated)
+A<-data.frame(unique(formatted_data$Title,formatted_data$Rated))
+table(A$Rated)
 ```
 
-    ## 
-    ##         G       N/A Not Rated    Passed        PG     PG-13         R     TV-14 
-    ##         9         8         7         1        24        26        76         1
+    ## < table of extent 0 >
 
 As you can see, 26 movies from my data set are “PG-13”.
+
+Let’s say I wanted to summarize how many movies fell under each genre
+listed. I would make the contingency table below:
 
 ``` r
 table(formatted_data$Genre)
@@ -611,6 +613,8 @@ table(formatted_data$Genre)
     ##                                     15                                      3                                      3 
     ##                       Horror, Thriller             Mystery, Romance, Thriller                         Short, Fantasy 
     ##                                     21                                      3                                      1
+
+So, for example, there
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
