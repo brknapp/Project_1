@@ -735,7 +735,9 @@ test
 Here’s the bar graph:
 
 ``` r
-g<-ggplot(data = test, aes(x = Director))
+C<-data.frame(formatted_data$Title,formatted_data$Director)
+D<-unique(C)
+g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar()
 ```
 
