@@ -737,9 +737,15 @@ Here’s the bar graph:
 ``` r
 C<-data.frame(formatted_data$Title,formatted_data$Director)
 D<-unique(C)
+dim(D)
+```
+
+    ## [1] 61  2
+
+``` r
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
-  theme(axis.text.x = element_text(angle = 45))
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
 ![](README_files/figure-gfm/8_18_6_24_2022-1.png)<!-- -->
