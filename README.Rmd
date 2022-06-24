@@ -431,12 +431,14 @@ B<-unique(A)
 table(B$formatted_data.Rated)
 ```
 
-As you can see, 26 movies from my data set are "PG-13".
+As you can see, 9 movies from my data set are "PG-13".
 
 Let's say I wanted to summarize how many movies fell under each genre listed. I would make the contingency table below:
 
 ```{r 11_50_6_23_2022}
-table(formatted_data$Genre)
+A<-data.frame(formatted_data$Title,formatted_data$Genre)
+B<-unique(A)
+table(formatted_data$formatted_data.Genre)
 ```
 
 So, for example, there 

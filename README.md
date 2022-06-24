@@ -586,36 +586,20 @@ table(B$formatted_data.Rated)
     ##         G       N/A Not Rated    Passed        PG     PG-13         R     TV-14 
     ##         3         8         4         1         8         9        27         1
 
-As you can see, 26 movies from my data set are “PG-13”.
+As you can see, 9 movies from my data set are “PG-13”.
 
 Let’s say I wanted to summarize how many movies fell under each genre
 listed. I would make the contingency table below:
 
 ``` r
-table(formatted_data$Genre)
+A<-data.frame(formatted_data$Title,formatted_data$Genre)
+B<-unique(A)
+table(formatted_data$formatted_data.Genre)
 ```
 
-    ## 
-    ##             Action, Adventure, Fantasy              Action, Adventure, Horror              Action, Adventure, Sci-Fi 
-    ##                                     24                                      6                                      6 
-    ##                 Action, Horror, Sci-Fi               Action, Horror, Thriller                         Action, Sci-Fi 
-    ##                                      8                                      3                                      3 
-    ##             Adventure, Family, Fantasy            Adventure, Horror, Thriller                      Adventure, Sci-Fi 
-    ##                                      3                                      3                                      3 
-    ##              Biography, Comedy, Sci-Fi                Biography, Crime, Drama                                 Comedy 
-    ##                                      2                                      3                                      2 
-    ##                 Comedy, Crime, Mystery               Comedy, Musical, Romance                         Comedy, Sci-Fi 
-    ##                                      1                                      3                                      3 
-    ##                           Crime, Drama                 Crime, Drama, Thriller                            Documentary 
-    ##                                     12                                      1                                      4 
-    ## Documentary, Biography, Crime, History                    Documentary, Horror                     Documentary, Short 
-    ##                                      1                                      1                                      5 
-    ##                 Drama, Family, Fantasy                         Drama, Romance                    Drama, Romance, War 
-    ##                                      3                                      3                                      3 
-    ##              Horror, Mystery, Thriller                         Horror, Sci-Fi               Horror, Sci-Fi, Thriller 
-    ##                                     15                                      3                                      3 
-    ##                       Horror, Thriller             Mystery, Romance, Thriller                         Short, Fantasy 
-    ##                                     21                                      3                                      1
+    ## Warning: Unknown or uninitialised column: `formatted_data.Genre`.
+
+    ## < table of extent 0 >
 
 So, for example, there
 
