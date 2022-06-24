@@ -706,6 +706,32 @@ So, for example, it looks like 5 movies were rated PG and fell under the
 
 # Bar Plot
 
+To find all of the movies with a certin actor in it:
+
+``` r
+test<-unique(formatted_data[grep("Mark Hamill", formatted_data$Actors), ])
+test
+```
+
+    ## # A tibble: 12 × 28
+    ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ##  2 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ##  3 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ##  4 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ##  5 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ##  6 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ##  7 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
+    ##  8 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
+    ##  9 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
+    ## 10 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Internet Movi…
+    ## 11 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Rotten Tomato…
+    ## 12 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Metacritic    
+    ## # … with 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>, imdbID <chr>,
+    ## #   Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>, Summary_Awards <fct>,
+    ## #   Average_Rating <dbl>
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 

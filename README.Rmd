@@ -453,6 +453,12 @@ So, for example, it looks like 5 movies were rated PG and fell under the "Action
 
 # Bar Plot
 
+To find all of the movies with a certin actor in it:
+
+```{r 8_15_6_24_2022}
+test<-unique(formatted_data[grep("Mark Hamill", formatted_data$Actors), ])
+test
+```
 
 
 
