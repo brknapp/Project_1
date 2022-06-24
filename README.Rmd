@@ -366,11 +366,20 @@ award <- function(S){
     return(A)
   }
   S=tolower(S)
-  if(grepl("won", S) | grepl("win", S)){
+  #won and nominated:
+  if((grepl("won", S) | grepl("win", S)) && (grepl("nomina", S))){
+    A<-"won and nominated"
+  }
+  #only won:
+  else if (grepl("won", S) | grepl("win", S)){
     A<-"won"
-  }else if (grepl("nomina", S)){
+  }
+  #only nominated:
+  else if (grepl("nomina", S)){
     A<-"nomination"
-  }else {(A<-"none")
+  }
+  #no awards or nominations:
+  else {(A<-"none")
      return(A)
   }
 }

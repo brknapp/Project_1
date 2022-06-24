@@ -30,6 +30,18 @@ library(jsonlite) #this package will help us convert the data we get from the OM
 library(tidyverse) #this package will help us work with our nicely formatted data.
 ```
 
+    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+    ## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
+    ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+    ## ✔ readr   2.1.2     ✔ forcats 0.5.1
+
+    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter()  masks stats::filter()
+    ## ✖ purrr::flatten() masks jsonlite::flatten()
+    ## ✖ dplyr::lag()     masks stats::lag()
+
 In order to get information from the OMDb API, we have to build a URL
 with our search criteria. It’s similar to doing a Google search. There
 are two ways to build a URL: “By ID or Title” or “By Search”.
@@ -486,11 +498,20 @@ award <- function(S){
     return(A)
   }
   S=tolower(S)
-  if(grepl("won", S) | grepl("win", S)){
+  #won and nominated:
+  if((grepl("won", S) | grepl("win", S)) && (grepl("nomina", S))){
+    A<-"won and nominated"
+  }
+  #only won:
+  else if (grepl("won", S) | grepl("win", S)){
     A<-"won"
-  }else if (grepl("nomina", S)){
+  }
+  #only nominated:
+  else if (grepl("nomina", S)){
     A<-"nomination"
-  }else {(A<-"none")
+  }
+  #no awards or nominations:
+  else {(A<-"none")
      return(A)
   }
 }
@@ -553,16 +574,16 @@ format_data <- function(mykey,titles,series){
     ##  $ Production    : chr [1:152] "N/A" "N/A" "N/A" "N/A" ...
     ##  $ Website       : chr [1:152] "N/A" "N/A" "N/A" "N/A" ...
     ##  $ Response      : chr [1:152] "True" "True" "True" "True" ...
-    ##  $ Summary_Awards: Factor w/ 3 levels "nomination","none",..: 3 3 3 3 3 3 3 3 3 3 ...
+    ##  $ Summary_Awards: Factor w/ 4 levels "nomination","none",..: 4 4 4 4 4 4 4 4 4 4 ...
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
 
     ##  Won 3 Oscars. 10 wins & 9 nominations total  Won 3 Oscars. 10 wins & 9 nominations total 
-    ##                                          won                                          won 
+    ##                            won and nominated                            won and nominated 
     ##  Won 3 Oscars. 10 wins & 9 nominations total Won 2 Oscars. 13 wins & 16 nominations total 
-    ##                                          won                                          won 
+    ##                            won and nominated                            won and nominated 
     ## Won 2 Oscars. 13 wins & 16 nominations total Won 2 Oscars. 13 wins & 16 nominations total 
-    ##                                          won                                          won 
-    ## Levels: nomination none won
+    ##                            won and nominated                            won and nominated 
+    ## Levels: nomination none won won and nominated
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
