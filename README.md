@@ -780,7 +780,8 @@ avg_imdbVotes
 
     ## [1] 332324.2
 
-Now, let’s get the average imdbVotes for every genre:
+On average, every movie in my data set gets 332324 imdbVotes. Now, let’s
+get the average imdbVotes for every genre:
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
@@ -839,6 +840,15 @@ result
     ## 28                         Short, Fantasy      51.0
     ## 29            Adventure, Horror, Thriller   37819.0
     ## 30                    Documentary, Horror    3080.0
+
+Now, let’s find the 5-number summary for this data set.
+
+``` r
+summary(result$avg_genre)
+```
+
+    ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
