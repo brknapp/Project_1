@@ -876,45 +876,17 @@ rating.
 ``` r
 A <- formatted_data %>%
   select(imdbVotes,average_rating)
-dim(A)
-```
-
-    ## [1] 152   2
-
-``` r
-head(A)
-```
-
-    ## # A tibble: 6 × 2
-    ##   imdbVotes average_rating
-    ##       <dbl>          <dbl>
-    ## 1    561509           93.2
-    ## 2    561509           93.2
-    ## 3    561509           93.2
-    ## 4    391833           87.8
-    ## 5    391833           87.8
-    ## 6    391833           87.8
-
-``` r
 B<-unique(A)
-dim(B)
+cov(B$imdbVotes,B$average_rating) #Covariance
 ```
 
-    ## [1] 61  2
+    ## [1] 4539894
 
 ``` r
-head(B)
+cor(CO2$conc, CO2$uptake) #Correlation
 ```
 
-    ## # A tibble: 6 × 2
-    ##   imdbVotes average_rating
-    ##       <dbl>          <dbl>
-    ## 1    561509           93.2
-    ## 2    391833           87.8
-    ## 3    445520           88.2
-    ## 4   1117933           89.3
-    ## 5    798445           88.9
-    ## 6    654140           91.6
+    ## [1] 0.4851774
 
 The next graph is:
 

@@ -561,12 +561,9 @@ Now, let's see if the number of imdbVotes is related to the average rating.
 ```{r 2_49_6_25_2022}
 A <- formatted_data %>%
   select(imdbVotes,average_rating)
-dim(A)
-head(A)
 B<-unique(A)
-dim(B)
-head(B)
-
+cov(B$imdbVotes,B$average_rating) #Covariance
+cor(CO2$conc, CO2$uptake) #Correlation
 ```
 
 
