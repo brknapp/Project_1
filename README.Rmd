@@ -529,6 +529,7 @@ avg_imdbVotes_by_genre <- function(){
 }
 result<-avg_imdbVotes_by_genre()
 result<-unique(result)
+result
 ```
 
 
