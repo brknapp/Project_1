@@ -526,6 +526,7 @@ Let's make a box plot showing the spread of the number of imdbVotes for every ge
 B %>%
   ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
   geom_boxplot() +
+  stat_summary(fun.y="mean") +
   theme(legend.position = "none")
 
 # g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes,fill=formatted_data.Genre))

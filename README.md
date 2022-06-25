@@ -799,8 +799,13 @@ every genre:
 B %>%
   ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
   geom_boxplot() +
+  stat_summary(fun.y="mean") +
   theme(legend.position = "none")
 ```
+
+    ## Warning: `fun.y` is deprecated. Use `fun` instead.
+
+    ## Warning: Removed 30 rows containing missing values (geom_segment).
 
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
 
