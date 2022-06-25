@@ -525,10 +525,10 @@ avg_imdbVotes_by_genre <- function(){
       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
       mat1=rbind(mat1,temp)
   }
-  mat1=unique(mat1)
   return(mat1)
 }
-avg_imdbVotes_by_genre()
+result<-avg_imdbVotes_by_genre()
+result<-unique(result)
 ```
 
 
