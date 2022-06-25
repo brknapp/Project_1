@@ -563,8 +563,11 @@ A <- formatted_data %>%
   select(imdbVotes,average_rating)
 B<-unique(A)
 cov(B$imdbVotes,B$average_rating) #Covariance
-cor(CO2$conc, CO2$uptake) #Correlation
+cor(B$imdbVotes,B$average_rating) #Correlation
 ```
+
+The covariance is 4539894, meaning that there is a positive linear relationship between imdbVotes and average_rating.
+
 
 
 

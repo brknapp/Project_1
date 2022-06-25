@@ -778,7 +778,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332323.2
+    ## [1] 332324.2
 
 On average, every movie in my data set gets 332324 imdbVotes. Let’s make
 a box plot showing the spread of the number of imdbVotes for every
@@ -846,7 +846,7 @@ result
     ## 18               Horror, Sci-Fi, Thriller  275908.0
     ## 19              Action, Adventure, Horror  101779.0
     ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15480.0
+    ## 21                         Action, Sci-Fi   15543.0
     ## 22              Biography, Comedy, Sci-Fi    7478.0
     ## 23                 Comedy, Crime, Mystery     832.0
     ## 24 Documentary, Biography, Crime, History      82.0
@@ -864,7 +864,7 @@ summary(result$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280501.3  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
@@ -880,13 +880,16 @@ B<-unique(A)
 cov(B$imdbVotes,B$average_rating) #Covariance
 ```
 
-    ## [1] 4539894
+    ## [1] 4539881
 
 ``` r
-cor(CO2$conc, CO2$uptake) #Correlation
+cor(B$imdbVotes,B$average_rating) #Correlation
 ```
 
-    ## [1] 0.4851774
+    ## [1] 0.5827316
+
+The covariance is 4539894, meaning that there is a positive linear
+relationship between imdbVotes and average_rating.
 
 The next graph is:
 
