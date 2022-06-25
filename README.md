@@ -794,7 +794,9 @@ length(genre_list) #there are 30 different genres
 
 ``` r
 g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes))
-g + geom_boxplot(fill = "grey")
+g + geom_boxplot(fill = "grey") +
+  theme(axis.text.x = element_text(angle = 90)) +
+  coord_flip()
 ```
 
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
