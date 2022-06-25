@@ -856,7 +856,7 @@ Crime, Drama” and the genre with the least number of votes is
 this:
 
 ``` r
-g <- ggplot(result, aes(x = formatted_data.Genre, y = avg_genre))
+g <- ggplot(result, aes(x = avg_genre))
 g + geom_boxplot(fill = "grey")
 ```
 
