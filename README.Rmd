@@ -543,7 +543,7 @@ summary(result$avg_genre)
 So, it looks like the genre with the most number of votes is "Biography, Crime, Drama" and the genre with the least number of votes is "Documentary, Short". Let's make a boxplot so that we can visually see this:
 
 ```{r 12_18_6_25_2022}
-g <- ggplot(result, aes(x = avg_genre))
+g <- ggplot(result, aes(y = avg_genre))
 g + geom_boxplot(fill = "grey")
 
 
