@@ -595,6 +595,12 @@ the movies:
 
 ``` r
 unique_titles<-length(unique(formatted_data$Title))
+unique_titles
+```
+
+    ## [1] 61
+
+``` r
 A<-data.frame(formatted_data$Title,formatted_data$Rated)
 B<-unique(A)
 table(B$formatted_data.Rated)

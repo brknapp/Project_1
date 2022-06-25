@@ -444,6 +444,7 @@ Let's say I wanted to know how many movies are rated "PG-13" in my data set. I w
 
 ```{r 11_45_6_23_2022}
 unique_titles<-length(unique(formatted_data$Title))
+unique_titles
 A<-data.frame(formatted_data$Title,formatted_data$Rated)
 B<-unique(A)
 table(B$formatted_data.Rated)
