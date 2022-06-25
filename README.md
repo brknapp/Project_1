@@ -922,8 +922,7 @@ g + geom_density(adjust = 0.5, alpha = 0.5)
 ![](README_files/figure-gfm/3_21_6_25_2022-1.png)<!-- -->
 
 ``` r
-g + geom_histogram(aes(y = ..density.., color = "blue", fill = "red",
-size = 2, binwidth = 3)) +
+g + geom_histogram(aes(y = ..density.., binwidth = 3)) +
 geom_density(adjust = 0.25, alpha = 0.5)
 ```
 

@@ -590,8 +590,7 @@ g + geom_density(adjust = 0.5, alpha = 0.5)
 ```
 
 ```{r 3_27_6_25_2022}
-g + geom_histogram(aes(y = ..density.., color = "blue", fill = "red",
-size = 2, binwidth = 3)) +
+g + geom_histogram(aes(y = ..density.., binwidth = 3)) +
 geom_density(adjust = 0.25, alpha = 0.5)
 ```
 
