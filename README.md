@@ -922,11 +922,13 @@ g + geom_density(adjust = 0.5, alpha = 0.5)
 ![](README_files/figure-gfm/3_21_6_25_2022-1.png)<!-- -->
 
 ``` r
-g + geom_histogram(aes(y = ..density.., binwidth = 3)) +
-geom_density(adjust = 0.25, alpha = 0.5)
-```
+# g + geom_histogram(aes(y = ..density..)) +
+# geom_density(adjust = 0.25, alpha = 0.5)
 
-    ## Warning: Ignoring unknown aesthetics: binwidth
+
+ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..)) +
+geom_density(adjust = 0.25, alpha = 0.5, size = 1)
+```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
