@@ -899,24 +899,12 @@ Let’s make a histogram showing the distribution of of the “Year” column:
 ``` r
 A <- formatted_data %>%
   select(Title,Year)
-dim(A)
-```
-
-    ## [1] 152   2
-
-``` r
 B<-unique(A)
-dim(B)
-```
 
-    ## [1] 61  2
-
-``` r
 g <- ggplot(B, aes(x = Year))
-g + geom_histogram()
+g + geom_histogram(color = "blue", fill = "red",
+size = 2, binwidth = 3)
 ```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](README_files/figure-gfm/3_14_6_25_2022-1.png)<!-- -->
 
