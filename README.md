@@ -30,6 +30,7 @@ package in quotes. For example, to install `tidyverse`, you would run
 library(httr) #this package will help use use the URL we built to get information from the OMDb API
 library(jsonlite) #this package will help us convert the data we get from the OMDb API to a more usable format
 library(tidyverse) #this package will help us work with our nicely formatted data.
+library(lubridate) #this package will help us create dates 
 ```
 
 In order to get information from the OMDb API, we have to build a URL
@@ -511,21 +512,37 @@ Here’s our complete formatting function:
 
 ``` r
 library(lubridate)
+mat1=NULL
 format_data <- function(mykey,titles,series){
-  data <- get_data_titles_and_series(mykey,titles,series)
-  data$Year <- as.numeric(data$Year)
-  data$Released <- dmy(data$Released)
-  data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
-  data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
-  data$Summary_Awards <- as.factor(sapply(data$Awards, FUN=award))
-  data$Metascore <- as.numeric(data$Metascore)
-  data$imdbRating <- as.numeric(data$imdbRating)*10
-  data$imdbVotes <- as.numeric(gsub(",","",data$imdbVotes))
-  data$DVD <- dmy(data$DVD)
-  data$BoxOffice <- gsub("\\$","",data$BoxOffice)
-  data$BoxOffice <- as.numeric(gsub(",","",data$BoxOffice))
-  data$Average_Rating <- ((data$Ratings.Value) + (data$Metascore) + (data$imdbRating))/3
-  return(data)
+    data <- get_data_titles_and_series(mykey,titles,series)
+    data$Year <- as.numeric(data$Year)
+    data$Released <- dmy(data$Released)
+    data$Runtime <- as.numeric(gsub(" min","",data$Runtime))
+    data$Ratings.Value <- sapply(data$Ratings.Value, FUN=parse_number)
+    data$Summary_Awards <- as.factor(sapply(data$Awards, FUN=award))
+    data$Metascore <- as.numeric(data$Metascore)
+    data$imdbRating <- as.numeric(data$imdbRating)*10
+    data$imdbVotes <- as.numeric(gsub(",","",data$imdbVotes))
+    data$DVD <- dmy(data$DVD)
+    data$BoxOffice <- gsub("\\$","",data$BoxOffice)
+    data$BoxOffice <- as.numeric(gsub(",","",data$BoxOffice))
+    movie_list<-unique(data$Title)
+    
+    for (i in movie_list){
+      temp=data[is.element(data$Title,i),]
+      Ratings.Value_mean<-mean(temp$Ratings.Value)
+      Metascore<-unique(temp$Metascore)
+      imdbRating<-unique(temp$imdbRating)
+      
+      if(is.na(Metascore)==TRUE){
+        temp$average_rating=(Ratings.Value_mean+imdbRating)/2
+      }
+      if(is.na(Metascore)==FALSE){
+        temp$average_rating=(Ratings.Value_mean+Metascore+imdbRating)/3
+      }
+      mat1=rbind(mat1,temp)
+    }
+    return(mat1)
 }
 ```
 
@@ -568,8 +585,7 @@ Here’s the tibble I got:
     ##  $ Response      : chr [1:152] "True" "True" "True" "True" ...
     ##  $ Summary_Awards: Factor w/ 4 levels "nomination","none",..: 4 4 4 4 4 4 4 4 4 4 ...
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
-    ##  $ Average_Rating: Named num [1:152] 90 94.7 95 84.7 90.3 ...
-    ##   ..- attr(*, "names")= chr [1:152] "8.5/10" "99%" "100/100" "8.1/10" ...
+    ##  $ average_rating: num [1:152] 93.2 93.2 93.2 87.8 87.8 ...
 
 # Contingency Tables
 
@@ -730,7 +746,7 @@ test
     ## 12 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Metacritic    
     ## # … with 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>, imdbID <chr>,
     ## #   Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>, Summary_Awards <fct>,
-    ## #   Average_Rating <dbl>
+    ## #   average_rating <dbl>
 
 Here’s the bar graph:
 
