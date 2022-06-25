@@ -936,11 +936,10 @@ B<-unique(A)
 correlation <- cor(B$average_rating, B$BoxOffice)
 
 g <- ggplot(B, aes(x = average_rating, y = BoxOffice))
-g + geom_point() +
+g + geom_text(aes(label = Year)) +
 geom_smooth(method = lm, col = "Red") +
   labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office") +
-  geom_text(x = 40, y = 7.5e+08, size = 5, label = paste0("Correlation = ", round(correlation, 3))) +
-  geom_text(aes(label = Year))
+  geom_text(x = 40, y = 7.5e+08, size = 5, label = paste0("Correlation = ", round(correlation, 3)))
 ```
 
 ![](README_files/figure-gfm/4_07_6_25_2022-1.png)<!-- -->
