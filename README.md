@@ -793,6 +793,13 @@ length(genre_list) #there are 30 different genres
     ## [1] 30
 
 ``` r
+g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes))
+g + geom_boxplot(fill = "grey")
+```
+
+![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
+
+``` r
 mat1=NULL
 avg_imdbVotes_by_genre <- function(){
   for (i in genre_list){
