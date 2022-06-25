@@ -800,7 +800,9 @@ B %>%
   ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
   geom_boxplot() +
   stat_summary(fun.y="mean") +
-  theme(legend.position = "none")
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  coord_flip()
 ```
 
     ## Warning: `fun.y` is deprecated. Use `fun` instead.
