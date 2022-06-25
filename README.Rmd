@@ -583,12 +583,28 @@ size = 2, binwidth = 3) +
   labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
-Let's smooth it out!
+It looks like most of the movies in my data set were made after 1975, with a peak in the late 1980s. 
+
+Let's smooth it out with a Kernel Smoother. 
 
 ```{r 3_27_6_25_2022,message=FALSE}
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
   geom_density(adjust = 0.25, size = 1)
-#geom_density(adjust = 0.25, alpha = 0.5, size = 1)
+```
+
+The line helps us see that there are two peaks, one at around 1988 and one around 2006. 
+
+Now, lets make a scatterplot:
+
+```{r 4_07_6_25_2022}
+A <- formatted_data %>%
+  select(BoxOffice, average_rating)
+B<-unique(A)
+dim(B)
+
+g <- ggplot(B, aes(x = BoxOffice, y = average_rating))
+g + geom_point()
+
 ```
 
 
