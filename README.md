@@ -850,6 +850,18 @@ summary(result$avg_genre)
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
     ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
 
+So, it looks like the genre with the most number of votes is “Biography,
+Crime, Drama” and the genre with the least number of votes is
+“Documentary, Short”. Let’s make a boxplot so that we can visually see
+this:
+
+``` r
+g <- ggplot(result, aes(x = formatted_data.Genre, y = avg_genre))
+g + geom_boxplot(fill = "grey")
+```
+
+![](README_files/figure-gfm/12_18_6_25_2022-1.png)<!-- -->
+
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
 
