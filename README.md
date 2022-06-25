@@ -916,7 +916,7 @@ size = 2, binwidth = 3)
 Let’s smooth it out!
 
 ``` r
-g + geom_density(adjust = 0.5, alpha = 0.5, aes(fill = Summary_Awards))
+g + geom_density(adjust = 0.5, alpha = 0.5)
 ```
 
 ![](README_files/figure-gfm/3_21_6_25_2022-1.png)<!-- -->
