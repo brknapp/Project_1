@@ -792,15 +792,31 @@ length(genre_list) #there are 30 different genres
 
     ## [1] 30
 
+Let’s make a box plot showing the spread of the number of imdbVotes for
+every genre:
+
 ``` r
-g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes))
-g + geom_boxplot(fill = "grey") +
-  theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  coord_flip()
+B %>%
+  ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
+  geom_boxplot() +
+  theme(legend.position = "none")
 ```
 
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
+
+``` r
+# g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes,fill=formatted_data.Genre))
+# g + geom_boxplot() +
+#   stat_summary(fun.y = mean, geom = "line",
+#                lwd = 1.5, aes(group = roof, col = roof))
+#   
+#   
+#   theme(axis.text.x = element_text(angle = 90)) +
+#   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+#   coord_flip()
+```
+
+It looks like the most spread, or variance, is “Crime, Drama”.
 
 ``` r
 mat1=NULL
