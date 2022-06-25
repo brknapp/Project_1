@@ -477,9 +477,7 @@ Let's say we wanted to find out how many movies each director made in my data se
 ```{r 8_18_6_24_2022}
 C<-data.frame(formatted_data$Title,formatted_data$Director)
 D<-unique(C)
-colnames(D)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
-g + geom_bar(aes(fill = as.factor(survived)))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Director", title = "Director Count", y="Number of Movies")
@@ -487,8 +485,12 @@ g + geom_bar() +
 
 
 ```{r 10_54_6_25_2022}
+C<-data.frame(formatted_data$Title,formatted_data$Director,formatted_data$Summary_Awards)
+D<-unique(C)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
-g + geom_bar(aes(fill = Summary_Awards))
+g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(x = "Director", title = "Director Count", y="Number of Movies")
 ```
 
 

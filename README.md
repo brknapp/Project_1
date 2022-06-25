@@ -13,7 +13,7 @@ Project 1
     Series](#build-url-to-search-for-more-than-one-title-or-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
--   [Bar Plot](#bar-plot)
+-   [Bar Plots](#bar-plots)
 
 # Lets Get Started: OMDb API Key
 
@@ -727,7 +727,7 @@ table(B$formatted_data.Rated, D$formatted_data.Genre)
 So, for example, it looks like 5 out of the 61 movies from my data set
 are rated PG and fall under the “Action, Adventure, Fantasy” genre.
 
-# Bar Plot
+# Bar Plots
 
 Let’s say we wanted to find out how many movies each director made in my
 data set. We could make the bar graph below:
@@ -735,19 +735,24 @@ data set. We could make the bar graph below:
 ``` r
 C<-data.frame(formatted_data$Title,formatted_data$Director)
 D<-unique(C)
-dim(D)
-```
-
-    ## [1] 61  2
-
-``` r
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Director", title = "Director Count")
+  labs(x = "Director", title = "Director Count", y="Number of Movies")
 ```
 
 ![](README_files/figure-gfm/8_18_6_24_2022-1.png)<!-- -->
+
+``` r
+C<-data.frame(formatted_data$Title,formatted_data$Director,formatted_data$Summary_Awards)
+D<-unique(C)
+g<-ggplot(data = D, aes(x = formatted_data.Director ))
+g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(x = "Director", title = "Director Count", y="Number of Movies")
+```
+
+![](README_files/figure-gfm/10_54_6_25_2022-1.png)<!-- -->
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
