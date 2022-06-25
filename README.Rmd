@@ -484,7 +484,7 @@ g + geom_bar() +
 ```
 
 
-```{r 10_54_6_25_2022, fig.height = 10, fig.width = 5}
+```{r 10_54_6_25_2022, fig.height = 10, fig.width = 10}
 C<-data.frame(formatted_data$Title,formatted_data$Director,formatted_data$Summary_Awards)
 D<-unique(C)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
