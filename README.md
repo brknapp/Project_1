@@ -935,7 +935,7 @@ B<-unique(A)
 g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point() +
 geom_smooth() +
-geom_smooth(method = lm, col = "Red")
+geom_smooth(method = "loess", col = "Red")
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
