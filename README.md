@@ -939,7 +939,7 @@ g <- ggplot(B, aes(x = average_rating, y = BoxOffice))
 g + geom_point() +
 geom_smooth(method = lm, col = "Red") +
   labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office") +
-  geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ",
+  geom_text(x = 40, y = 7.5e+08, size = 5, label = paste0("Correlation = ",
 round(correlation, 3)))
 ```
 
