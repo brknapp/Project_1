@@ -933,10 +933,14 @@ A <- formatted_data %>%
 A <- A %>% drop_na(BoxOffice) #removing some NAs from BoxOffice column
 B<-unique(A)
 
-g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
+correlation <- cor(B$average_rating, B$BoxOffice)
+
+g <- ggplot(B, aes(x = average_rating, y = BoxOffice))
 g + geom_point() +
 geom_smooth(method = lm, col = "Red") +
-  labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office")
+  labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office") +
+  geom_text(x = 315, y = 10, size = 5, label = paste0("Correlation = ",
+round(correlation, 3)))
 ```
 
 ![](README_files/figure-gfm/4_07_6_25_2022-1.png)<!-- -->
