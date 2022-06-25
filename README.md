@@ -778,33 +778,34 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332323.2
+    ## [1] 332204.5
 
 Now, let’s get the average imdbVotes for every genre:
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
 B<-unique(A)
-B %>%
-  group_by(formatted_data.Genre) %>%
-  mutate(avg_imdbVotes_by_genre = mean(formatted_data.imdbVotes))
+genre_list=unique(B$formatted_data.Genre)
+mat1=NULL
+avg_imdbVotes_by_genre <- function(){
+  for (i in genre_list){
+      temp=data[is.element(B$formatted_data.Genre,i),]
+      temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
+      mat1=rbind(mat1,temp)
+  }
+  return(mat1)
+}
+avg_imdbVotes_by_genre
 ```
 
-    ## # A tibble: 61 × 3
-    ## # Groups:   formatted_data.Genre [30]
-    ##    formatted_data.Genre       formatted_data.imdbVotes avg_imdbVotes_by_genre
-    ##    <chr>                                         <dbl>                  <dbl>
-    ##  1 Drama, Romance, War                          561509                561509 
-    ##  2 Adventure, Family, Fantasy                   391833                391833 
-    ##  3 Drama, Family, Fantasy                       445520                445520 
-    ##  4 Biography, Crime, Drama                     1117933               1117933 
-    ##  5 Crime, Drama                                 798445               1051420.
-    ##  6 Horror, Mystery, Thriller                    654140                207197.
-    ##  7 Comedy, Musical, Romance                     238235                238235 
-    ##  8 Adventure, Sci-Fi                            652541                652541 
-    ##  9 Mystery, Romance, Thriller                   395723                395723 
-    ## 10 Crime, Drama                                1786257               1051420.
-    ## # … with 51 more rows
+    ## function(){
+    ##   for (i in genre_list){
+    ##       temp=data[is.element(B$formatted_data.Genre,i),]
+    ##       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
+    ##       mat1=rbind(mat1,temp)
+    ##   }
+    ##   return(mat1)
+    ## }
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
