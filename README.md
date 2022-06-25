@@ -778,7 +778,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.2
+    ## [1] 332204.5
 
 On average, every movie in my data set gets 332324 imdbVotes. Let’s make
 a box plot showing the spread of the number of imdbVotes for every
@@ -839,14 +839,14 @@ result
     ## 11                            Documentary     627.0
     ## 12                                 Comedy     222.0
     ## 13                     Documentary, Short      45.6
-    ## 14             Action, Adventure, Fantasy  861925.9
+    ## 14             Action, Adventure, Fantasy  861020.5
     ## 15              Action, Adventure, Sci-Fi  758986.5
     ## 16                         Horror, Sci-Fi  855565.0
     ## 17                 Action, Horror, Sci-Fi  182640.0
     ## 18               Horror, Sci-Fi, Thriller  275908.0
     ## 19              Action, Adventure, Horror  101779.0
     ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15543.0
+    ## 21                         Action, Sci-Fi   15480.0
     ## 22              Biography, Comedy, Sci-Fi    7478.0
     ## 23                 Comedy, Crime, Mystery     832.0
     ## 24 Documentary, Biography, Crime, History      82.0
@@ -864,7 +864,7 @@ summary(result$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  280471.2  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
@@ -880,13 +880,13 @@ B<-unique(A)
 cov(B$imdbVotes,B$average_rating) #Covariance
 ```
 
-    ## [1] 4539881
+    ## [1] 4537158
 
 ``` r
 cor(B$imdbVotes,B$average_rating) #Correlation
 ```
 
-    ## [1] 0.5827316
+    ## [1] 0.5827724
 
 The covariance is 4539894, meaning that there is a positive linear
 relationship between imdbVotes and average_rating.
@@ -916,21 +916,9 @@ size = 2, binwidth = 3)
 Let’s smooth it out!
 
 ``` r
-g + geom_density(adjust = 0.5, alpha = 0.5)
-```
-
-![](README_files/figure-gfm/3_21_6_25_2022-1.png)<!-- -->
-
-``` r
-# g + geom_histogram(aes(y = ..density..)) +
-# geom_density(adjust = 0.25, alpha = 0.5)
-
-
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
 geom_density(adjust = 0.25, alpha = 0.5, size = 1)
 ```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](README_files/figure-gfm/3_27_6_25_2022-1.png)<!-- -->
 
