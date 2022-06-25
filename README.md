@@ -916,7 +916,8 @@ Let’s smooth it out with a Kernel Smoother.
 
 ``` r
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
-  geom_density(adjust = 0.25, size = 1)
+  geom_density(adjust = 0.25, size = 1) +
+  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
 ![](README_files/figure-gfm/3_27_6_25_2022-1.png)<!-- -->
@@ -934,12 +935,13 @@ B<-unique(A)
 
 g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point() +
-geom_smooth(method = lm, col = "Red")
+geom_smooth(method = lm, col = "Red") +
+  labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office")
 ```
 
-    ## `geom_smooth()` using formula 'y ~ x'
-
 ![](README_files/figure-gfm/4_07_6_25_2022-1.png)<!-- -->
+
+As you can see, as average_rating increases, so does BoxOffice.
 
 The next graph is:
 

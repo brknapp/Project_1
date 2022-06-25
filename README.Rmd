@@ -589,14 +589,15 @@ Let's smooth it out with a Kernel Smoother.
 
 ```{r 3_27_6_25_2022,message=FALSE}
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
-  geom_density(adjust = 0.25, size = 1)
+  geom_density(adjust = 0.25, size = 1) +
+  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
 The line helps us see that there are two peaks, one at around 1988 and one around 2006. 
 
 Now, lets make a scatterplot:
 
-```{r 4_07_6_25_2022}
+```{r 4_07_6_25_2022,message=FALSE}
 A <- formatted_data %>%
   select(BoxOffice, average_rating)
 A <- A %>% drop_na(BoxOffice) #removing some NAs from BoxOffice column
@@ -604,9 +605,11 @@ B<-unique(A)
 
 g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point() +
-geom_smooth(method = lm, col = "Red")
-
+geom_smooth(method = lm, col = "Red") +
+  labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office")
 ```
+
+As you can see, as average_rating increases, so does BoxOffice. 
 
 
 The next graph is:
