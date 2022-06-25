@@ -797,7 +797,6 @@ g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes))
 g + geom_boxplot(fill = "grey") +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  geom_vline(xintercept = 332324.2) +
   coord_flip()
 ```
 
