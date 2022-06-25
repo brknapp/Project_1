@@ -530,6 +530,7 @@ avg_imdbVotes_by_genre <- function(){
 result<-avg_imdbVotes_by_genre()
 result<-result %>% select(formatted_data.Genre,avg_genre)
 result<-unique(result)
+rownames(result)<-1:30
 result
 ```
 
