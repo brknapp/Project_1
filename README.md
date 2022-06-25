@@ -8,9 +8,11 @@ Project 1
 -   [Build URL for One IMDb ID](#build-url-for-one-imdb-id)
 -   [Build URL to Search for More than One Title in a
     Series](#build-url-to-search-for-more-than-one-title-in-a-series)
--   [Get the data!](#get-the-data)
 -   [Build URL to search for More than One Title or
     Series](#build-url-to-search-for-more-than-one-title-or-series)
+-   [Get the Data for One Series!](#get-the-data-for-one-series)
+-   [Get the Data for Multiple
+    Series](#get-the-data-for-multiple-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
 -   [Bar Plots](#bar-plots)
@@ -212,48 +214,6 @@ You should get a tibble that looks like this:
     ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
     ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True
 
-# Get the data!
-
-That’s great! Now, lets get the data for all of the titles:
-
-``` r
-mat=NULL
-get_data_series <- function(mykey,title){
-  temp_table <- by_search_series(mykey,title,type="movie")
-  list_of_titles <- unique(temp_table$Search.Title)
-  
-  for(movie_title in list_of_titles){
-  table <- search_by_title(mykey,movie_title,type="movie")
-  mat=rbind(mat,table)
-  }
-  return(mat)
-}
-```
-
-You should run the function like this:
-
-``` r
-get_data_series("mykey","star_wars")
-```
-
-You should get a tibble that looks like this:
-
-    ## # A tibble: 30 × 26
-    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
-    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
-    ##  1 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
-    ##  2 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
-    ##  3 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
-    ##  4 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
-    ##  5 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
-    ##  6 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
-    ##  7 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
-    ##  8 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
-    ##  9 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
-    ## 10 Star War… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
-    ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
-    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
-
 # Build URL to search for More than One Title or Series
 
 Now, what if you want to get all of the data for all of the Star Wars
@@ -351,6 +311,50 @@ You would get this tibble:
     ##  8 The Amazing Spider-Man 2          2014        tt1872181     movie       https://m.media-amazon.c… 225          True    
     ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 225          True    
     ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 225          True
+
+# Get the Data for One Series!
+
+That’s great! Now, lets get the data for all of the Star Wars movies:
+
+``` r
+mat=NULL
+get_data_series <- function(mykey,title){
+  temp_table <- by_search_series(mykey,title,type="movie")
+  list_of_titles <- unique(temp_table$Search.Title)
+  
+  for(movie_title in list_of_titles){
+  table <- search_by_title(mykey,movie_title,type="movie")
+  mat=rbind(mat,table)
+  }
+  return(mat)
+}
+```
+
+You should run the function like this:
+
+``` r
+get_data_series("mykey","star_wars")
+```
+
+You should get a tibble that looks like this:
+
+    ## # A tibble: 30 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
+    ##  2 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
+    ##  3 Star Wars 1977  PG    25 May … 121 min Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
+    ##  4 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
+    ##  5 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
+    ##  6 Star War… 1980  PG    20 Jun … 124 min Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
+    ##  7 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
+    ##  8 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
+    ##  9 Star War… 1983  PG    25 May … 131 min Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
+    ## 10 Star War… 2015  PG-13 18 Dec … 138 min Acti… J.J. Ab… Lawre… Daisy… As a… English  United… Nomin… https… Internet Movi…
+    ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
+    ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+# Get the Data for Multiple Series
 
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 
@@ -775,7 +779,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.2
+    ## [1] 332323.2
 
 On average, every movie in my data set gets 332324 imdbVotes. Let’s make
 a box plot showing the spread of the number of imdbVotes for every
@@ -843,7 +847,7 @@ result
     ## 18               Horror, Sci-Fi, Thriller  275908.0
     ## 19              Action, Adventure, Horror  101779.0
     ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15543.0
+    ## 21                         Action, Sci-Fi   15480.0
     ## 22              Biography, Comedy, Sci-Fi    7478.0
     ## 23                 Comedy, Crime, Mystery     832.0
     ## 24 Documentary, Biography, Crime, History      82.0
@@ -861,7 +865,7 @@ summary(result$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  280501.3  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
@@ -877,13 +881,13 @@ B<-unique(A)
 cov(B$imdbVotes,B$average_rating) #Covariance
 ```
 
-    ## [1] 4539881
+    ## [1] 4539894
 
 ``` r
 cor(B$imdbVotes,B$average_rating) #Correlation
 ```
 
-    ## [1] 0.5827316
+    ## [1] 0.5827321
 
 The covariance is 4539894, meaning that there is a positive linear
 relationship between imdbVotes and average_rating.
