@@ -556,6 +556,8 @@ summary(result$avg_genre)
 
 So, it looks like the genre with the most number of votes on average is "Biography, Crime, Drama" and the genre with the least number of votes on average is "Documentary, Short".
 
+The next graph is:
+
 
 
 
