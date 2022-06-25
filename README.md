@@ -921,6 +921,18 @@ g + geom_density(adjust = 0.5, alpha = 0.5)
 
 ![](README_files/figure-gfm/3_21_6_25_2022-1.png)<!-- -->
 
+``` r
+g + geom_histogram(aes(y = ..density.., color = "blue", fill = "red",
+size = 2, binwidth = 3)) +
+geom_density(adjust = 0.25, alpha = 0.5)
+```
+
+    ## Warning: Ignoring unknown aesthetics: binwidth
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](README_files/figure-gfm/3_27_6_25_2022-1.png)<!-- -->
+
 The next graph is:
 
 movie title in mind, like Star Wars. Here’s a function you can use to
