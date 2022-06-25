@@ -224,7 +224,7 @@ You would get this tibble:
 by_search_one_or_more_titles("5c7f9206","spider-man",type="movie")
 ```
 
-# Get the Data for One Series!
+# Get the Data for One Series
 
 That's great! Now, lets get the data for all of the Star Wars movies:
 
@@ -254,7 +254,7 @@ You should get a tibble that looks like this:
 get_data_series("5c7f9206","star_wars")
 ```
 
-# Get the Data for Multiple Series
+# Get the Data for One or More Series
 
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 

@@ -10,9 +10,9 @@ Project 1
     Series](#build-url-to-search-for-more-than-one-title-in-a-series)
 -   [Build URL to search for More than One Title or
     Series](#build-url-to-search-for-more-than-one-title-or-series)
--   [Get the Data for One Series!](#get-the-data-for-one-series)
--   [Get the Data for Multiple
-    Series](#get-the-data-for-multiple-series)
+-   [Get the Data for One Series](#get-the-data-for-one-series)
+-   [Get the Data for One or More
+    Series](#get-the-data-for-one-or-more-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
 -   [Bar Plots](#bar-plots)
@@ -312,7 +312,7 @@ You would get this tibble:
     ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 225          True    
     ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 225          True
 
-# Get the Data for One Series!
+# Get the Data for One Series
 
 That’s great! Now, lets get the data for all of the Star Wars movies:
 
@@ -354,7 +354,7 @@ You should get a tibble that looks like this:
     ## # … with 20 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-# Get the Data for Multiple Series
+# Get the Data for One or More Series
 
 Now, lets get all of the data for both Star Wars and Indiana Jones:
 
