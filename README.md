@@ -14,6 +14,7 @@ Project 1
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
 -   [Bar Plots](#bar-plots)
+-   [Measures of Center and Spread](#measures-of-center-and-spread)
 
 # Lets Get Started: OMDb API Key
 
@@ -765,6 +766,45 @@ g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
 
 It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards.
+
+# Measures of Center and Spread
+
+Let’s explore the imdbVotes column. First, let’s find the average number
+of imdbVotes in our entire data set:
+
+``` r
+imdbVotes <- unique(formatted_data$imdbVotes)
+avg_imdbVotes <- mean(imdbVotes)
+avg_imdbVotes
+```
+
+    ## [1] 332323.2
+
+Now, let’s get the average imdbVotes for every genre:
+
+``` r
+A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
+B<-unique(A)
+B %>%
+  group_by(formatted_data.Genre) %>%
+  mutate(avg_imdbVotes_by_genre = mean(formatted_data.imdbVotes))
+```
+
+    ## # A tibble: 61 × 3
+    ## # Groups:   formatted_data.Genre [30]
+    ##    formatted_data.Genre       formatted_data.imdbVotes avg_imdbVotes_by_genre
+    ##    <chr>                                         <dbl>                  <dbl>
+    ##  1 Drama, Romance, War                          561509                561509 
+    ##  2 Adventure, Family, Fantasy                   391833                391833 
+    ##  3 Drama, Family, Fantasy                       445520                445520 
+    ##  4 Biography, Crime, Drama                     1117933               1117933 
+    ##  5 Crime, Drama                                 798445               1051420.
+    ##  6 Horror, Mystery, Thriller                    654140                207197.
+    ##  7 Comedy, Musical, Romance                     238235                238235 
+    ##  8 Adventure, Sci-Fi                            652541                652541 
+    ##  9 Mystery, Romance, Thriller                   395723                395723 
+    ## 10 Crime, Drama                                1786257               1051420.
+    ## # … with 51 more rows
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
