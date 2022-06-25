@@ -484,6 +484,9 @@ g + geom_bar() +
   coord_flip()
 ```
 
+It looks like George Lucas and Francis Ford Coppola are tied for the most number of movies.
+
+Now, what if we wanted to see, for each director, how many movies either won or was nominated for awards. We could make the bar graph below.
 
 ```{r 10_54_6_25_2022, fig.height = 10, fig.width = 10}
 C<-data.frame(formatted_data$Title,formatted_data$Director,formatted_data$Summary_Awards)
@@ -495,6 +498,10 @@ g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
   scale_fill_discrete(name = NULL) +
   coord_flip()
 ```
+
+It looks like, for all 4 of George Lucas' movies, all of them won and were nominated for awards.
+
+
 
 
 
