@@ -595,7 +595,7 @@ the movies:
 
 ``` r
 unique_titles<-length(unique(formatted_data$Title))
-unique_titles
+unique_titles #there are 61 unique movie titles in my data set
 ```
 
     ## [1] 61
@@ -610,7 +610,7 @@ table(B$formatted_data.Rated)
     ##         G       N/A Not Rated    Passed        PG     PG-13         R     TV-14 
     ##         3         8         4         1         8         9        27         1
 
-As you can see, 9 movies from my data set are “PG-13”.
+As you can see, 9 out of the 61 movies from my data set are “PG-13”.
 
 Let’s say I wanted to summarize how many movies fell under each genre
 listed. I would make the contingency table below:
@@ -643,8 +643,8 @@ table(D$formatted_data.Genre)
     ##                       Horror, Thriller             Mystery, Romance, Thriller                         Short, Fantasy 
     ##                                      7                                      1                                      1
 
-So, for example, it looks like there are 7 movies that are classified
-under the “Horror, Thriller” genre.
+So, for example, it looks like 7 out of the 61 from my data set are
+classified under the “Horror, Thriller” genre.
 
 What if we wanted to see both the rating and the genre in the same
 table? We could make a two-way contingency table:
@@ -724,38 +724,13 @@ table(B$formatted_data.Rated, D$formatted_data.Genre)
     ##   R                        7                          0              0
     ##   TV-14                    0                          0              0
 
-So, for example, it looks like 5 movies were rated PG and fell under the
-“Action, Adventure, Fantasy” genre.
+So, for example, it looks like 5 out of the 61 movies from my data set
+are rated PG and fall under the “Action, Adventure, Fantasy” genre.
 
 # Bar Plot
 
-To find all of the movies with a certian actor in it:
-
-``` r
-test<-formatted_data[grep("Mark Hamill", formatted_data$Actors), ]
-test
-```
-
-    ## # A tibble: 12 × 28
-    ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
-    ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
-    ##  1 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Internet Movi…
-    ##  2 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Rotten Tomato…
-    ##  3 Star W…  1977 PG    1977-05-25     121 Acti… George … Georg… Mark … Luke… English  United… Won 6… https… Metacritic    
-    ##  4 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Internet Movi…
-    ##  5 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Rotten Tomato…
-    ##  6 Star W…  1980 PG    1980-06-20     124 Acti… Irvin K… Leigh… Mark … Afte… English  United… Won 1… https… Metacritic    
-    ##  7 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Internet Movi…
-    ##  8 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Rotten Tomato…
-    ##  9 Star W…  1983 PG    1983-05-25     131 Acti… Richard… Lawre… Mark … Afte… English  United… Nomin… https… Metacritic    
-    ## 10 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Internet Movi…
-    ## 11 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Rotten Tomato…
-    ## 12 Star W…  2017 PG-13 2017-12-15     152 Acti… Rian Jo… Rian … Daisy… The … English  United… Nomin… https… Metacritic    
-    ## # … with 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>, imdbID <chr>,
-    ## #   Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>, Summary_Awards <fct>,
-    ## #   average_rating <dbl>
-
-Here’s the bar graph:
+Let’s say we wanted to find out how many movies each director made in my
+data set. We could make the bar graph below:
 
 ``` r
 C<-data.frame(formatted_data$Title,formatted_data$Director)
@@ -768,7 +743,8 @@ dim(D)
 ``` r
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(x = "Director", title = "Director Count")
 ```
 
 ![](README_files/figure-gfm/8_18_6_24_2022-1.png)<!-- -->
