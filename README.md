@@ -32,6 +32,7 @@ library(httr) #this package will help use use the URL we built to get informatio
 library(jsonlite) #this package will help us convert the data we get from the OMDb API to a more usable format
 library(tidyverse) #this package will help us work with our nicely formatted data.
 library(lubridate) #this package will help us create dates 
+library(ggplot2) #this package will help us make graphs
 ```
 
 In order to get information from the OMDb API, we have to build a URL
@@ -134,9 +135,6 @@ its IMDb ID is tt0080684.
 Here’s a function you can use if you have a valid IMDb ID:
 
 ``` r
-library(tidyverse)
-library(jsonlite)
-library(httr)
 search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&i=",IMDb_ID,"&type=",type) 
@@ -512,7 +510,6 @@ award <- function(S){
 Here’s our complete formatting function:
 
 ``` r
-library(lubridate)
 mat1=NULL
 format_data <- function(mykey,titles,series){
     data <- get_data_titles_and_series(mykey,titles,series)
@@ -936,17 +933,17 @@ B<-unique(A)
 correlation <- cor(B$average_rating, B$BoxOffice)
 
 g <- ggplot(B, aes(x = average_rating, y = BoxOffice))
-g + geom_text(aes(label = Year),label.size = 0.10) +
+g + geom_text(aes(label = Year)) +
 geom_smooth(method = lm, col = "Red") +
   labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office") +
   geom_text(x = 40, y = 7.5e+08, size = 5, label = paste0("Correlation = ", round(correlation, 3)))
 ```
 
-    ## Warning: Ignoring unknown parameters: label.size
-
 ![](README_files/figure-gfm/4_07_6_25_2022-1.png)<!-- -->
 
-As you can see, as average_rating increases, so does BoxOffice.
+As you can see, as average_rating increases, so does BoxOffice. In
+addition, there was one movie made in 2015 that did quite well at the
+Box Office.
 
 The next graph is:
 
