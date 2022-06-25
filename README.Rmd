@@ -602,7 +602,7 @@ A <- formatted_data %>%
 B<-unique(A)
 dim(B)
 
-g <- ggplot(B, aes(x = BoxOffice, y = average_rating))
+g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point()
 
 ```

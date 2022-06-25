@@ -936,7 +936,7 @@ dim(B)
     ## [1] 60  2
 
 ``` r
-g <- ggplot(B, aes(x = BoxOffice, y = average_rating))
+g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point()
 ```
 
