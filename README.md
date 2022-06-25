@@ -786,6 +786,12 @@ Now, let’s get the average imdbVotes for every genre:
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
 B<-unique(A)
 genre_list=unique(B$formatted_data.Genre)
+length(genre_list) #there are 30 different genres
+```
+
+    ## [1] 30
+
+``` r
 mat1=NULL
 avg_imdbVotes_by_genre <- function(){
   for (i in genre_list){
@@ -793,6 +799,7 @@ avg_imdbVotes_by_genre <- function(){
       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
       mat1=rbind(mat1,temp)
   }
+  mat1=unique(mat1)
   return(mat1)
 }
 avg_imdbVotes_by_genre()
