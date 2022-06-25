@@ -802,6 +802,7 @@ B %>%
   stat_summary(fun.y="mean") +
   theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  geom_jitter(aes(colour=formatted_data.Genre)) +
   coord_flip()
 ```
 
