@@ -926,7 +926,7 @@ g + geom_density(adjust = 0.5, alpha = 0.5)
 # geom_density(adjust = 0.25, alpha = 0.5)
 
 
-ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..)) +
+ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
 geom_density(adjust = 0.25, alpha = 0.5, size = 1)
 ```
 
