@@ -14,7 +14,7 @@ Project 1
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Contingency Tables](#contingency-tables)
 -   [Bar Plots](#bar-plots)
--   [Measures of Center and Spread](#measures-of-center-and-spread)
+-   [Box Plot](#box-plot)
 
 # Lets Get Started: OMDb API Key
 
@@ -767,7 +767,7 @@ g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
 It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards.
 
-# Measures of Center and Spread
+# Box Plot
 
 Let’s explore the imdbVotes column. First, let’s find the average number
 of imdbVotes in our entire data set:
@@ -778,7 +778,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.2
+    ## [1] 332323.2
 
 On average, every movie in my data set gets 332324 imdbVotes. Let’s make
 a box plot showing the spread of the number of imdbVotes for every
@@ -804,8 +804,9 @@ B %>%
 
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
 
-It looks like the most spread, or variance, is “Crime, Drama”. Now,
-let’s calculate the average number of imdbVotes for each genre:
+It looks like genre with the most spread, or variance, is “Crime,
+Drama”. Now, let’s calculate the average number of imdbVotes for each
+genre:
 
 ``` r
 mat1=NULL
@@ -845,7 +846,7 @@ result
     ## 18               Horror, Sci-Fi, Thriller  275908.0
     ## 19              Action, Adventure, Horror  101779.0
     ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15543.0
+    ## 21                         Action, Sci-Fi   15480.0
     ## 22              Biography, Comedy, Sci-Fi    7478.0
     ## 23                 Comedy, Crime, Mystery     832.0
     ## 24 Documentary, Biography, Crime, History      82.0
@@ -863,11 +864,29 @@ summary(result$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  280501.3  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
+
+Now, let’s see if the number of imdbVotes is related to the average
+rating.
+
+``` r
+A <- formatted_data %>%
+  select(imdbVotes,average_rating)
+dim(A)
+```
+
+    ## [1] 152   2
+
+``` r
+B<-unique(A)
+dim(B)
+```
+
+    ## [1] 61  2
 
 The next graph is:
 
