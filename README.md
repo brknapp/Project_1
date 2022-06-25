@@ -900,15 +900,11 @@ Let’s make a histogram showing the distribution of of the “Year” column:
 A <- formatted_data %>%
   select(Title,Year,Summary_Awards)
 B<-unique(A)
-dim(B)
-```
 
-    ## [1] 61  3
-
-``` r
 g <- ggplot(B, aes(x = Year))
 g + geom_histogram(color = "blue", fill = "red",
-size = 2, binwidth = 3)
+size = 2, binwidth = 3) +
+  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
 ![](README_files/figure-gfm/3_14_6_25_2022-1.png)<!-- -->
