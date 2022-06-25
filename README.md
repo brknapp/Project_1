@@ -750,7 +750,8 @@ g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Director", title = "Director Count", y="Number of Movies") +
-  scale_fill_discrete(name = NULL)
+  scale_fill_discrete(name = NULL) +
+  coord_flip()
 ```
 
 ![](README_files/figure-gfm/10_54_6_25_2022-1.png)<!-- -->
