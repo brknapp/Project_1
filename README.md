@@ -913,10 +913,14 @@ Let’s smooth it out!
 
 ``` r
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
-geom_density(adjust = 0.25, alpha = 0.5, size = 1)
+  geom_density(adjust = 0.25, size = 1)
 ```
 
 ![](README_files/figure-gfm/3_27_6_25_2022-1.png)<!-- -->
+
+``` r
+#geom_density(adjust = 0.25, alpha = 0.5, size = 1)
+```
 
 The next graph is:
 
