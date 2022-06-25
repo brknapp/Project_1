@@ -520,13 +520,13 @@ genre_list=unique(B$formatted_data.Genre)
 mat1=NULL
 avg_imdbVotes_by_genre <- function(){
   for (i in genre_list){
-      temp=data[is.element(B$formatted_data.Genre,i),]
+      temp=B[is.element(B$formatted_data.Genre,i),]
       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
       mat1=rbind(mat1,temp)
   }
   return(mat1)
 }
-avg_imdbVotes_by_genre
+avg_imdbVotes_by_genre()
 ```
 
 

@@ -789,23 +789,77 @@ genre_list=unique(B$formatted_data.Genre)
 mat1=NULL
 avg_imdbVotes_by_genre <- function(){
   for (i in genre_list){
-      temp=data[is.element(B$formatted_data.Genre,i),]
+      temp=B[is.element(B$formatted_data.Genre,i),]
       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
       mat1=rbind(mat1,temp)
   }
   return(mat1)
 }
-avg_imdbVotes_by_genre
+avg_imdbVotes_by_genre()
 ```
 
-    ## function(){
-    ##   for (i in genre_list){
-    ##       temp=data[is.element(B$formatted_data.Genre,i),]
-    ##       temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
-    ##       mat1=rbind(mat1,temp)
-    ##   }
-    ##   return(mat1)
-    ## }
+    ##                       formatted_data.Genre formatted_data.imdbVotes avg_genre
+    ## 1                      Drama, Romance, War                   561509  561509.0
+    ## 4               Adventure, Family, Fantasy                   391833  391833.0
+    ## 7                   Drama, Family, Fantasy                   445520  445520.0
+    ## 10                 Biography, Crime, Drama                  1117933 1117933.0
+    ## 13                            Crime, Drama                   798445 1051420.5
+    ## 28                            Crime, Drama                  1786257 1051420.5
+    ## 31                            Crime, Drama                  1232853 1051420.5
+    ## 34                            Crime, Drama                   388127 1051420.5
+    ## 16               Horror, Mystery, Thriller                   654140  207196.6
+    ## 113              Horror, Mystery, Thriller                   140084  207196.6
+    ## 128              Horror, Mystery, Thriller                   136213  207196.6
+    ## 131              Horror, Mystery, Thriller                    67296  207196.6
+    ## 143              Horror, Mystery, Thriller                    38250  207196.6
+    ## 19                Comedy, Musical, Romance                   238235  238235.0
+    ## 22                       Adventure, Sci-Fi                   652541  652541.0
+    ## 25              Mystery, Romance, Thriller                   395723  395723.0
+    ## 37                  Crime, Drama, Thriller                    14694   14694.0
+    ## 38                             Documentary                     1121     627.0
+    ## 39                             Documentary                      438     627.0
+    ## 40                             Documentary                      322     627.0
+    ## 42                                  Comedy                      306     222.0
+    ## 43                                  Comedy                      138     222.0
+    ## 44                      Documentary, Short                       80      45.6
+    ## 105                     Documentary, Short                       25      45.6
+    ## 106                     Documentary, Short                       13      45.6
+    ## 125                     Documentary, Short                       62      45.6
+    ## 127                     Documentary, Short                       48      45.6
+    ## 45              Action, Adventure, Fantasy                  1323906  861020.5
+    ## 48              Action, Adventure, Fantasy                  1252860  861020.5
+    ## 51              Action, Adventure, Fantasy                  1023543  861020.5
+    ## 57              Action, Adventure, Fantasy                   782277  861020.5
+    ## 60              Action, Adventure, Fantasy                   765615  861020.5
+    ## 63              Action, Adventure, Fantasy                   690446  861020.5
+    ## 66              Action, Adventure, Fantasy                   615601  861020.5
+    ## 72              Action, Adventure, Fantasy                   433916  861020.5
+    ## 54               Action, Adventure, Sci-Fi                   910572  758986.5
+    ## 69               Action, Adventure, Sci-Fi                   607401  758986.5
+    ## 75                          Horror, Sci-Fi                   855565  855565.0
+    ## 78                  Action, Horror, Sci-Fi                   295299  182640.0
+    ## 84                  Action, Horror, Sci-Fi                   243776  182640.0
+    ## 96                  Action, Horror, Sci-Fi                     8845  182640.0
+    ## 81                Horror, Sci-Fi, Thriller                   275908  275908.0
+    ## 87               Action, Adventure, Horror                   195140  101779.0
+    ## 98               Action, Adventure, Horror                     8418  101779.0
+    ## 90                          Comedy, Sci-Fi                    26382   26382.0
+    ## 93                          Action, Sci-Fi                    15480   15480.0
+    ## 101              Biography, Comedy, Sci-Fi                     7478    7478.0
+    ## 103                 Comedy, Crime, Mystery                      832     832.0
+    ## 104 Documentary, Biography, Crime, History                       82      82.0
+    ## 107                       Horror, Thriller                   249781  102073.9
+    ## 110                       Horror, Thriller                   163986  102073.9
+    ## 116                       Horror, Thriller                   114995  102073.9
+    ## 134                       Horror, Thriller                    53021  102073.9
+    ## 137                       Horror, Thriller                    51358  102073.9
+    ## 140                       Horror, Thriller                    44410  102073.9
+    ## 149                       Horror, Thriller                    36966  102073.9
+    ## 119               Action, Horror, Thriller                   104371  104371.0
+    ## 122                         Drama, Romance                     3087    3087.0
+    ## 126                         Short, Fantasy                       51      51.0
+    ## 146            Adventure, Horror, Thriller                    37819   37819.0
+    ## 152                    Documentary, Horror                     3080    3080.0
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:
