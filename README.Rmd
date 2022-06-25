@@ -599,6 +599,7 @@ Now, lets make a scatterplot:
 ```{r 4_07_6_25_2022}
 A <- formatted_data %>%
   select(BoxOffice, average_rating)
+A <- A %>% drop_na(BoxOffice)
 B<-unique(A)
 dim(B)
 

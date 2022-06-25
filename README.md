@@ -929,18 +929,17 @@ Now, lets make a scatterplot:
 ``` r
 A <- formatted_data %>%
   select(BoxOffice, average_rating)
+A <- A %>% drop_na(BoxOffice)
 B<-unique(A)
 dim(B)
 ```
 
-    ## [1] 60  2
+    ## [1] 44  2
 
 ``` r
 g <- ggplot(B, aes(y = BoxOffice, x = average_rating))
 g + geom_point()
 ```
-
-    ## Warning: Removed 16 rows containing missing values (geom_point).
 
 ![](README_files/figure-gfm/4_07_6_25_2022-1.png)<!-- -->
 
