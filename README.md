@@ -738,7 +738,8 @@ D<-unique(C)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Director", title = "Director Count", y="Number of Movies")
+  labs(x = "Director", title = "Director Count", y="Number of Movies") +
+  coord_flip()
 ```
 
 ![](README_files/figure-gfm/8_18_6_24_2022-1.png)<!-- -->

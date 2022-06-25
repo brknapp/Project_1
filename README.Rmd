@@ -474,13 +474,14 @@ So, for example, it looks like 5 out of the 61 movies from my data set are rated
 
 Let's say we wanted to find out how many movies each director made in my data set. We could make the bar graph below:
 
-```{r 8_18_6_24_2022}
+```{r 8_18_6_24_2022,fig.height = 10, fig.width = 10}
 C<-data.frame(formatted_data$Title,formatted_data$Director)
 D<-unique(C)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Director", title = "Director Count", y="Number of Movies")
+  labs(x = "Director", title = "Director Count", y="Number of Movies") +
+  coord_flip()
 ```
 
 
