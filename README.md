@@ -780,8 +780,9 @@ avg_imdbVotes
 
     ## [1] 332324.2
 
-On average, every movie in my data set gets 332324 imdbVotes. Now, let’s
-get the average imdbVotes for every genre:
+On average, every movie in my data set gets 332324 imdbVotes. Let’s make
+a box plot showing the spread of the number of imdbVotes for every
+genre:
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
@@ -792,39 +793,19 @@ length(genre_list) #there are 30 different genres
 
     ## [1] 30
 
-Let’s make a box plot showing the spread of the number of imdbVotes for
-every genre:
-
 ``` r
 B %>%
   ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
   geom_boxplot() +
-  stat_summary(fun.y="mean") +
   theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  geom_jitter(aes(colour=formatted_data.Genre)) +
   coord_flip()
 ```
 
-    ## Warning: `fun.y` is deprecated. Use `fun` instead.
-
-    ## Warning: Removed 30 rows containing missing values (geom_segment).
-
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
 
-``` r
-# g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes,fill=formatted_data.Genre))
-# g + geom_boxplot() +
-#   stat_summary(fun.y = mean, geom = "line",
-#                lwd = 1.5, aes(group = roof, col = roof))
-#   
-#   
-#   theme(axis.text.x = element_text(angle = 90)) +
-#   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-#   coord_flip()
-```
-
-It looks like the most spread, or variance, is “Crime, Drama”.
+It looks like the most spread, or variance, is “Crime, Drama”. Now,
+let’s calculate the average number of imdbVotes for each genre:
 
 ``` r
 mat1=NULL
@@ -884,17 +865,9 @@ summary(result$avg_genre)
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
     ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
 
-So, it looks like the genre with the most number of votes is “Biography,
-Crime, Drama” and the genre with the least number of votes is
-“Documentary, Short”. Let’s make a boxplot so that we can visually see
-this:
-
-``` r
-g <- ggplot(result, aes(y = avg_genre))
-g + geom_boxplot(fill = "grey")
-```
-
-![](README_files/figure-gfm/12_18_6_25_2022-1.png)<!-- -->
+So, it looks like the genre with the most number of votes on average is
+“Biography, Crime, Drama” and the genre with the least number of votes
+on average is “Documentary, Short”.
 
 movie title in mind, like Star Wars. Here’s a function you can use to
 get data from the OMDb API about Star Wars:

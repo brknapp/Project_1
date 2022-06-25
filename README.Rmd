@@ -511,7 +511,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-On average, every movie in my data set gets 332324 imdbVotes. Now, let's get the average imdbVotes for every genre:
+On average, every movie in my data set gets 332324 imdbVotes. Let's make a box plot showing the spread of the number of imdbVotes for every genre:
 
 ```{r 11_40_6_25_2022}
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
@@ -520,30 +520,16 @@ genre_list=unique(B$formatted_data.Genre)
 length(genre_list) #there are 30 different genres
 ```
 
-Let's make a box plot showing the spread of the number of imdbVotes for every genre:
-
 ```{r 12_29_6_25_2022}
 B %>%
   ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
   geom_boxplot() +
-  stat_summary(fun.y="mean") +
   theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  geom_jitter(aes(colour=formatted_data.Genre)) +
   coord_flip()
-
-# g <- ggplot(B, aes(x = formatted_data.Genre, y = formatted_data.imdbVotes,fill=formatted_data.Genre))
-# g + geom_boxplot() +
-#   stat_summary(fun.y = mean, geom = "line",
-#                lwd = 1.5, aes(group = roof, col = roof))
-#   
-#   
-#   theme(axis.text.x = element_text(angle = 90)) +
-#   labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-#   coord_flip()
 ```
 
-It looks like the most spread, or variance, is "Crime, Drama". 
+It looks like the most spread, or variance, is "Crime, Drama". Now, let's calculate the average number of imdbVotes for each genre:
 
 ```{r 12_28_6_25_2022}
 mat1=NULL
@@ -568,15 +554,8 @@ Now, let's find the 5-number summary for this data set.
 summary(result$avg_genre)
 ```
 
-So, it looks like the genre with the most number of votes is "Biography, Crime, Drama" and the genre with the least number of votes is "Documentary, Short". Let's make a boxplot so that we can visually see this:
+So, it looks like the genre with the most number of votes on average is "Biography, Crime, Drama" and the genre with the least number of votes on average is "Documentary, Short".
 
-```{r 12_18_6_25_2022}
-g <- ggplot(result, aes(y = avg_genre))
-g + geom_boxplot(fill = "grey")
-
-
-
-```
 
 
 
