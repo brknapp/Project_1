@@ -16,19 +16,15 @@ Project 1
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Categorical Summaries](#categorical-summaries)
     -   [Contingency Tables](#contingency-tables)
--   [Categorical Data Graphs](#categorical-data-graphs)
     -   [Bar Plots](#bar-plots)
 -   [Quantitative Summaries](#quantitative-summaries)
-    -   [Numerical Summaries](#numerical-summaries)
-        -   [Quantitative Data with One
-            Variable](#quantitative-data-with-one-variable)
-        -   [Quantitative Data with Two
-            Variables](#quantitative-data-with-two-variables)
--   [Quantitative Data Graphs](#quantitative-data-graphs)
-    -   [Graphical Summaries](#graphical-summaries)
-        -   [Histogram](#histogram)
-        -   [Scatterplot](#scatterplot)
-        -   [Box Plot](#box-plot)
+    -   [Quantitative Data with One
+        Variable](#quantitative-data-with-one-variable)
+    -   [Quantitative Data with Two
+        Variables](#quantitative-data-with-two-variables)
+    -   [Histogram](#histogram)
+    -   [Scatterplot](#scatterplot)
+    -   [Box Plot](#box-plot)
 
 # Lets Get Started: OMDb API Key
 
@@ -934,8 +930,6 @@ table(B$Rated, D$Genre)
 So, for example, it looks like 5 out of the 61 movies from my data set
 are rated PG and fall under the “Action, Adventure, Fantasy” genre.
 
-# Categorical Data Graphs
-
 ## Bar Plots
 
 We can use bar plots to visually summarize many categorical variables.
@@ -980,9 +974,7 @@ made, 3 won and were nominated and 1 did not win nor was nominated.
 
 # Quantitative Summaries
 
-## Numerical Summaries
-
-### Quantitative Data with One Variable
+## Quantitative Data with One Variable
 
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance).
@@ -1070,7 +1062,7 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
-### Quantitative Data with Two Variables
+## Quantitative Data with Two Variables
 
 For quantitative data with two variables, we can define the potential
 linear relationship between them (e.g., Covariance and Correlation).
@@ -1099,11 +1091,7 @@ relationship between imdbVotes and average_rating.
 The correlation coefficient is 0.5827316, meaning that imdbVotes and
 average_rating have a positive relationship.
 
-# Quantitative Data Graphs
-
-## Graphical Summaries
-
-### Histogram
+## Histogram
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
@@ -1136,7 +1124,7 @@ ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey
 The line helps us see that there are two peaks, one at around 1988 and
 one around 2006.
 
-### Scatterplot
+## Scatterplot
 
 Now, lets make a scatterplot comparing the amount of money a movie makes
 at the Box Office to the average rating:
@@ -1162,7 +1150,7 @@ As you can see, as average_rating increases, so does BoxOffice. In
 addition, there was one movie made in 2015 that did quite well at the
 Box Office.
 
-### Box Plot
+## Box Plot
 
 Let’s make a box plot showing the spread of the number of imdbVotes for
 every genre:
