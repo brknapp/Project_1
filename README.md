@@ -470,20 +470,76 @@ Here is the tibble I get:
 Here is a list of the movie titles in my data set:
 
 ``` r
-length(unique(info$Titles))
+length(unique(info$Title))
 ```
 
-    ## Warning: Unknown or uninitialised column: `Titles`.
-
-    ## [1] 0
+    ## [1] 61
 
 ``` r
-unique(info$Titles)
+unique(info$Title)
 ```
 
-    ## Warning: Unknown or uninitialised column: `Titles`.
-
-    ## NULL
+    ##  [1] "Casablanca"                                               
+    ##  [2] "The Wizard of Oz"                                         
+    ##  [3] "It's a Wonderful Life"                                    
+    ##  [4] "Goodfellas"                                               
+    ##  [5] "Taxi Driver"                                              
+    ##  [6] "Psycho"                                                   
+    ##  [7] "Singin' in the Rain"                                      
+    ##  [8] "2001: A Space Odyssey"                                    
+    ##  [9] "Vertigo"                                                  
+    ## [10] "The Godfather"                                            
+    ## [11] "The Godfather: Part II"                                   
+    ## [12] "The Godfather: Part III"                                  
+    ## [13] "The Godfather Trilogy: 1901-1980"                         
+    ## [14] "The Godfather Family: A Look Inside"                      
+    ## [15] "The Godfather Legacy"                                     
+    ## [16] "Herschell Gordon Lewis: The Godfather of Gore"            
+    ## [17] "The Godfather of Green Bay"                               
+    ## [18] "Paul Mooney: The Godfather of Comedy"                     
+    ## [19] "The Godfather: Behind the Scenes"                         
+    ## [20] "Star Wars"                                                
+    ## [21] "Star Wars: Episode V - The Empire Strikes Back"           
+    ## [22] "Star Wars: Episode VI - Return of the Jedi"               
+    ## [23] "Star Wars: Episode VII - The Force Awakens"               
+    ## [24] "Star Wars: Episode I - The Phantom Menace"                
+    ## [25] "Star Wars: Episode III - Revenge of the Sith"             
+    ## [26] "Star Wars: Episode II - Attack of the Clones"             
+    ## [27] "Star Wars: Episode VIII - The Last Jedi"                  
+    ## [28] "Rogue One: A Star Wars Story"                             
+    ## [29] "Star Wars: Episode IX - The Rise of Skywalker"            
+    ## [30] "Alien"                                                    
+    ## [31] "Alien³"                                                   
+    ## [32] "Alien: Covenant"                                          
+    ## [33] "Alien: Resurrection"                                      
+    ## [34] "Alien vs. Predator"                                       
+    ## [35] "My Stepmother Is an Alien"                                
+    ## [36] "Alien Nation"                                             
+    ## [37] "Alien Raiders"                                            
+    ## [38] "Alien Abduction"                                          
+    ## [39] "Alien Autopsy"                                            
+    ## [40] "Fast and Furious"                                         
+    ## [41] "Tasmanian Devil: The Fast and Furious Life of Errol Flynn"
+    ## [42] "Christine: Fast and Furious"                              
+    ## [43] "Fast and Furious: Fast Cars!"                             
+    ## [44] "Final Destination"                                        
+    ## [45] "Final Destination 2"                                      
+    ## [46] "Final Destination 3"                                      
+    ## [47] "Final Destination 5"                                      
+    ## [48] "The Final Destination"                                    
+    ## [49] "The City of Your Final Destination"                       
+    ## [50] "Death's Design: Making 'Final Destination 3'"             
+    ## [51] "Final Destination Unknown"                                
+    ## [52] "Final Destination 5: Circle of Death"                     
+    ## [53] "Friday the 13th"                                          
+    ## [54] "Friday the 13th Part 2"                                   
+    ## [55] "Friday the 13th Part III"                                 
+    ## [56] "Friday the 13th: The Final Chapter"                       
+    ## [57] "Friday the 13th Part VI: Jason Lives"                     
+    ## [58] "Friday the 13th: A New Beginning"                         
+    ## [59] "Friday the 13th Part VIII: Jason Takes Manhattan"         
+    ## [60] "Friday the 13th Part VII: The New Blood"                  
+    ## [61] "His Name Was Jason: 30 Years of Friday the 13th"
 
 Before we make this data more usable, we need to write a few more helper
 functions:

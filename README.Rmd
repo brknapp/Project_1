@@ -351,8 +351,8 @@ info <- get_data_titles_and_series("5c7f9206",titles,series)
 ```
 
 ```{r 9_32_6_25_2022}
-length(unique(info$Titles))
-unique(info$Titles)
+length(unique(info$Title))
+unique(info$Title)
 ```
 
 Before we make this data more usable, we need to write a few more helper functions:
