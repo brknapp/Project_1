@@ -470,7 +470,7 @@ Here is the tibble I get:
 Here is a list of the movie titles in my data set:
 
 ``` r
-length(unique(info$Title))
+length(unique(unformatted_data$Title))
 ```
 
     ## [1] 61
@@ -478,7 +478,7 @@ length(unique(info$Title))
 There are 61 unique titles.
 
 ``` r
-unique(info$Title)
+unique(unformatted_data$Title)
 ```
 
     ##  [1] "Casablanca"                                               
@@ -658,14 +658,6 @@ formatted_data<-format_data("mykey",titles,series)
 
 Here’s the tibble I got:
 
-    ## Warning: 2 failed to parse.
-
-    ## Warning in format_data("5c7f9206", titles, series): NAs introduced by coercion
-
-    ## Warning: 12 failed to parse.
-
-    ## Warning in format_data("5c7f9206", titles, series): NAs introduced by coercion
-
     ## # A tibble: 152 × 28
     ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
     ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
@@ -682,6 +674,28 @@ Here’s the tibble I got:
     ## # … with 142 more rows, and 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>,
     ## #   imdbID <chr>, Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>,
     ## #   Summary_Awards <fct>, average_rating <dbl>
+
+When I ran this, I got the following warnings:
+
+`Warning: 2 failed to parse.`
+
+`Warning in format_data("mykey", titles, series): NAs introduced by coercion`
+
+`Warning: 12 failed to parse.`
+
+`Warning in format_data("mykey", titles, series): NAs introduced by coercion`
+
+Let’s look at the unformatted data:
+
+``` r
+unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
+```
+
+    ## # A tibble: 0 × 26
+    ## # … with 26 variables: Title <chr>, Year <chr>, Rated <chr>, Released <chr>, Runtime <chr>, Genre <chr>, Director <chr>,
+    ## #   Writer <chr>, Actors <chr>, Plot <chr>, Language <chr>, Country <chr>, Awards <chr>, Poster <chr>,
+    ## #   Ratings.Source <chr>, Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 Let’s find the structure of my data:
 

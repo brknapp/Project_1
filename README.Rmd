@@ -347,17 +347,17 @@ get_data_titles_and_series("5c7f9206",titles,series)
 Here is a list of the movie titles in my data set:
 
 ```{r 9_30_6_25_2022,echo=FALSE}
-info <- get_data_titles_and_series("5c7f9206",titles,series)
+unformatted_data <- get_data_titles_and_series("5c7f9206",titles,series)
 ```
 
 ```{r 9_32_6_25_2022}
-length(unique(info$Title))
+length(unique(unformatted_data$Title))
 ```
 
 There are 61 unique titles.
 
 ```{r 9_37_6_25_2022}
-unique(info$Title)
+unique(unformatted_data$Title)
 ```
 
 Great, but we can't use this data until we format it. Here's what I'm going to do in the next function:
@@ -470,10 +470,27 @@ formatted_data<-format_data("mykey",titles,series)
 
 Here's the tibble I got:
 
-```{r 12_16_6_23_2022,echo=FALSE}
+```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
 formatted_data<-format_data("5c7f9206",titles,series)
 formatted_data
 ```
+
+When I ran this, I got the following warnings:
+
+`Warning: 2 failed to parse.`
+
+`Warning in format_data("mykey", titles, series): NAs introduced by coercion`
+
+`Warning: 12 failed to parse.`
+
+`Warning in format_data("mykey", titles, series): NAs introduced by coercion`
+
+Let's look at the unformatted data:
+
+```{r 9_58_6_25_2022}
+unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
+```
+
 
 Let's find the structure of my data:
 
