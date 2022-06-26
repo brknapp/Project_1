@@ -597,7 +597,32 @@ summary(data_summary)
 
 It looks like my data set contains movies from 1939 to 2019.
 
-We can also do this for one column. Let's calculate the average and standard deviation of the imdbVotes column:
+Let's explore this by making a histogram showing the distribution of of the "Year" column:
+
+```{r 3_14_6_25_2022}
+A <- formatted_data %>%
+  select(Title,Year,Summary_Awards)
+B<-unique(A)
+
+g <- ggplot(B, aes(x = Year))
+g + geom_histogram(color = "blue", fill = "red",
+size = 2, binwidth = 3) +
+  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
+```
+
+It looks like most of the movies in my data set were made after 1975, with a peak in the late 1980s.
+
+Let's smooth it out with a Kernel Smoother. 
+
+```{r 3_27_6_25_2022,message=FALSE}
+ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
+  geom_density(adjust = 0.25, size = 1) +
+  labs(x = "Year", title = "Distribution of Movies by Year")
+```
+
+The line helps us see that there are two peaks, one at around 1988 and one around 2006.
+
+We can also calculate the mean and standard deviation for one column. Let's calculate the average and standard deviation of the imdbVotes column:
 
 ```{r 11_38_6_25_2022}
 imdbVotes <- unique(formatted_data$imdbVotes)
@@ -666,31 +691,6 @@ A
 ```
 
 It looks like the movies that both won awards and were nominated for awards recieved the most number of imdbVotes on average.
-
-On a different note, if you wanted to see how many movies were made each year, you could make a histogram showing the distribution of of the "Year" column:
-
-```{r 3_14_6_25_2022}
-A <- formatted_data %>%
-  select(Title,Year,Summary_Awards)
-B<-unique(A)
-
-g <- ggplot(B, aes(x = Year))
-g + geom_histogram(color = "blue", fill = "red",
-size = 2, binwidth = 3) +
-  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
-```
-
-It looks like most of the movies in my data set were made after 1975, with a peak in the late 1980s.
-
-Let's smooth it out with a Kernel Smoother. 
-
-```{r 3_27_6_25_2022,message=FALSE}
-ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
-  geom_density(adjust = 0.25, size = 1) +
-  labs(x = "Year", title = "Distribution of Movies by Year")
-```
-
-The line helps us see that there are two peaks, one at around 1988 and one around 2006.
 
 ## Covariance and Correlation
 
