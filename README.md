@@ -20,9 +20,11 @@ Project 1
 -   [Quantitative Summaries](#quantitative-summaries)
     -   [Quantitative Data with One
         Variable](#quantitative-data-with-one-variable)
+        -   [Measures of Center and
+            Spread](#measures-of-center-and-spread)
+        -   [Histogram](#histogram)
     -   [Quantitative Data with Two
         Variables](#quantitative-data-with-two-variables)
-    -   [Histogram](#histogram)
     -   [Scatterplot](#scatterplot)
     -   [Box Plot](#box-plot)
 
@@ -976,6 +978,8 @@ made, 3 won and were nominated and 1 did not win nor was nominated.
 
 ## Quantitative Data with One Variable
 
+### Measures of Center and Spread
+
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance).
 
@@ -1062,36 +1066,7 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
-## Quantitative Data with Two Variables
-
-For quantitative data with two variables, we can define the potential
-linear relationship between them (e.g., Covariance and Correlation).
-
-Let’s see if there is a linear relationship between the number of
-imdbVotes and the average rating.
-
-``` r
-A <- formatted_data %>%
-  select(imdbVotes,average_rating)
-B<-unique(A)
-cov(B$imdbVotes,B$average_rating) #Covariance
-```
-
-    ## [1] 4539881
-
-``` r
-cor(B$imdbVotes,B$average_rating) #Correlation
-```
-
-    ## [1] 0.5827316
-
-The covariance is 4539894, meaning that there is a positive linear
-relationship between imdbVotes and average_rating.
-
-The correlation coefficient is 0.5827316, meaning that imdbVotes and
-average_rating have a positive relationship.
-
-## Histogram
+### Histogram
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
@@ -1123,6 +1098,35 @@ ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey
 
 The line helps us see that there are two peaks, one at around 1988 and
 one around 2006.
+
+## Quantitative Data with Two Variables
+
+For quantitative data with two variables, we can define the potential
+linear relationship between them (e.g., Covariance and Correlation).
+
+Let’s see if there is a linear relationship between the number of
+imdbVotes and the average rating.
+
+``` r
+A <- formatted_data %>%
+  select(imdbVotes,average_rating)
+B<-unique(A)
+cov(B$imdbVotes,B$average_rating) #Covariance
+```
+
+    ## [1] 4539881
+
+``` r
+cor(B$imdbVotes,B$average_rating) #Correlation
+```
+
+    ## [1] 0.5827316
+
+The covariance is 4539894, meaning that there is a positive linear
+relationship between imdbVotes and average_rating.
+
+The correlation coefficient is 0.5827316, meaning that imdbVotes and
+average_rating have a positive relationship.
 
 ## Scatterplot
 
