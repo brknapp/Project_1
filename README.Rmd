@@ -582,7 +582,7 @@ g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
 
 It looks like, for all 4 of George Lucas' movies, all of them won and were nominated for awards. Out of the 4 movies Francis Ford Coppola made, 3 won and were nominated and 1 did not win nor was nominated.
 
-## Measures of Center and Spread 
+## Measures of Center and Spread (Box Plot)
 
 For quantitative data with one variable, we can calculate measures of center (e.g., mean) and spread (e.g., Variance).
 
@@ -619,8 +619,6 @@ summary(A$avg_genre)
 
 So, it looks like the genre with the most number of votes on average is "Biography, Crime, Drama" and the genre with the least number of votes on average is "Documentary, Short".
 
-## Box Plot
-
 Let's make a box plot showing the spread of the number of imdbVotes for every genre:
 
 ```{r 11_40_6_25_2022}
@@ -640,7 +638,7 @@ B %>%
 
 It looks like genre with the most spread, or variance, is "Crime, Drama".
 
-# Histogram
+## Histogram
 
 Let's make a histogram showing the distribution of of the "Year" column:
 

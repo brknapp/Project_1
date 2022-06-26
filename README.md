@@ -17,9 +17,9 @@ Project 1
 -   [Exploratory Data Analysis](#exploratory-data-analysis)
     -   [Contingency Tables](#contingency-tables)
     -   [Bar Plots](#bar-plots)
-    -   [Measures of Center and Spread](#measures-of-center-and-spread)
-    -   [Box Plot](#box-plot)
--   [Histogram](#histogram)
+    -   [Measures of Center and Spread (Box
+        Plot)](#measures-of-center-and-spread-box-plot)
+    -   [Histogram](#histogram)
     -   [Covariance and Correlation](#covariance-and-correlation)
     -   [Scatterplot](#scatterplot)
 
@@ -969,7 +969,7 @@ It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards. Out of the 4 movies Francis Ford Coppola
 made, 3 won and were nominated and 1 did not win nor was nominated.
 
-## Measures of Center and Spread
+## Measures of Center and Spread (Box Plot)
 
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance).
@@ -1057,8 +1057,6 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
-## Box Plot
-
 Let’s make a box plot showing the spread of the number of imdbVotes for
 every genre:
 
@@ -1082,7 +1080,7 @@ B %>%
 It looks like genre with the most spread, or variance, is “Crime,
 Drama”.
 
-# Histogram
+## Histogram
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
