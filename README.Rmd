@@ -611,6 +611,10 @@ A<-formatted_data %>%
   select(Genre,imdbVotes) %>%
   group_by(Genre) %>%
   mutate(avg_genre = mean(imdbVotes))
+
+A<-A %>%
+  select(Genre,avg_genre)
+
 unique(A)
 ```
 

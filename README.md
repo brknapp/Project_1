@@ -1010,24 +1010,28 @@ A<-formatted_data %>%
   select(Genre,imdbVotes) %>%
   group_by(Genre) %>%
   mutate(avg_genre = mean(imdbVotes))
+
+A<-A %>%
+  select(Genre,avg_genre)
+
 unique(A)
 ```
 
-    ## # A tibble: 61 × 3
+    ## # A tibble: 30 × 2
     ## # Groups:   Genre [30]
-    ##    Genre                      imdbVotes avg_genre
-    ##    <chr>                          <dbl>     <dbl>
-    ##  1 Drama, Romance, War           561509   561509 
-    ##  2 Adventure, Family, Fantasy    391833   391833 
-    ##  3 Drama, Family, Fantasy        445520   445520 
-    ##  4 Biography, Crime, Drama      1117933  1117933 
-    ##  5 Crime, Drama                  798445  1051420.
-    ##  6 Horror, Mystery, Thriller     654140   207197.
-    ##  7 Comedy, Musical, Romance      238235   238235 
-    ##  8 Adventure, Sci-Fi             652541   652541 
-    ##  9 Mystery, Romance, Thriller    395723   395723 
-    ## 10 Crime, Drama                 1786257  1051420.
-    ## # … with 51 more rows
+    ##    Genre                      avg_genre
+    ##    <chr>                          <dbl>
+    ##  1 Drama, Romance, War          561509 
+    ##  2 Adventure, Family, Fantasy   391833 
+    ##  3 Drama, Family, Fantasy       445520 
+    ##  4 Biography, Crime, Drama     1117933 
+    ##  5 Crime, Drama                1051420.
+    ##  6 Horror, Mystery, Thriller    207197.
+    ##  7 Comedy, Musical, Romance     238235 
+    ##  8 Adventure, Sci-Fi            652541 
+    ##  9 Mystery, Romance, Thriller   395723 
+    ## 10 Crime, Drama, Thriller        14694 
+    ## # … with 20 more rows
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
