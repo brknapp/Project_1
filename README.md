@@ -14,19 +14,14 @@ Project 1
 -   [Get the Data for One or More
     Series](#get-the-data-for-one-or-more-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
--   [Categorical Summaries](#categorical-summaries)
+-   [Exploratory Data Analysis](#exploratory-data-analysis)
     -   [Contingency Tables](#contingency-tables)
     -   [Bar Plots](#bar-plots)
--   [Quantitative Summaries](#quantitative-summaries)
-    -   [Quantitative Data with One
-        Variable](#quantitative-data-with-one-variable)
-        -   [Measures of Center and
-            Spread](#measures-of-center-and-spread)
-        -   [Histogram](#histogram)
-    -   [Quantitative Data with Two
-        Variables](#quantitative-data-with-two-variables)
-        -   [Scatterplot](#scatterplot)
-        -   [Box Plot](#box-plot)
+    -   [Measures of Center and Spread](#measures-of-center-and-spread)
+    -   [Box Plot](#box-plot)
+-   [Histogram](#histogram)
+    -   [Covariance and Correlation](#covariance-and-correlation)
+    -   [Scatterplot](#scatterplot)
 
 # Lets Get Started: OMDb API Key
 
@@ -792,7 +787,7 @@ str(formatted_data)
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
     ##  $ average_rating: num [1:152] 93.2 93.2 93.2 87.8 87.8 ...
 
-# Categorical Summaries
+# Exploratory Data Analysis
 
 ## Contingency Tables
 
@@ -974,11 +969,7 @@ It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards. Out of the 4 movies Francis Ford Coppola
 made, 3 won and were nominated and 1 did not win nor was nominated.
 
-# Quantitative Summaries
-
-## Quantitative Data with One Variable
-
-### Measures of Center and Spread
+## Measures of Center and Spread
 
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance).
@@ -1066,7 +1057,32 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
-### Histogram
+## Box Plot
+
+Let’s make a box plot showing the spread of the number of imdbVotes for
+every genre:
+
+``` r
+A<-formatted_data %>%
+  select(Genre,imdbVotes)
+B<-unique(A)
+```
+
+``` r
+B %>%
+  ggplot(aes(x = Genre, y = imdbVotes, fill = Genre)) +
+  geom_boxplot() +
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  coord_flip()
+```
+
+![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
+
+It looks like genre with the most spread, or variance, is “Crime,
+Drama”.
+
+# Histogram
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
@@ -1099,7 +1115,7 @@ ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey
 The line helps us see that there are two peaks, one at around 1988 and
 one around 2006.
 
-## Quantitative Data with Two Variables
+## Covariance and Correlation
 
 For quantitative data with two variables, we can define the potential
 linear relationship between them (e.g., Covariance and Correlation).
@@ -1128,7 +1144,7 @@ relationship between imdbVotes and average_rating.
 The correlation coefficient is 0.5827316, meaning that imdbVotes and
 average_rating have a positive relationship.
 
-### Scatterplot
+## Scatterplot
 
 Now, lets make a scatterplot comparing the amount of money a movie makes
 at the Box Office to the average rating:
@@ -1153,28 +1169,3 @@ geom_smooth(method = lm, col = "Red") +
 As you can see, as average_rating increases, so does BoxOffice. In
 addition, there was one movie made in 2015 that did quite well at the
 Box Office.
-
-### Box Plot
-
-Let’s make a box plot showing the spread of the number of imdbVotes for
-every genre:
-
-``` r
-A<-formatted_data %>%
-  select(Genre,imdbVotes)
-B<-unique(A)
-```
-
-``` r
-B %>%
-  ggplot(aes(x = Genre, y = imdbVotes, fill = Genre)) +
-  geom_boxplot() +
-  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
-  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  coord_flip()
-```
-
-![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
-
-It looks like genre with the most spread, or variance, is “Crime,
-Drama”.
