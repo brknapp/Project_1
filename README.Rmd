@@ -586,7 +586,13 @@ It looks like, for all 4 of George Lucas' movies, all of them won and were nomin
 
 ## Measures of Center and Spread (Box Plot and Histogram)
 
-For quantitative data with one variable, we can calculate measures of center (e.g., mean) and spread (e.g., Variance).
+For quantitative data with one variable, we can calculate measures of center (e.g., mean) and spread (e.g., Variance). We can summarize multiple columns like this:
+
+```{r 2_22_6_26_2022}
+data_summary <- formatted_data %>% #select all numerical columns
+select(Year, Runtime, Ratings.Value, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
+summary(data_summary)
+```
 
 Let's calculate the average and standard deviation of the imdbVotes column:
 

@@ -973,7 +973,31 @@ made, 3 won and were nominated and 1 did not win nor was nominated.
 ## Measures of Center and Spread (Box Plot and Histogram)
 
 For quantitative data with one variable, we can calculate measures of
-center (e.g., mean) and spread (e.g., Variance).
+center (e.g., mean) and spread (e.g., Variance). We can summarize
+multiple columns like this:
+
+``` r
+data_summary <- formatted_data %>% #select all numerical columns
+select(Year, Runtime, Ratings.Value, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
+summary(data_summary)
+```
+
+    ##       Year         Runtime       Ratings.Value      Metascore        imdbRating      imdbVotes         BoxOffice        
+    ##  Min.   :1939   Min.   :  5.00   Min.   :  7.00   Min.   : 13.00   Min.   :45.00   Min.   :     13   Min.   :    12897  
+    ##  1st Qu.:1980   1st Qu.: 91.75   1st Qu.: 51.00   1st Qu.: 37.50   1st Qu.:59.00   1st Qu.:  38142   1st Qu.: 21878508  
+    ##  Median :1990   Median :105.00   Median : 65.00   Median : 58.50   Median :66.00   Median : 243776   Median : 47378436  
+    ##  Mean   :1990   Mean   :113.38   Mean   : 65.09   Mean   : 60.32   Mean   :69.34   Mean   : 399716   Mean   :139516767  
+    ##  3rd Qu.:2006   3rd Qu.:131.00   3rd Qu.: 85.00   3rd Qu.: 89.00   3rd Qu.:83.00   3rd Qu.: 654140   3rd Qu.: 95520612  
+    ##  Max.   :2019   Max.   :583.00   Max.   :100.00   Max.   :100.00   Max.   :93.00   Max.   :1786257   Max.   :936662225  
+    ##                                                   NA's   :20                                         NA's   :20         
+    ##  average_rating 
+    ##  Min.   :27.56  
+    ##  1st Qu.:48.89  
+    ##  Median :63.78  
+    ##  Mean   :65.27  
+    ##  3rd Qu.:85.56  
+    ##  Max.   :96.11  
+    ## 
 
 Let’s calculate the average and standard deviation of the imdbVotes
 column:
