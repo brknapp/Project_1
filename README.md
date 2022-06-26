@@ -978,47 +978,39 @@ multiple columns like this:
 
 ``` r
 data_summary <- formatted_data %>% #select all numerical columns
-select(Year, Runtime, Ratings.Value, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
+select(Year, Runtime, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
 data_summary <- unique(data_summary)
 dim(data_summary)
 ```
 
-    ## [1] 148   8
+    ## [1] 61  7
 
 ``` r
 head(data_summary)
 ```
 
-    ## # A tibble: 6 × 8
-    ##    Year Runtime Ratings.Value Metascore imdbRating imdbVotes BoxOffice average_rating
-    ##   <dbl>   <dbl>         <dbl>     <dbl>      <dbl>     <dbl>     <dbl>          <dbl>
-    ## 1  1942     102            85       100         85    561509   4219709           93.2
-    ## 2  1942     102            99       100         85    561509   4219709           93.2
-    ## 3  1942     102           100       100         85    561509   4219709           93.2
-    ## 4  1939     102            81        92         81    391833  24668669           87.8
-    ## 5  1939     102            98        92         81    391833  24668669           87.8
-    ## 6  1939     102            92        92         81    391833  24668669           87.8
+    ## # A tibble: 6 × 7
+    ##    Year Runtime Metascore imdbRating imdbVotes BoxOffice average_rating
+    ##   <dbl>   <dbl>     <dbl>      <dbl>     <dbl>     <dbl>          <dbl>
+    ## 1  1942     102       100         85    561509   4219709           93.2
+    ## 2  1939     102        92         81    391833  24668669           87.8
+    ## 3  1946     130        89         86    445520     44000           88.2
+    ## 4  1990     145        90         87   1117933  46909721           89.3
+    ## 5  1976     114        94         82    798445  28262574           88.9
+    ## 6  1960     109        97         85    654140  32000000           91.6
 
 ``` r
 summary(data_summary)
 ```
 
-    ##       Year         Runtime      Ratings.Value      Metascore        imdbRating      imdbVotes         BoxOffice        
-    ##  Min.   :1939   Min.   :  5.0   Min.   :  7.00   Min.   : 13.00   Min.   :45.00   Min.   :     13   Min.   :    12897  
-    ##  1st Qu.:1980   1st Qu.: 91.0   1st Qu.: 51.00   1st Qu.: 36.00   1st Qu.:59.00   1st Qu.:  37819   1st Qu.: 21722776  
-    ##  Median :1990   Median :104.0   Median : 65.00   Median : 58.50   Median :66.00   Median : 241006   Median : 46961214  
-    ##  Mean   :1990   Mean   :112.5   Mean   : 64.89   Mean   : 60.14   Mean   :69.18   Mean   : 388123   Mean   :136798951  
-    ##  3rd Qu.:2006   3rd Qu.:130.2   3rd Qu.: 85.00   3rd Qu.: 89.00   3rd Qu.:83.00   3rd Qu.: 652541   3rd Qu.: 81900459  
-    ##  Max.   :2019   Max.   :583.0   Max.   :100.00   Max.   :100.00   Max.   :93.00   Max.   :1786257   Max.   :936662225  
-    ##                                                  NA's   :20                                         NA's   :20         
-    ##  average_rating 
-    ##  Min.   :27.56  
-    ##  1st Qu.:48.89  
-    ##  Median :63.00  
-    ##  Mean   :65.11  
-    ##  3rd Qu.:85.56  
-    ##  Max.   :96.11  
-    ## 
+    ##       Year         Runtime        Metascore        imdbRating      imdbVotes         BoxOffice         average_rating 
+    ##  Min.   :1939   Min.   :  5.0   Min.   : 13.00   Min.   :45.00   Min.   :     13   Min.   :    12897   Min.   :27.56  
+    ##  1st Qu.:1980   1st Qu.: 88.0   1st Qu.: 37.50   1st Qu.:59.00   1st Qu.:   7478   1st Qu.: 21878508   1st Qu.:53.00  
+    ##  Median :1992   Median :101.0   Median : 58.50   Median :67.00   Median : 136213   Median : 47378436   Median :67.00  
+    ##  Mean   :1991   Mean   :109.7   Mean   : 60.32   Mean   :69.21   Mean   : 332324   Mean   :139516767   Mean   :65.89  
+    ##  3rd Qu.:2008   3rd Qu.:128.0   3rd Qu.: 89.00   3rd Qu.:81.00   3rd Qu.: 607401   3rd Qu.: 95520612   3rd Qu.:81.00  
+    ##  Max.   :2019   Max.   :583.0   Max.   :100.00   Max.   :93.00   Max.   :1786257   Max.   :936662225   Max.   :96.11  
+    ##                                 NA's   :17                                         NA's   :17
 
 Let’s calculate the average and standard deviation of the imdbVotes
 column:
@@ -1041,7 +1033,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.2
+    ## [1] 332324.3
 
 ``` r
 sd_imdbVotes <- sd(imdbVotes)
@@ -1100,7 +1092,7 @@ A %>% as_tibble %>% print(n=30)
     ## 27 Drama, Romance                            3087  
     ## 28 Short, Fantasy                              51  
     ## 29 Adventure, Horror, Thriller              37819  
-    ## 30 Documentary, Horror                       3080
+    ## 30 Documentary, Horror                       3083
 
 Now, let’s find the 5-number summary for this data set.
 
@@ -1109,7 +1101,7 @@ summary(A$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  281225.0  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  281225.1  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
