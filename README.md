@@ -980,6 +980,26 @@ multiple columns like this:
 data_summary <- formatted_data %>% #select all numerical columns
 select(Year, Runtime, Ratings.Value, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
 data_summary <- unique(data_summary)
+dim(data_summary)
+```
+
+    ## [1] 148   8
+
+``` r
+head(data_summary)
+```
+
+    ## # A tibble: 6 × 8
+    ##    Year Runtime Ratings.Value Metascore imdbRating imdbVotes BoxOffice average_rating
+    ##   <dbl>   <dbl>         <dbl>     <dbl>      <dbl>     <dbl>     <dbl>          <dbl>
+    ## 1  1942     102            85       100         85    561509   4219709           93.2
+    ## 2  1942     102            99       100         85    561509   4219709           93.2
+    ## 3  1942     102           100       100         85    561509   4219709           93.2
+    ## 4  1939     102            81        92         81    391833  24668669           87.8
+    ## 5  1939     102            98        92         81    391833  24668669           87.8
+    ## 6  1939     102            92        92         81    391833  24668669           87.8
+
+``` r
 summary(data_summary)
 ```
 
@@ -1005,6 +1025,18 @@ column:
 
 ``` r
 imdbVotes <- unique(formatted_data$imdbVotes)
+length(imdbVotes)
+```
+
+    ## [1] 61
+
+``` r
+head(imdbVotes)
+```
+
+    ## [1]  561509  391833  445520 1117933  798445  654140
+
+``` r
 avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
