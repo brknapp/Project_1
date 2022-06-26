@@ -689,28 +689,22 @@ Let’s look at the unformatted data:
 
 ``` r
 #unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
-unformatted_data$Released
+
+test<-unformatted_data[grep("N/A", unformatted_data$Released), ]
+test
 ```
 
-    ##   [1] "23 Jan 1943" "23 Jan 1943" "23 Jan 1943" "25 Aug 1939" "25 Aug 1939" "25 Aug 1939" "07 Jan 1947" "07 Jan 1947"
-    ##   [9] "07 Jan 1947" "21 Sep 1990" "21 Sep 1990" "21 Sep 1990" "09 Feb 1976" "09 Feb 1976" "09 Feb 1976" "08 Sep 1960"
-    ##  [17] "08 Sep 1960" "08 Sep 1960" "11 Apr 1952" "11 Apr 1952" "11 Apr 1952" "24 Jun 1970" "24 Jun 1970" "24 Jun 1970"
-    ##  [25] "22 May 1958" "22 May 1958" "22 May 1958" "24 Mar 1972" "24 Mar 1972" "24 Mar 1972" "18 Dec 1974" "18 Dec 1974"
-    ##  [33] "18 Dec 1974" "25 Dec 1990" "25 Dec 1990" "25 Dec 1990" "30 Oct 1992" "12 Jul 1990" "24 Jul 2012" "27 Sep 2011"
-    ##  [41] "27 Sep 2011" "20 Apr 2005" "03 Feb 2012" "N/A"         "25 May 1977" "25 May 1977" "25 May 1977" "20 Jun 1980"
-    ##  [49] "20 Jun 1980" "20 Jun 1980" "25 May 1983" "25 May 1983" "25 May 1983" "18 Dec 2015" "18 Dec 2015" "18 Dec 2015"
-    ##  [57] "19 May 1999" "19 May 1999" "19 May 1999" "19 May 2005" "19 May 2005" "19 May 2005" "16 May 2002" "16 May 2002"
-    ##  [65] "16 May 2002" "15 Dec 2017" "15 Dec 2017" "15 Dec 2017" "16 Dec 2016" "16 Dec 2016" "16 Dec 2016" "20 Dec 2019"
-    ##  [73] "20 Dec 2019" "20 Dec 2019" "22 Jun 1979" "22 Jun 1979" "22 Jun 1979" "22 May 1992" "22 May 1992" "22 May 1992"
-    ##  [81] "19 May 2017" "19 May 2017" "19 May 2017" "26 Nov 1997" "26 Nov 1997" "26 Nov 1997" "13 Aug 2004" "13 Aug 2004"
-    ##  [89] "13 Aug 2004" "09 Dec 1988" "09 Dec 1988" "09 Dec 1988" "07 Oct 1988" "07 Oct 1988" "07 Oct 1988" "21 Sep 2008"
-    ##  [97] "21 Sep 2008" "04 Apr 2014" "04 Apr 2014" "04 Apr 2014" "07 Apr 2006" "07 Apr 2006" "06 Oct 1939" "09 Apr 2007"
-    ## [105] "28 Sep 2004" "24 Mar 2015" "17 Mar 2000" "17 Mar 2000" "17 Mar 2000" "31 Jan 2003" "31 Jan 2003" "31 Jan 2003"
-    ## [113] "10 Feb 2006" "10 Feb 2006" "10 Feb 2006" "12 Aug 2011" "12 Aug 2011" "12 Aug 2011" "28 Aug 2009" "28 Aug 2009"
-    ## [121] "28 Aug 2009" "24 Jun 2010" "24 Jun 2010" "24 Jun 2010" "06 Feb 2006" "13 Mar 1987" "N/A"         "09 May 1980"
-    ## [129] "09 May 1980" "09 May 1980" "01 May 1981" "01 May 1981" "01 May 1981" "13 Aug 1982" "13 Aug 1982" "13 Aug 1982"
-    ## [137] "13 Apr 1984" "13 Apr 1984" "13 Apr 1984" "01 Aug 1986" "01 Aug 1986" "01 Aug 1986" "22 Mar 1985" "22 Mar 1985"
-    ## [145] "22 Mar 1985" "28 Jul 1989" "28 Jul 1989" "28 Jul 1989" "13 May 1988" "13 May 1988" "13 May 1988" "13 Feb 2009"
+    ## # A tibble: 2 × 26
+    ##   Title      Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##   <chr>      <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ## 1 The Godfa… 1971  N/A   N/A      9 min   Docu… Fredric… N/A    James… N/A   English  United… N/A    N/A    Internet Movi…
+    ## 2 Final Des… 2011  Not … N/A      5 min   Docu… N/A      N/A    Emma … A lo… English  USA     N/A    N/A    Internet Movi…
+    ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+``` r
+#unformatted_data$Released
+```
 
 Let’s find the structure of my data:
 
