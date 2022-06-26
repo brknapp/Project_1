@@ -488,7 +488,8 @@ When I ran this, I got the following warnings:
 Let's look at the unformatted data:
 
 ```{r 9_58_6_25_2022}
-unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
+#unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
+unformatted_data$Released
 ```
 
 
