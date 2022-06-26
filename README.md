@@ -962,7 +962,7 @@ C<- formatted_data %>%
   select(Title,Director)
 D<-unique(C)
 g<-ggplot(data = D, aes(x = Director ))
-g + geom_bar(fill="red") +
+g + geom_bar(fill="lightblue") +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Director", title = "Number of Movies Each Director Made", y="Number of Movies") +
   coord_flip()
