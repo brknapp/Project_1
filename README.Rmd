@@ -772,7 +772,7 @@ As you can see, as average_rating increases, so does BoxOffice. In addition, the
 
 I hope this vignette will help you get data from the OMDb API and do an exploratory data analysis. Now, I think it's time for me to get some popcorn!
 
-```{r graphics, out.width = "70px", echo = FALSE, fig.align="center"}
+```{r graphics, echo = FALSE, fig.align="center"}
 knitr::include_graphics("C:/Users/Bridget/OneDrive/R_Scripts/repos/Project_1/Let's_All_Go_to_the_Lobby.png")
 ```
 

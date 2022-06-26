@@ -1267,4 +1267,4 @@ I hope this vignette will help you get data from the OMDb API and do an
 exploratory data analysis. Now, I think it’s time for me to get some
 popcorn!
 
-<img src="Let's_All_Go_to_the_Lobby.png" width="70px" style="display: block; margin: auto;" />
+<img src="Let's_All_Go_to_the_Lobby.png" style="display: block; margin: auto;" />
