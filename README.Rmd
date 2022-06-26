@@ -591,6 +591,7 @@ For quantitative data with one variable, we can calculate measures of center (e.
 ```{r 2_22_6_26_2022}
 data_summary <- formatted_data %>% #select all numerical columns
 select(Year, Runtime, Ratings.Value, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
+data_summary <- unique(data_summary)
 summary(data_summary)
 ```
 
