@@ -21,6 +21,7 @@ Project 1
         Plot)](#measures-of-center-and-spread-histogram-and-box-plot)
     -   [Covariance and Correlation](#covariance-and-correlation)
     -   [Scatterplot](#scatterplot)
+-   [That’s All Folks!](#thats-all-folks)
 
 # Lets Get Started: OMDb API Key
 
@@ -216,16 +217,16 @@ You should get a tibble that looks like this:
     ## # A tibble: 10 × 7
     ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
     ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
-    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 539          True    
-    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 539          True    
-    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 539          True    
-    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 539          True    
-    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 539          True    
-    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 539          True    
-    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 539          True    
-    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 539          True    
-    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
-    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True
+    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 540          True    
+    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 540          True    
+    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 540          True    
+    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 540          True    
+    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 540          True    
+    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 540          True    
+    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 540          True    
+    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 540          True    
+    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 540          True    
+    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 540          True
 
 # Build URL to Search for One or More Titles or Series
 
@@ -285,16 +286,16 @@ You would get the tibble below:
     ## # A tibble: 20 × 7
     ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
     ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
-    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 539          True    
-    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 539          True    
-    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 539          True    
-    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 539          True    
-    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 539          True    
-    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 539          True    
-    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 539          True    
-    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 539          True    
-    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
-    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True    
+    ##  1 Star Wars                                     1977        tt0076759     movie       https://m.me… 540          True    
+    ##  2 Star Wars: Episode V - The Empire Strikes Ba… 1980        tt0080684     movie       https://m.me… 540          True    
+    ##  3 Star Wars: Episode VI - Return of the Jedi    1983        tt0086190     movie       https://m.me… 540          True    
+    ##  4 Star Wars: Episode VII - The Force Awakens    2015        tt2488496     movie       https://m.me… 540          True    
+    ##  5 Star Wars: Episode I - The Phantom Menace     1999        tt0120915     movie       https://m.me… 540          True    
+    ##  6 Star Wars: Episode III - Revenge of the Sith  2005        tt0121766     movie       https://m.me… 540          True    
+    ##  7 Star Wars: Episode II - Attack of the Clones  2002        tt0121765     movie       https://m.me… 540          True    
+    ##  8 Star Wars: Episode VIII - The Last Jedi       2017        tt2527336     movie       https://m.me… 540          True    
+    ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 540          True    
+    ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 540          True    
     ## 11 Indiana Jones and the Raiders of the Lost Ark 1981        tt0082971     movie       https://m.me… 83           True    
     ## 12 Indiana Jones and the Last Crusade            1989        tt0097576     movie       https://m.me… 83           True    
     ## 13 Indiana Jones and the Temple of Doom          1984        tt0087469     movie       https://m.me… 83           True    
@@ -756,7 +757,7 @@ test %>%
     ##  7 N/A   Tasmanian Devil: … 2007  N/A   09 Apr … 60 min  Docu… Simon N… Simon… Chris… The … English  Austra… N/A    https…
     ##  8 N/A   Christine: Fast a… 2004  N/A   28 Sep … 29 min  Docu… Laurent… Laure… John … N/A   English  USA     N/A    https…
     ##  9 N/A   Fast and Furious:… 2015  N/A   24 Mar … 40 min  Docu… N/A      N/A    Vin D… Divi… English  USA     N/A    N/A   
-    ## 10 N/A   Death's Design: M… 2006  N/A   06 Feb … 15 min  Docu… Katy Le… Carol… Texas… N/A   English  USA     N/A    N/A   
+    ## 10 N/A   Death's Design: M… 2006  N/A   06 Feb … 15 min  Docu… Katy Le… Carol… Texas… N/A   English  United… N/A    N/A   
     ## 11 N/A   Final Destination… 1987  N/A   13 Mar … 27 min  Shor… Paul Bu… Paul … Andre… Drif… English  United… N/A    N/A   
     ## 12 N/A   Final Destination… 2011  Not … N/A      5 min   Docu… N/A      N/A    Emma … A lo… English  USA     N/A    N/A   
     ## # … with 11 more variables: Ratings.Source <chr>, Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>,
@@ -1018,8 +1019,8 @@ summary(data_summary)
 
 It looks like my data set contains movies from 1939 to 2019.
 
-Let’s explore this by making a histogram showing the distribution of of
-the “Year” column:
+Let’s explore this by making a histogram showing the distribution of the
+“Year” column:
 
 ``` r
 A <- formatted_data %>%
@@ -1060,14 +1061,14 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.2
+    ## [1] 332324.4
 
 ``` r
 sd_imdbVotes <- sd(imdbVotes)
 sd_imdbVotes
 ```
 
-    ## [1] 423035.7
+    ## [1] 423035.6
 
 On average, every movie in my data set got 332324 imdbVotes. The
 standard deviation is 423035.7, meaning that the number of imdbVotes
@@ -1102,7 +1103,7 @@ A %>% as_tibble %>% print(n=30)
     ## 10 Crime, Drama, Thriller                   14694  
     ## 11 Documentary                                551. 
     ## 12 Comedy                                     222  
-    ## 13 Documentary, Short                          45.6
+    ## 13 Documentary, Short                          47.4
     ## 14 Action, Adventure, Fantasy              861926. 
     ## 15 Action, Adventure, Sci-Fi               758986. 
     ## 16 Horror, Sci-Fi                          855565  
@@ -1119,7 +1120,7 @@ A %>% as_tibble %>% print(n=30)
     ## 27 Drama, Romance                            3087  
     ## 28 Short, Fantasy                              51  
     ## 29 Adventure, Horror, Thriller              37819  
-    ## 30 Documentary, Horror                       3080
+    ## 30 Documentary, Horror                       3083
 
 Now, let’s find the 5-number summary for this data set.
 
@@ -1128,7 +1129,7 @@ summary(A$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  281225.0  433070.8 1117933.0
+    ##      47.4    4184.8  103222.4  281225.2  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
@@ -1178,7 +1179,7 @@ A
     ##   Summary_Awards    avg_Summary_Awards
     ##   <fct>                          <dbl>
     ## 1 won and nominated            626673.
-    ## 2 none                           2245.
+    ## 2 none                           2246.
     ## 3 won                            4584.
     ## 4 nomination                    62099.
 
@@ -1226,7 +1227,7 @@ cov(B$imdbVotes,B$average_rating) #Covariance
 cor(B$imdbVotes,B$average_rating) #Correlation
 ```
 
-    ## [1] 0.5827316
+    ## [1] 0.5827318
 
 The covariance is 4539894, meaning that there is a positive linear
 relationship between imdbVotes and average_rating.
@@ -1259,3 +1260,11 @@ geom_smooth(method = lm, col = "Red") +
 As you can see, as average_rating increases, so does BoxOffice. In
 addition, there was one movie made in 2015 that did quite well at the
 Box Office.
+
+# That’s All Folks!
+
+I hope this vignette will help you get data from the OMDb API and do an
+exploratory data analysis. Now, I think it’s time for me to get some
+popcorn!
+
+<img src="Let's_All_Go_to_the_Lobby.png" width="70px" style="display: block; margin: auto;" />
