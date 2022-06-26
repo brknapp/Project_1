@@ -689,7 +689,6 @@ Let’s look at the unformatted data:
 
 ``` r
 #unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
-
 test<-unformatted_data[grep("N/A", unformatted_data$Released), ]
 test
 ```
@@ -705,6 +704,40 @@ test
 ``` r
 #unformatted_data$Released
 ```
+
+The first warning (`Warning: 2 failed to parse.`) occurred because the
+function `dmy()` from `lubridate` cannot parse the two rows with “N/A”
+in it (see tibble above). This means that these two titles do not have a
+release date, so R puts a `NA` in instead. They might not have been
+released to theaters. To remove this warning, you would need to replace
+the “N/A” with a date that `dmy()` can work with.
+
+Let’s look at the second warning (`Warning: 12 failed to parse.`):
+
+``` r
+test<-unformatted_data[grep("N/A", unformatted_data$DVD), ]
+test
+```
+
+    ## # A tibble: 12 × 26
+    ##    Title     Year  Rated Released Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>     <chr> <chr> <chr>    <chr>   <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 The Godf… 1992  R     30 Oct … 583 min Crim… Francis… Franc… Al Pa… The … English… USA     N/A    https… Internet Movi…
+    ##  2 The Godf… 1990  N/A   12 Jul … 73 min  Docu… Jeff We… David… Franc… A do… English… United… N/A    https… Internet Movi…
+    ##  3 The Godf… 2012  TV-14 24 Jul … 95 min  Docu… Kevin B… Kevin… Peter… THE … English  United… N/A    https… Internet Movi…
+    ##  4 Paul Moo… 2012  N/A   03 Feb … 86 min  Come… N/A      Paul … Paul … The … English  United… N/A    https… Internet Movi…
+    ##  5 The Godf… 1971  N/A   N/A      9 min   Docu… Fredric… N/A    James… N/A   English  United… N/A    N/A    Internet Movi…
+    ##  6 Fast and… 1939  Pass… 06 Oct … 73 min  Come… Busby B… Harry… Franc… Rare… English  United… N/A    https… Internet Movi…
+    ##  7 Tasmania… 2007  N/A   09 Apr … 60 min  Docu… Simon N… Simon… Chris… The … English  Austra… N/A    https… Internet Movi…
+    ##  8 Christin… 2004  N/A   28 Sep … 29 min  Docu… Laurent… Laure… John … N/A   English  USA     N/A    https… Internet Movi…
+    ##  9 Fast and… 2015  N/A   24 Mar … 40 min  Docu… N/A      N/A    Vin D… Divi… English  USA     N/A    N/A    Internet Movi…
+    ## 10 Death's … 2006  N/A   06 Feb … 15 min  Docu… Katy Le… Carol… Texas… N/A   English  USA     N/A    N/A    Internet Movi…
+    ## 11 Final De… 1987  N/A   13 Mar … 27 min  Shor… Paul Bu… Paul … Andre… Drif… English  United… N/A    N/A    Internet Movi…
+    ## 12 Final De… 2011  Not … N/A      5 min   Docu… N/A      N/A    Emma … A lo… English  USA     N/A    N/A    Internet Movi…
+    ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
+    ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+data![Released \<- dmy(data](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;Released%20%3C-%20dmy%28data "Released <- dmy(data")Released)
 
 Let’s find the structure of my data:
 
