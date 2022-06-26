@@ -658,6 +658,14 @@ formatted_data<-format_data("mykey",titles,series)
 
 Here’s the tibble I got:
 
+    ## Warning: 2 failed to parse.
+
+    ## Warning in format_data("5c7f9206", titles, series): NAs introduced by coercion
+
+    ## Warning: 12 failed to parse.
+
+    ## Warning in format_data("5c7f9206", titles, series): NAs introduced by coercion
+
     ## # A tibble: 152 × 28
     ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
     ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         

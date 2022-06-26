@@ -470,7 +470,7 @@ formatted_data<-format_data("mykey",titles,series)
 
 Here's the tibble I got:
 
-```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
+```{r 12_16_6_23_2022,echo=FALSE}
 formatted_data<-format_data("5c7f9206",titles,series)
 formatted_data
 ```
