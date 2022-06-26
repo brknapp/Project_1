@@ -17,9 +17,8 @@ Project 1
 -   [Exploratory Data Analysis](#exploratory-data-analysis)
     -   [Contingency Tables](#contingency-tables)
     -   [Bar Plots](#bar-plots)
-    -   [Measures of Center and Spread (Box
-        Plot)](#measures-of-center-and-spread-box-plot)
-    -   [Histogram](#histogram)
+    -   [Measures of Center and Spread (Box Plot and
+        Histogram)](#measures-of-center-and-spread-box-plot-and-histogram)
     -   [Covariance and Correlation](#covariance-and-correlation)
     -   [Scatterplot](#scatterplot)
 
@@ -969,7 +968,7 @@ It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards. Out of the 4 movies Francis Ford Coppola
 made, 3 won and were nominated and 1 did not win nor was nominated.
 
-## Measures of Center and Spread (Box Plot)
+## Measures of Center and Spread (Box Plot and Histogram)
 
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance).
@@ -1079,8 +1078,6 @@ B %>%
 
 It looks like genre with the most spread, or variance, is “Crime,
 Drama”.
-
-## Histogram
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
