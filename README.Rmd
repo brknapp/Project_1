@@ -616,7 +616,7 @@ A<-A %>%
   select(Genre,avg_genre)
 
 A<-unique(A)
-A
+A %>% as_tibble %>% print(n=30)
 ```
 
 Now, let's find the 5-number summary for this data set.

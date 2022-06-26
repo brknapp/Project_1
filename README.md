@@ -1015,24 +1015,42 @@ A<-A %>%
   select(Genre,avg_genre)
 
 A<-unique(A)
-A
+A %>% as_tibble %>% print(n=30)
 ```
 
     ## # A tibble: 30 × 2
-    ## # Groups:   Genre [30]
-    ##    Genre                      avg_genre
-    ##    <chr>                          <dbl>
-    ##  1 Drama, Romance, War          561509 
-    ##  2 Adventure, Family, Fantasy   391833 
-    ##  3 Drama, Family, Fantasy       445520 
-    ##  4 Biography, Crime, Drama     1117933 
-    ##  5 Crime, Drama                1051420.
-    ##  6 Horror, Mystery, Thriller    207197.
-    ##  7 Comedy, Musical, Romance     238235 
-    ##  8 Adventure, Sci-Fi            652541 
-    ##  9 Mystery, Romance, Thriller   395723 
-    ## 10 Crime, Drama, Thriller        14694 
-    ## # … with 20 more rows
+    ##    Genre                                  avg_genre
+    ##    <chr>                                      <dbl>
+    ##  1 Drama, Romance, War                     561509  
+    ##  2 Adventure, Family, Fantasy              391833  
+    ##  3 Drama, Family, Fantasy                  445520  
+    ##  4 Biography, Crime, Drama                1117933  
+    ##  5 Crime, Drama                           1051420. 
+    ##  6 Horror, Mystery, Thriller               207197. 
+    ##  7 Comedy, Musical, Romance                238235  
+    ##  8 Adventure, Sci-Fi                       652541  
+    ##  9 Mystery, Romance, Thriller              395723  
+    ## 10 Crime, Drama, Thriller                   14694  
+    ## 11 Documentary                                551. 
+    ## 12 Comedy                                     222  
+    ## 13 Documentary, Short                          45.6
+    ## 14 Action, Adventure, Fantasy              861926. 
+    ## 15 Action, Adventure, Sci-Fi               758986. 
+    ## 16 Horror, Sci-Fi                          855565  
+    ## 17 Action, Horror, Sci-Fi                  204364. 
+    ## 18 Horror, Sci-Fi, Thriller                275908  
+    ## 19 Action, Adventure, Horror               101779  
+    ## 20 Comedy, Sci-Fi                           26382  
+    ## 21 Action, Sci-Fi                           15543  
+    ## 22 Biography, Comedy, Sci-Fi                 7478  
+    ## 23 Comedy, Crime, Mystery                     832  
+    ## 24 Documentary, Biography, Crime, History      82  
+    ## 25 Horror, Thriller                        102074. 
+    ## 26 Action, Horror, Thriller                104371  
+    ## 27 Drama, Romance                            3087  
+    ## 28 Short, Fantasy                              51  
+    ## 29 Adventure, Horror, Thriller              37819  
+    ## 30 Documentary, Horror                       3080
 
 Now, let’s find the 5-number summary for this data set.
 
