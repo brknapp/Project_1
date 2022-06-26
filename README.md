@@ -953,12 +953,13 @@ Now, what if we wanted to see, for each director, how many movies either
 won or was nominated for awards. We could make the bar graph below.
 
 ``` r
-C<-data.frame(formatted_data$Title,formatted_data$Director,formatted_data$Summary_Awards)
+C<- formatted_data %>%
+  select(Title,Director,Summary_Awards)
 D<-unique(C)
-g<-ggplot(data = D, aes(x = formatted_data.Director ))
-g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
+g<-ggplot(data = D, aes(x = Director ))
+g + geom_bar(aes(fill = as.factor(Summary_Awards))) +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Director", title = "Director Count", y="Number of Movies") +
+  labs(x = "Director", title = "Number of Movies Each Director Made", y="Number of Movies") +
   scale_fill_discrete(name = NULL) +
   coord_flip()
 ```
