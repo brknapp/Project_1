@@ -16,7 +16,14 @@ Project 1
 -   [Let’s make a data set!](#lets-make-a-data-set)
 -   [Categorical Summaries](#categorical-summaries)
     -   [Contingency Tables](#contingency-tables)
--   [Bar Plots](#bar-plots)
+-   [Categorical Data Graphs](#categorical-data-graphs)
+    -   [Bar Plots](#bar-plots)
+-   [Quantitative Summaries](#quantitative-summaries)
+    -   [Numerical Summaries](#numerical-summaries)
+        -   [Quantitative Data with One
+            Variable](#quantitative-data-with-one-variable)
+        -   [Quantitative Data with Two
+            Variables](#quantitative-data-with-two-variables)
 -   [Box Plot](#box-plot)
 
 # Lets Get Started: OMDb API Key
@@ -923,7 +930,11 @@ table(B$Rated, D$Genre)
 So, for example, it looks like 5 out of the 61 movies from my data set
 are rated PG and fall under the “Action, Adventure, Fantasy” genre.
 
-# Bar Plots
+# Categorical Data Graphs
+
+## Bar Plots
+
+We can use bar plots to visually summarize many categorical variables.
 
 Let’s say we wanted to find out how many movies each director made in my
 data set. We could make the bar graph below:
@@ -934,7 +945,7 @@ D<-unique(C)
 g<-ggplot(data = D, aes(x = formatted_data.Director ))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Director", title = "Director Count", y="Number of Movies") +
+  labs(x = "Director", title = "Number of Movies Each Director Made", y="Number of Movies") +
   coord_flip()
 ```
 
@@ -960,12 +971,20 @@ g + geom_bar(aes(fill = as.factor(formatted_data.Summary_Awards))) +
 ![](README_files/figure-gfm/10_54_6_25_2022-1.png)<!-- -->
 
 It looks like, for all 4 of George Lucas’ movies, all of them won and
-were nominated for awards.
+were nominated for awards. Out of the 4 movies Francis Ford Coppola
+made, 3 won and were nominated and 1 did not win nor was nominated.
 
-# Box Plot
+# Quantitative Summaries
 
-Let’s explore the imdbVotes column. First, let’s find the average number
-of imdbVotes in our entire data set:
+## Numerical Summaries
+
+### Quantitative Data with One Variable
+
+For quantitative data with one variable, we can calculate measures of
+center (e.g., mean) and spread (e.g., Variance).
+
+Let’s calculate the average and standard deviation of the imdbVotes
+column:
 
 ``` r
 imdbVotes <- unique(formatted_data$imdbVotes)
@@ -975,35 +994,26 @@ avg_imdbVotes
 
     ## [1] 332324.2
 
-On average, every movie in my data set gets 332324 imdbVotes. Let’s make
-a box plot showing the spread of the number of imdbVotes for every
-genre:
+``` r
+sd_imdbVotes <- sd(imdbVotes)
+```
+
+On average, every movie in my data set gets 332324 imdbVotes.
+
+Now, let’s calculate the average number of imdbVotes for each genre:
+
+``` r
+A<-formatted_data %>%
+  select(Genre,imdbVotes) %>%
+  group_by(Genre) %>%
+  mutate(avg_genre = mean(imdbVotes))
+```
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
 B<-unique(A)
-genre_list=unique(B$formatted_data.Genre)
-length(genre_list) #there are 30 different genres
-```
+B<-unique(A)
 
-    ## [1] 30
-
-``` r
-B %>%
-  ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
-  geom_boxplot() +
-  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
-  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  coord_flip()
-```
-
-![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
-
-It looks like genre with the most spread, or variance, is “Crime,
-Drama”. Now, let’s calculate the average number of imdbVotes for each
-genre:
-
-``` r
 mat1=NULL
 avg_imdbVotes_by_genre <- function(){
   for (i in genre_list){
@@ -1065,8 +1075,13 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
-Now, let’s see if the number of imdbVotes is related to the average
-rating.
+### Quantitative Data with Two Variables
+
+For quantitative data with two variables, we can define the potential
+linear relationship between them (e.g., Covariance and Correlation).
+
+Let’s see if there is a linear relationship between the number of
+imdbVotes and the average rating.
 
 ``` r
 A <- formatted_data %>%
@@ -1088,6 +1103,34 @@ relationship between imdbVotes and average_rating.
 
 The correlation coefficient is 0.5827316, meaning that imdbVotes and
 average_rating have a positive relationship.
+
+# Box Plot
+
+Let’s make a box plot showing the spread of the number of imdbVotes for
+every genre:
+
+``` r
+A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
+B<-unique(A)
+genre_list=unique(B$formatted_data.Genre)
+length(genre_list) #there are 30 different genres
+```
+
+    ## [1] 30
+
+``` r
+B %>%
+  ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
+  geom_boxplot() +
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  coord_flip()
+```
+
+![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
+
+It looks like genre with the most spread, or variance, is “Crime,
+Drama”.
 
 Let’s make a histogram showing the distribution of of the “Year” column:
 
