@@ -594,7 +594,7 @@ going to do in the next function:
     -   won and was nominated for an award
     -   won an award
     -   was nominated for an award
-    -   did not win or was not nominated for an award
+    -   did not win and was not nominated for an award
 
 Here are my helper functions:
 
@@ -612,7 +612,7 @@ parse_number <- function(S){
   return(A)
 }
 
-#this will help us make the Awards column more usable
+#this will help us make the Summary_Awards column:
 award <- function(S){
   if(is.na(S)){
     A<-"none"
@@ -663,7 +663,7 @@ format_data <- function(mykey,titles,series){
       Metascore<-unique(temp$Metascore)
       imdbRating<-unique(temp$imdbRating)
       
-      #some of the values in the Metascore column have NAs so these if statements accommodate for this:
+      #some of the values in the Metascore column have NAs, so these if statements accommodate for this:
       if(is.na(Metascore)==TRUE){
         temp$average_rating=(Ratings.Value_mean+imdbRating)/2
       }
@@ -768,7 +768,9 @@ instead. They might not have been released to DVD. To remove this
 warning, you would need to replace the “N/A” with a date that dmy() can
 work with.
 
-These warnings will not effect our analysis going forward.
+I don’t know what to put in place of the `NA`, so I am going to leave
+them in the data. These warnings will not effect our analysis going
+forward.
 
 Here is the structure of my formatted data:
 
@@ -959,7 +961,7 @@ data set. We could make the bar graph below:
 C<- formatted_data %>%
   select(Title,Director)
 D<-unique(C)
-g<-ggplot(data = D, aes(x = Director ))
+g<-ggplot(data = D, aes(x = Director ),fill="red")
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Director", title = "Number of Movies Each Director Made", y="Number of Movies") +
