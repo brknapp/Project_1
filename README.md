@@ -14,7 +14,8 @@ Project 1
 -   [Get the Data for One or More
     Series](#get-the-data-for-one-or-more-series)
 -   [Let’s make a data set!](#lets-make-a-data-set)
--   [Contingency Tables](#contingency-tables)
+-   [Categorical Summaries](#categorical-summaries)
+    -   [Contingency Tables](#contingency-tables)
 -   [Bar Plots](#bar-plots)
 -   [Box Plot](#box-plot)
 
@@ -782,23 +783,22 @@ str(formatted_data)
     ##   ..- attr(*, "names")= chr [1:152] "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 3 Oscars. 10 wins & 9 nominations total" "Won 2 Oscars. 13 wins & 16 nominations total" ...
     ##  $ average_rating: num [1:152] 93.2 93.2 93.2 87.8 87.8 ...
 
-# Contingency Tables
+# Categorical Summaries
+
+## Contingency Tables
+
+We can use contingency tables to summarize up to three categorical
+variables.
 
 Let’s say I wanted to know how many movies are rated “PG-13” in my data
 set. I would make a contingency table summarizing the ratings for all of
 the movies:
 
 ``` r
-unique_titles<-length(unique(formatted_data$Title))
-unique_titles #there are 61 unique movie titles in my data set
-```
-
-    ## [1] 61
-
-``` r
-A<-data.frame(formatted_data$Title,formatted_data$Rated)
+A <- formatted_data %>%
+  select(Title,Rated)
 B<-unique(A)
-table(B$formatted_data.Rated)
+table(B$Rated)
 ```
 
     ## 
@@ -811,9 +811,10 @@ Let’s say I wanted to summarize how many movies fell under each genre
 listed. I would make the contingency table below:
 
 ``` r
-C<-data.frame(formatted_data$Title,formatted_data$Genre)
+C <- formatted_data %>%
+  select(Title,Genre)
 D<-unique(C)
-table(D$formatted_data.Genre)
+table(D$Genre)
 ```
 
     ## 
@@ -845,7 +846,7 @@ What if we wanted to see both the rating and the genre in the same
 table? We could make a two-way contingency table:
 
 ``` r
-table(B$formatted_data.Rated, D$formatted_data.Genre)
+table(B$Rated, D$Genre)
 ```
 
     ##            

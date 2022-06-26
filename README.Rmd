@@ -513,17 +513,19 @@ Here is the structure of my formatted data:
 str(formatted_data)
 ```
 
+# Categorical Summaries
 
-# Contingency Tables
+## Contingency Tables
+
+We can use contingency tables to summarize up to three categorical variables.
 
 Let's say I wanted to know how many movies are rated "PG-13" in my data set. I would make a contingency table summarizing the ratings for all of the movies: 
 
 ```{r 11_45_6_23_2022}
-unique_titles<-length(unique(formatted_data$Title))
-unique_titles #there are 61 unique movie titles in my data set
-A<-data.frame(formatted_data$Title,formatted_data$Rated)
+A <- formatted_data %>%
+  select(Title,Rated)
 B<-unique(A)
-table(B$formatted_data.Rated)
+table(B$Rated)
 ```
 
 As you can see, 9 out of the 61 movies from my data set are "PG-13".
@@ -531,9 +533,10 @@ As you can see, 9 out of the 61 movies from my data set are "PG-13".
 Let's say I wanted to summarize how many movies fell under each genre listed. I would make the contingency table below:
 
 ```{r 11_50_6_23_2022}
-C<-data.frame(formatted_data$Title,formatted_data$Genre)
+C <- formatted_data %>%
+  select(Title,Genre)
 D<-unique(C)
-table(D$formatted_data.Genre)
+table(D$Genre)
 ```
 
 So, for example, it looks like 7 out of the 61 from my data set are classified under the "Horror, Thriller" genre.
@@ -541,7 +544,7 @@ So, for example, it looks like 7 out of the 61 from my data set are classified u
 What if we wanted to see both the rating and the genre in the same table? We could make a two-way contingency table:
 
 ```{r 12_11_6_24_2022}
-table(B$formatted_data.Rated, D$formatted_data.Genre)
+table(B$Rated, D$Genre)
 ```
 
 So, for example, it looks like 5 out of the 61 movies from my data set are rated PG and fall under the "Action, Adventure, Fantasy" genre.
