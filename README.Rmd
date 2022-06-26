@@ -611,7 +611,7 @@ A<-formatted_data %>%
   select(Genre,imdbVotes) %>%
   group_by(Genre) %>%
   mutate(avg_genre = mean(imdbVotes))
-A
+unique(A)
 ```
 
 ```{r 1_00_6_26_2022}
