@@ -589,20 +589,16 @@ It looks like, for all 4 of George Lucas' movies, all of them won and were nomin
 For quantitative data with one variable, we can calculate measures of center (e.g., mean) and spread (e.g., Variance). We can summarize multiple columns like this:
 
 ```{r 2_22_6_26_2022}
-data_summary <- formatted_data %>% #select all numerical columns
+data_summary <- formatted_data %>% #select some of the numerical columns
 select(Year, Runtime, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
 data_summary <- unique(data_summary)
-dim(data_summary)
-head(data_summary)
 summary(data_summary)
 ```
 
-Let's calculate the average and standard deviation of the imdbVotes column:
+We can also do this for one column. Let's calculate the average and standard deviation of the imdbVotes column:
 
 ```{r 11_38_6_25_2022}
 imdbVotes <- unique(formatted_data$imdbVotes)
-length(imdbVotes)
-head(imdbVotes)
 avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 sd_imdbVotes <- sd(imdbVotes)

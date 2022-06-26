@@ -977,29 +977,9 @@ center (e.g., mean) and spread (e.g., Variance). We can summarize
 multiple columns like this:
 
 ``` r
-data_summary <- formatted_data %>% #select all numerical columns
+data_summary <- formatted_data %>% #select some of the numerical columns
 select(Year, Runtime, Metascore, imdbRating, imdbVotes, BoxOffice, average_rating)
 data_summary <- unique(data_summary)
-dim(data_summary)
-```
-
-    ## [1] 61  7
-
-``` r
-head(data_summary)
-```
-
-    ## # A tibble: 6 × 7
-    ##    Year Runtime Metascore imdbRating imdbVotes BoxOffice average_rating
-    ##   <dbl>   <dbl>     <dbl>      <dbl>     <dbl>     <dbl>          <dbl>
-    ## 1  1942     102       100         85    561509   4219709           93.2
-    ## 2  1939     102        92         81    391833  24668669           87.8
-    ## 3  1946     130        89         86    445520     44000           88.2
-    ## 4  1990     145        90         87   1117933  46909721           89.3
-    ## 5  1976     114        94         82    798445  28262574           88.9
-    ## 6  1960     109        97         85    654140  32000000           91.6
-
-``` r
 summary(data_summary)
 ```
 
@@ -1012,23 +992,11 @@ summary(data_summary)
     ##  Max.   :2019   Max.   :583.0   Max.   :100.00   Max.   :93.00   Max.   :1786257   Max.   :936662225   Max.   :96.11  
     ##                                 NA's   :17                                         NA's   :17
 
-Let’s calculate the average and standard deviation of the imdbVotes
-column:
+We can also do this for one column. Let’s calculate the average and
+standard deviation of the imdbVotes column:
 
 ``` r
 imdbVotes <- unique(formatted_data$imdbVotes)
-length(imdbVotes)
-```
-
-    ## [1] 61
-
-``` r
-head(imdbVotes)
-```
-
-    ## [1]  561509  391833  445520 1117933  798445  654140
-
-``` r
 avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
