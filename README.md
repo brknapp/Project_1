@@ -992,6 +992,8 @@ summary(data_summary)
     ##  Max.   :2019   Max.   :583.0   Max.   :100.00   Max.   :93.00   Max.   :1786257   Max.   :936662225   Max.   :96.11  
     ##                                 NA's   :17                                         NA's   :17
 
+It looks like my data set contains movies from 1939 to 2019.
+
 We can also do this for one column. Let’s calculate the average and
 standard deviation of the imdbVotes column:
 
@@ -1075,6 +1077,29 @@ So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
 
+Let’s make a box plot showing the spread of the number of imdbVotes for
+every genre:
+
+``` r
+A<-formatted_data %>%
+  select(Genre,imdbVotes)
+B<-unique(A)
+```
+
+``` r
+B %>%
+  ggplot(aes(x = Genre, y = imdbVotes, fill = Genre)) +
+  geom_boxplot() +
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  coord_flip()
+```
+
+![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
+
+It looks like genre with the most spread, or variance, is “Crime,
+Drama”.
+
 We can also calculate the average number of imdbVotes for each award
 scenerio (won and nominated, won, nominated, or no wins or nominations):
 
@@ -1100,28 +1125,8 @@ A
     ## 3 won                            4584.
     ## 4 nomination                    62099.
 
-Let’s make a box plot showing the spread of the number of imdbVotes for
-every genre:
-
-``` r
-A<-formatted_data %>%
-  select(Genre,imdbVotes)
-B<-unique(A)
-```
-
-``` r
-B %>%
-  ggplot(aes(x = Genre, y = imdbVotes, fill = Genre)) +
-  geom_boxplot() +
-  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
-  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  coord_flip()
-```
-
-![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
-
-It looks like genre with the most spread, or variance, is “Crime,
-Drama”.
+It looks like the movies that both won awards and were nominated for
+awards recieved the most number of imdbVotes on average.
 
 On a different note, if you wanted to see how many movies were made each
 year, you could make a histogram showing the distribution of of the
