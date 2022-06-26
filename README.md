@@ -934,9 +934,10 @@ Let’s say we wanted to find out how many movies each director made in my
 data set. We could make the bar graph below:
 
 ``` r
-C<-data.frame(formatted_data$Title,formatted_data$Director)
+C<- formatted_data %>%
+  select(Title,Director)
 D<-unique(C)
-g<-ggplot(data = D, aes(x = formatted_data.Director ))
+g<-ggplot(data = D, aes(x = Director ))
 g + geom_bar() +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "Director", title = "Number of Movies Each Director Made", y="Number of Movies") +
