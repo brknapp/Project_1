@@ -615,34 +615,14 @@ A<-formatted_data %>%
 A<-A %>%
   select(Genre,avg_genre)
 
-unique(A)
-```
-
-```{r 1_00_6_26_2022}
-A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
-B<-unique(A)
-B<-unique(A)
-
-mat1=NULL
-avg_imdbVotes_by_genre <- function(){
-  for (i in genre_list){
-      temp=B[is.element(B$formatted_data.Genre,i),]
-      temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
-      mat1=rbind(mat1,temp)
-  }
-  return(mat1)
-}
-result<-avg_imdbVotes_by_genre()
-result<-result %>% select(formatted_data.Genre,avg_genre)
-result<-unique(result)
-rownames(result)<-1:30
-result
+A<-unique(A)
+A
 ```
 
 Now, let's find the 5-number summary for this data set.
 
 ```{r 12_14_6_25_2022}
-summary(result$avg_genre)
+summary(A$avg_genre)
 ```
 
 So, it looks like the genre with the most number of votes on average is "Biography, Crime, Drama" and the genre with the least number of votes on average is "Documentary, Short".

@@ -1014,7 +1014,8 @@ A<-formatted_data %>%
 A<-A %>%
   select(Genre,avg_genre)
 
-unique(A)
+A<-unique(A)
+A
 ```
 
     ## # A tibble: 30 × 2
@@ -1033,67 +1034,14 @@ unique(A)
     ## 10 Crime, Drama, Thriller        14694 
     ## # … with 20 more rows
 
-``` r
-A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
-B<-unique(A)
-B<-unique(A)
-
-mat1=NULL
-avg_imdbVotes_by_genre <- function(){
-  for (i in genre_list){
-      temp=B[is.element(B$formatted_data.Genre,i),]
-      temp$avg_genre<-mean(temp$formatted_data.imdbVotes)
-      mat1=rbind(mat1,temp)
-  }
-  return(mat1)
-}
-result<-avg_imdbVotes_by_genre()
-result<-result %>% select(formatted_data.Genre,avg_genre)
-result<-unique(result)
-rownames(result)<-1:30
-result
-```
-
-    ##                      formatted_data.Genre avg_genre
-    ## 1                     Drama, Romance, War  561509.0
-    ## 2              Adventure, Family, Fantasy  391833.0
-    ## 3                  Drama, Family, Fantasy  445520.0
-    ## 4                 Biography, Crime, Drama 1117933.0
-    ## 5                            Crime, Drama 1051420.5
-    ## 6               Horror, Mystery, Thriller  207196.6
-    ## 7                Comedy, Musical, Romance  238235.0
-    ## 8                       Adventure, Sci-Fi  652541.0
-    ## 9              Mystery, Romance, Thriller  395723.0
-    ## 10                 Crime, Drama, Thriller   14694.0
-    ## 11                            Documentary     627.0
-    ## 12                                 Comedy     222.0
-    ## 13                     Documentary, Short      45.6
-    ## 14             Action, Adventure, Fantasy  861925.9
-    ## 15              Action, Adventure, Sci-Fi  758986.5
-    ## 16                         Horror, Sci-Fi  855565.0
-    ## 17                 Action, Horror, Sci-Fi  182640.0
-    ## 18               Horror, Sci-Fi, Thriller  275908.0
-    ## 19              Action, Adventure, Horror  101779.0
-    ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15543.0
-    ## 22              Biography, Comedy, Sci-Fi    7478.0
-    ## 23                 Comedy, Crime, Mystery     832.0
-    ## 24 Documentary, Biography, Crime, History      82.0
-    ## 25                       Horror, Thriller  102073.9
-    ## 26               Action, Horror, Thriller  104371.0
-    ## 27                         Drama, Romance    3087.0
-    ## 28                         Short, Fantasy      51.0
-    ## 29            Adventure, Horror, Thriller   37819.0
-    ## 30                    Documentary, Horror    3080.0
-
 Now, let’s find the 5-number summary for this data set.
 
 ``` r
-summary(result$avg_genre)
+summary(A$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  281225.0  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
