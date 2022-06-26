@@ -29,7 +29,7 @@ In order to get information from the OMDb API, we have to build a URL with our s
 
 # Build URL for One Movie Title
 
-Let's say you have a movie title in mind, like Star Wars (1977). Here's a function you can use to get data from the OMDb API about Star Wars:
+Let's say you have a movie title in mind, like Star Wars (1977). Here's a function you can use to get data from the OMDb API about Star Wars (1977):
 
 Note: the parameter “type” has three options: movie, series, and episode. If “type” is not specified, it will give everything (including movies, series, and episodes). I’m making the default for “type” be “movie”, but you can change this if you want.
 
@@ -129,7 +129,7 @@ You should get a tibble that looks like this:
 search_by_IMDb_ID("5c7f9206","tt0080684",type="movie")
 ```
 
-# Build URL to Search for More than One Title in a Series
+# Build URL to Search for Movies in a Series
 
 Let's say you wanted to get all of the titles for all of the Star Wars movies. You would then need to build your URL "By Search" instead. Here's a function you can use if you wanted to search for multiple movie titles:
 
@@ -161,7 +161,7 @@ You should get a tibble that looks like this:
 by_search_series("5c7f9206","star_wars",type="movie")
 ```
 
-# Build URL to search for More than One Title or Series
+# Build URL to Search for One or More Titles or Series
 
 Now, what if you want to get all of the data for all of the Star Wars movies and all of the Indiana Jones movies. The function below can handle a list of several titles or one title.
 
@@ -200,7 +200,7 @@ by_search_one_or_more_titles <- function(mykey,title,type="movie"){
 }
 ```
 
-You can use this function to look for multiple titles or just one. For example, if you wanted to search for both Star Wars and Indiana Jones, you would run the function like this:
+You should run the function like this:
 
 ```{r ex_test_3_50_6_20_2022,eval=FALSE}
 by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
@@ -212,16 +212,16 @@ You would get the tibble below:
 by_search_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"),type="movie")
 ```
 
-If you wanted to search for one title, like Spider-Man, you would run the function like this:
+If you wanted to search for one title or series, like Indiana Jones, you would run the function like this:
 
 ```{r ex_test_3_54_6_20_2022,eval=FALSE}
-by_search_one_or_more_titles("mykey","spider-man",type="movie")
+by_search_one_or_more_titles("mykey","indiana_jones",type="movie")
 ```
 
 You would get this tibble:
 
 ```{r 9_04_6_22_2022,eval=TRUE,echo=FALSE}
-by_search_one_or_more_titles("5c7f9206","spider-man",type="movie")
+by_search_one_or_more_titles("5c7f9206","indiana_jones",type="movie")
 ```
 
 # Get the Data for One Series
@@ -288,7 +288,7 @@ get_data_one_or_more_titles("5c7f9206",c("star_wars","indiana_jones"))
 First, I'm going to make two lists of movies:
 
 ```{r 10_04_6_22_2022}
-#for these movies, I just want the first result it gives me:
+#for these movies, I just want the first result it gives me because they are not a series:
 titles <- c("casablanca",
             "the_wizard_of_oz",
             "it's_a_wonderful_life",
@@ -299,7 +299,7 @@ titles <- c("casablanca",
             "2001:_a_space_odyssey",
             "vertigo")
 
-#for these movies, I want all of them in the series:
+#for these movies, I want all of them in each series:
 series <- c("the_godfather",
             "star_wars",
             "alien",
@@ -342,6 +342,17 @@ Here is the tibble I get:
 
 ```{r 11_52_6_22_2022, echo=FALSE}
 get_data_titles_and_series("5c7f9206",titles,series)
+```
+
+Here is a list of the movie titles in my data set:
+
+```{r 9_30_6_25_2022,echo=FALSE}
+info <- get_data_titles_and_series("5c7f9206",titles,series)
+```
+
+```{r 9_32_6_25_2022}
+length(unique(info$Titles))
+unique(info$Titles)
 ```
 
 Before we make this data more usable, we need to write a few more helper functions:

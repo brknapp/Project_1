@@ -6,10 +6,10 @@ Project 1
 -   [Build URL for One Movie Title and One
     Date](#build-url-for-one-movie-title-and-one-date)
 -   [Build URL for One IMDb ID](#build-url-for-one-imdb-id)
--   [Build URL to Search for More than One Title in a
-    Series](#build-url-to-search-for-more-than-one-title-in-a-series)
--   [Build URL to search for More than One Title or
-    Series](#build-url-to-search-for-more-than-one-title-or-series)
+-   [Build URL to Search for Movies in a
+    Series](#build-url-to-search-for-movies-in-a-series)
+-   [Build URL to Search for One or More Titles or
+    Series](#build-url-to-search-for-one-or-more-titles-or-series)
 -   [Get the Data for One Series](#get-the-data-for-one-series)
 -   [Get the Data for One or More
     Series](#get-the-data-for-one-or-more-series)
@@ -44,7 +44,8 @@ are two ways to build a URL: “By ID or Title” or “By Search”.
 # Build URL for One Movie Title
 
 Let’s say you have a movie title in mind, like Star Wars (1977). Here’s
-a function you can use to get data from the OMDb API about Star Wars:
+a function you can use to get data from the OMDb API about Star Wars
+(1977):
 
 Note: the parameter “type” has three options: movie, series, and
 episode. If “type” is not specified, it will give everything (including
@@ -169,7 +170,7 @@ You should get a tibble that looks like this:
     ## # … with 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>, imdbID <chr>,
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-# Build URL to Search for More than One Title in a Series
+# Build URL to Search for Movies in a Series
 
 Let’s say you wanted to get all of the titles for all of the Star Wars
 movies. You would then need to build your URL “By Search” instead.
@@ -214,7 +215,7 @@ You should get a tibble that looks like this:
     ##  9 Rogue One: A Star Wars Story                  2016        tt3748528     movie       https://m.me… 539          True    
     ## 10 Star Wars: Episode IX - The Rise of Skywalker 2019        tt2527338     movie       https://m.me… 539          True
 
-# Build URL to search for More than One Title or Series
+# Build URL to Search for One or More Titles or Series
 
 Now, what if you want to get all of the data for all of the Star Wars
 movies and all of the Indiana Jones movies. The function below can
@@ -255,9 +256,7 @@ by_search_one_or_more_titles <- function(mykey,title,type="movie"){
 }
 ```
 
-You can use this function to look for multiple titles or just one. For
-example, if you wanted to search for both Star Wars and Indiana Jones,
-you would run the function like this:
+You should run the function like this:
 
 ``` r
 by_search_one_or_more_titles("mykey",c("star_wars","indiana_jones"),type="movie")
@@ -289,28 +288,28 @@ You would get the tibble below:
     ## 19 Mr. Plinkett's Indiana Jones and the Kingdom… 2011        tt6330122     movie       https://m.me… 83           True    
     ## 20 The Adventures of Young Indiana Jones: Holly… 1994        tt0111806     movie       https://m.me… 83           True
 
-If you wanted to search for one title, like Spider-Man, you would run
-the function like this:
+If you wanted to search for one title or series, like Indiana Jones, you
+would run the function like this:
 
 ``` r
-by_search_one_or_more_titles("mykey","spider-man",type="movie")
+by_search_one_or_more_titles("mykey","indiana_jones",type="movie")
 ```
 
 You would get this tibble:
 
     ## # A tibble: 10 × 7
-    ##    Search.Title                      Search.Year Search.imdbID Search.Type Search.Poster             totalResults Response
-    ##    <chr>                             <chr>       <chr>         <chr>       <chr>                     <chr>        <chr>   
-    ##  1 Spider-Man                        2002        tt0145487     movie       https://m.media-amazon.c… 225          True    
-    ##  2 Spider-Man: No Way Home           2021        tt10872600    movie       https://m.media-amazon.c… 225          True    
-    ##  3 The Amazing Spider-Man            2012        tt0948470     movie       https://m.media-amazon.c… 225          True    
-    ##  4 Spider-Man 2                      2004        tt0316654     movie       https://m.media-amazon.c… 225          True    
-    ##  5 Spider-Man: Homecoming            2017        tt2250912     movie       https://m.media-amazon.c… 225          True    
-    ##  6 Spider-Man 3                      2007        tt0413300     movie       https://m.media-amazon.c… 225          True    
-    ##  7 Spider-Man: Into the Spider-Verse 2018        tt4633694     movie       https://m.media-amazon.c… 225          True    
-    ##  8 The Amazing Spider-Man 2          2014        tt1872181     movie       https://m.media-amazon.c… 225          True    
-    ##  9 Spider-Man: Far from Home         2019        tt6320628     movie       https://m.media-amazon.c… 225          True    
-    ## 10 Jack Black: Spider-Man            2002        tt0331527     movie       https://m.media-amazon.c… 225          True
+    ##    Search.Title                                  Search.Year Search.imdbID Search.Type Search.Poster totalResults Response
+    ##    <chr>                                         <chr>       <chr>         <chr>       <chr>         <chr>        <chr>   
+    ##  1 Indiana Jones and the Raiders of the Lost Ark 1981        tt0082971     movie       https://m.me… 83           True    
+    ##  2 Indiana Jones and the Last Crusade            1989        tt0097576     movie       https://m.me… 83           True    
+    ##  3 Indiana Jones and the Temple of Doom          1984        tt0087469     movie       https://m.me… 83           True    
+    ##  4 Indiana Jones and the Kingdom of the Crystal… 2008        tt0367882     movie       https://m.me… 83           True    
+    ##  5 Indiana Jones and the Temple of the Forbidde… 1995        tt0764648     movie       https://m.me… 83           True    
+    ##  6 The Adventures of Young Indiana Jones: Treas… 1995        tt0115031     movie       https://m.me… 83           True    
+    ##  7 The Adventures of Young Indiana Jones: Trave… 1996        tt0154003     movie       https://m.me… 83           True    
+    ##  8 The Adventures of Young Indiana Jones: Attac… 1995        tt0154004     movie       https://m.me… 83           True    
+    ##  9 Mr. Plinkett's Indiana Jones and the Kingdom… 2011        tt6330122     movie       https://m.me… 83           True    
+    ## 10 The Adventures of Young Indiana Jones: Holly… 1994        tt0111806     movie       https://m.me… 83           True
 
 # Get the Data for One Series
 
@@ -399,7 +398,7 @@ get_data_one_or_more_titles("mykey",c("star_wars","indiana_jones"))
 First, I’m going to make two lists of movies:
 
 ``` r
-#for these movies, I just want the first result it gives me:
+#for these movies, I just want the first result it gives me because they are not a series:
 titles <- c("casablanca",
             "the_wizard_of_oz",
             "it's_a_wonderful_life",
@@ -410,7 +409,7 @@ titles <- c("casablanca",
             "2001:_a_space_odyssey",
             "vertigo")
 
-#for these movies, I want all of them in the series:
+#for these movies, I want all of them in each series:
 series <- c("the_godfather",
             "star_wars",
             "alien",
@@ -467,6 +466,24 @@ Here is the tibble I get:
     ## 10 Goodfell… 1990  R     21 Sep … 145 min Biog… Martin … Nicho… Rober… The … English… United… Won 1… https… Internet Movi…
     ## # … with 142 more rows, and 11 more variables: Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>, imdbVotes <chr>,
     ## #   imdbID <chr>, Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
+
+Here is a list of the movie titles in my data set:
+
+``` r
+length(unique(info$Titles))
+```
+
+    ## Warning: Unknown or uninitialised column: `Titles`.
+
+    ## [1] 0
+
+``` r
+unique(info$Titles)
+```
+
+    ## Warning: Unknown or uninitialised column: `Titles`.
+
+    ## NULL
 
 Before we make this data more usable, we need to write a few more helper
 functions:
@@ -779,7 +796,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332323.2
+    ## [1] 332324.2
 
 On average, every movie in my data set gets 332324 imdbVotes. Let’s make
 a box plot showing the spread of the number of imdbVotes for every
@@ -847,7 +864,7 @@ result
     ## 18               Horror, Sci-Fi, Thriller  275908.0
     ## 19              Action, Adventure, Horror  101779.0
     ## 20                         Comedy, Sci-Fi   26382.0
-    ## 21                         Action, Sci-Fi   15480.0
+    ## 21                         Action, Sci-Fi   15543.0
     ## 22              Biography, Comedy, Sci-Fi    7478.0
     ## 23                 Comedy, Crime, Mystery     832.0
     ## 24 Documentary, Biography, Crime, History      82.0
@@ -865,7 +882,7 @@ summary(result$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  280501.3  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  280503.4  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
@@ -881,13 +898,13 @@ B<-unique(A)
 cov(B$imdbVotes,B$average_rating) #Covariance
 ```
 
-    ## [1] 4539894
+    ## [1] 4539881
 
 ``` r
 cor(B$imdbVotes,B$average_rating) #Correlation
 ```
 
-    ## [1] 0.5827321
+    ## [1] 0.5827316
 
 The covariance is 4539894, meaning that there is a positive linear
 relationship between imdbVotes and average_rating.
