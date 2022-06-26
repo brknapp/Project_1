@@ -1159,10 +1159,7 @@ every genre:
 A<-formatted_data %>%
   select(Genre,imdbVotes)
 B<-unique(A)
-genre_list=unique(B$formatted_data.Genre)
 ```
-
-    ## Warning: Unknown or uninitialised column: `formatted_data.Genre`.
 
 ``` r
 B %>%

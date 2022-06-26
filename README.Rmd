@@ -695,7 +695,6 @@ As you can see, as average_rating increases, so does BoxOffice. In addition, the
 A<-formatted_data %>%
   select(Genre,imdbVotes)
 B<-unique(A)
-genre_list=unique(B$formatted_data.Genre)
 ```
 
 ```{r 12_29_6_25_2022}
