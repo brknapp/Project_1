@@ -352,10 +352,38 @@ info <- get_data_titles_and_series("5c7f9206",titles,series)
 
 ```{r 9_32_6_25_2022}
 length(unique(info$Title))
+```
+
+There are 61 unique titles.
+
+```{r 9_37_6_25_2022}
 unique(info$Title)
 ```
 
-Before we make this data more usable, we need to write a few more helper functions:
+Great, but we can't use this data until we format it. Here's what I'm going to do in the next function:
+
+1. Convert the following columns from character to numeric:
+  + Year
+  + Runtime
+  + Ratings.Value
+  + Metascore
+  + imdbRating
+  + imdbVotes
+  + BoxOffice
+
+2. Convert the values in these columns to dates (year-month-day):
+  + Released
+  + DVD 
+  
+3. Create two new columns:
+  + average_rating is the average of the Ratings.Value, Metascore, and imdbRating
+  + Summary_Awards shows whether a movie:
+    + won and was nominated for an award
+    + won an award
+    + was nominated for an award
+    + did not win or was not nominated for an award
+
+Here are my helper functions: 
 
 ```{r 7_46_6_23_2022}
 #this will help us convert the Ratings.Value column to numeric
@@ -397,7 +425,7 @@ award <- function(S){
 }
 ```
 
-Here's our complete formatting function:
+Here is my complete formatting function:
 
 ```{r 12_02_6_23_2022,message=FALSE}
 mat1=NULL
@@ -437,16 +465,22 @@ format_data <- function(mykey,titles,series){
 Here's how I ran it:
 
 ```{r 11_40_6_23_2022,eval=FALSE}
-formatted_data<-format_data("5c7f9206",titles,series)
-str(formatted_data)
+formatted_data<-format_data("mykey",titles,series)
 ```
 
 Here's the tibble I got:
 
 ```{r 12_16_6_23_2022,echo=FALSE,warning=FALSE}
 formatted_data<-format_data("5c7f9206",titles,series)
-str(formatted_data) #this shows you the structure of formatted_data
+formatted_data
 ```
+
+Let's find the structure of my data:
+
+```{r 9_51_6_25_2022}
+str(formatted_data)
+```
+
 
 # Contingency Tables
 

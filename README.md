@@ -475,6 +475,8 @@ length(unique(info$Title))
 
     ## [1] 61
 
+There are 61 unique titles.
+
 ``` r
 unique(info$Title)
 ```
@@ -541,8 +543,35 @@ unique(info$Title)
     ## [60] "Friday the 13th Part VII: The New Blood"                  
     ## [61] "His Name Was Jason: 30 Years of Friday the 13th"
 
-Before we make this data more usable, we need to write a few more helper
-functions:
+Great, but we can’t use this data until we format it. Here’s what I’m
+going to do in the next function:
+
+1.  Convert the following columns from character to numeric:
+
+-   Year
+-   Runtime
+-   Ratings.Value
+-   Metascore
+-   imdbRating
+-   imdbVotes
+-   BoxOffice
+
+2.  Convert the values in these columns to dates (year-month-day):
+
+-   Released
+-   DVD
+
+3.  Create two new columns:
+
+-   average_rating is the average of the Ratings.Value, Metascore, and
+    imdbRating
+-   Summary_Awards shows whether a movie:
+    -   won and was nominated for an award
+    -   won an award
+    -   was nominated for an award
+    -   did not win or was not nominated for an award
+
+Here are my helper functions:
 
 ``` r
 #this will help us convert the Ratings.Value column to numeric
@@ -584,7 +613,7 @@ award <- function(S){
 }
 ```
 
-Here’s our complete formatting function:
+Here is my complete formatting function:
 
 ``` r
 mat1=NULL
@@ -624,11 +653,33 @@ format_data <- function(mykey,titles,series){
 Here’s how I ran it:
 
 ``` r
-formatted_data<-format_data("5c7f9206",titles,series)
-str(formatted_data)
+formatted_data<-format_data("mykey",titles,series)
 ```
 
 Here’s the tibble I got:
+
+    ## # A tibble: 152 × 28
+    ##    Title    Year Rated Released   Runtime Genre Director Writer Actors Plot  Language Country Awards Poster Ratings.Source
+    ##    <chr>   <dbl> <chr> <date>       <dbl> <chr> <chr>    <chr>  <chr>  <chr> <chr>    <chr>   <chr>  <chr>  <chr>         
+    ##  1 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Internet Movi…
+    ##  2 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Rotten Tomato…
+    ##  3 Casabl…  1942 PG    1943-01-23     102 Dram… Michael… Juliu… Humph… A cy… English… United… Won 3… https… Metacritic    
+    ##  4 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Internet Movi…
+    ##  5 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Rotten Tomato…
+    ##  6 The Wi…  1939 G     1939-08-25     102 Adve… Victor … Noel … Judy … Youn… English  United… Won 2… https… Metacritic    
+    ##  7 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Internet Movi…
+    ##  8 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Rotten Tomato…
+    ##  9 It's a…  1946 PG    1947-01-07     130 Dram… Frank C… Franc… James… An a… English… United… Nomin… https… Metacritic    
+    ## 10 Goodfe…  1990 R     1990-09-21     145 Biog… Martin … Nicho… Rober… The … English… United… Won 1… https… Internet Movi…
+    ## # … with 142 more rows, and 13 more variables: Ratings.Value <dbl>, Metascore <dbl>, imdbRating <dbl>, imdbVotes <dbl>,
+    ## #   imdbID <chr>, Type <chr>, DVD <date>, BoxOffice <dbl>, Production <chr>, Website <chr>, Response <chr>,
+    ## #   Summary_Awards <fct>, average_rating <dbl>
+
+Let’s find the structure of my data:
+
+``` r
+str(formatted_data)
+```
 
     ## tibble [152 × 28] (S3: tbl_df/tbl/data.frame)
     ##  $ Title         : chr [1:152] "Casablanca" "Casablanca" "Casablanca" "The Wizard of Oz" ...
