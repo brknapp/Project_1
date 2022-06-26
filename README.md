@@ -58,11 +58,13 @@ movies, series, and episodes). I’m making the default for “type” be
 
 ``` r
 search_by_title <- function(mykey,title,type="movie"){
+  #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
+  #use URL to get data from the OMDb API:
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
   movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -99,11 +101,13 @@ Awakens (2015)? You can use this funciton:
 
 ``` r
 search_by_title_and_date <- function(mykey,title,type="movie",date){
+  #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&t=",title,"&type=",type,"&y=",date) 
   full_url <- paste0(base_url, info_url)
   full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
+  #use URL to get data from the OMDb API:
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
   movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -143,11 +147,13 @@ Here’s a function you can use if you have a valid IMDb ID:
 
 ``` r
 search_by_IMDb_ID <- function(mykey,IMDb_ID,type="movie"){
+  #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&i=",IMDb_ID,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
+  #use URL to get data from the OMDb API:
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
   movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -183,11 +189,13 @@ titles:
 
 ``` r
 by_search_series <- function(mykey,title,type="movie"){
+  #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",title,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
+  #use URL to get a data frame with a list of titles from the OMDb API:
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
   movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -228,12 +236,15 @@ handle a list of several titles or one title.
 ``` r
 mat=NULL
 by_search_one_or_more_titles <- function(mykey,title,type="movie"){
+  #if you only give one title, this part will run:
  if(length(title)<=1){ 
+   #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
     info_url <- paste0("&s=",title,"&type=",type) 
     full_url <- paste0(base_url, info_url)
     full_url <- gsub(full_url, pattern = " ", replacement = "%20")
     
+    #use URL to get a data frame with a list of titles from the OMDb API:
     movie_api_call <- GET(full_url)
     movie_api_call_char <- rawToChar(movie_api_call$content)
     movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -242,12 +253,15 @@ by_search_one_or_more_titles <- function(mykey,title,type="movie"){
     return(movie_JSON)
  }
   if(length(title)>1){
+    #if you give more than one title, this part will run:
   for(i in title){
+    #build URL:
   base_url <- paste0("http://www.omdbapi.com/?apikey=",mykey)
   info_url <- paste0("&s=",i,"&type=",type) 
   full_url <- paste0(base_url, info_url)
   full_url <- gsub(full_url, pattern = " ", replacement = "%20")
   
+  #use URL to get a data frame with a list of titles from the OMDb API:
   movie_api_call <- GET(full_url)
   movie_api_call_char <- rawToChar(movie_api_call$content)
   movie_JSON <- jsonlite::fromJSON(movie_api_call_char, flatten = TRUE) 
@@ -322,9 +336,11 @@ That’s great! Now, lets get the data for all of the Star Wars movies:
 ``` r
 mat=NULL
 get_data_series <- function(mykey,title){
+  #this part gets the titles in the series given:
   temp_table <- by_search_series(mykey,title,type="movie")
   list_of_titles <- unique(temp_table$Search.Title)
   
+  #this part cycles through each title and gets the data:
   for(movie_title in list_of_titles){
   table <- search_by_title(mykey,movie_title,type="movie")
   mat=rbind(mat,table)
@@ -364,9 +380,11 @@ Now, lets get all of the data for both Star Wars and Indiana Jones:
 ``` r
 mat=NULL
 get_data_one_or_more_titles <- function(mykey,title){
+  #this part gets the titles in all series given:
   temp_table <- by_search_one_or_more_titles(mykey,title,type="movie")
   list_of_titles <- unique(temp_table$Search.Title)
   
+  #this part cycles through each title and gets the data:
   for(movie_title in list_of_titles){
   table <- search_by_title(mykey,movie_title,type="movie")
   mat=rbind(mat,table)
@@ -430,10 +448,12 @@ mat1=NULL
 mat2=NULL
 mat3=NULL
 get_data_titles_and_series <- function(mykey,titles,series){
+  #this part gets the data for all of my stand-alone titles provided:
   for(i in titles){
     temp_table <- search_by_title(mykey,i,type="movie")
       mat1=rbind(mat1,temp_table)
   }
+  #this part gets the data by cycling through each movie from each series provided:
   for(j in series){
     temp_table <- by_search_series(mykey,j,type="movie")
     list_of_titles <- unique(temp_table$Search.Title)
@@ -442,6 +462,7 @@ get_data_titles_and_series <- function(mykey,titles,series){
       mat2=rbind(mat2,table2)
     }
   }
+  #this part combines data for both the results for the stand-alone titles and series
   mat3=rbind(mat3,mat1,mat2)
   return(mat3)
 }
@@ -642,6 +663,7 @@ format_data <- function(mykey,titles,series){
       Metascore<-unique(temp$Metascore)
       imdbRating<-unique(temp$imdbRating)
       
+      #some of the values in the Metascore column have NAs so these if statements accommodate for this:
       if(is.na(Metascore)==TRUE){
         temp$average_rating=(Ratings.Value_mean+imdbRating)/2
       }
