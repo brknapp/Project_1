@@ -1130,7 +1130,7 @@ B %>%
 
 ![](README_files/figure-gfm/12_29_6_25_2022-1.png)<!-- -->
 
-It looks like genre with the most spread, or variance, is “Crime,
+It looks like genre with the highest variance in imdbVotes is “Crime,
 Drama”.
 
 We can also calculate the average number of imdbVotes for each award
@@ -1159,7 +1159,9 @@ A
     ## 4 nomination                    62099.
 
 It looks like the movies that both won awards and were nominated for
-awards received the most number of imdbVotes on average.
+awards received the most number of imdbVotes on average. Let’s make a
+box plot showing the spread of the number of imdbVotes for every award
+scenerio:
 
 ``` r
 A<-formatted_data %>%
@@ -1175,6 +1177,9 @@ B %>%
 ```
 
 ![](README_files/figure-gfm/3_01_6_26_2022-1.png)<!-- -->
+
+It looks like award status with the highest variance in imdbVotes is
+“won and nominated”.
 
 ## Covariance and Correlation
 

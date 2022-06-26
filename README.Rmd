@@ -672,7 +672,7 @@ B %>%
   coord_flip()
 ```
 
-It looks like genre with the most spread, or variance, is "Crime, Drama".
+It looks like genre with the highest variance in imdbVotes is "Crime, Drama".
 
 We can also calculate the average number of imdbVotes for each award scenerio (won and nominated, won, nominated, or no wins or nominations):
 
@@ -690,7 +690,7 @@ A<-as_tibble(A)
 A
 ```
 
-It looks like the movies that both won awards and were nominated for awards received the most number of imdbVotes on average.
+It looks like the movies that both won awards and were nominated for awards received the most number of imdbVotes on average. Let's make a box plot showing the spread of the number of imdbVotes for every award scenerio:
 
 ```{r 3_01_6_26_2022}
 A<-formatted_data %>%
@@ -703,8 +703,9 @@ B %>%
   theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
   labs(x = "Award Status", title = "imdbVotes By Award Status", y="Number of imdbVotes") +
   coord_flip()
-
 ```
+
+It looks like award status with the highest variance in imdbVotes is "won and nominated".
 
 ## Covariance and Correlation
 
