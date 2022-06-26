@@ -993,7 +993,7 @@ sd_imdbVotes
 
     ## [1] 423035.7
 
-On average, every movie in my data set gets 332324 imdbVotes. The
+On average, every movie in my data set got 332324 imdbVotes. The
 standard deviation is 423035.7, meaning that the number of imdbVotes
 varies a lot between the movies. To explore this, let’s calculate the
 average number of imdbVotes for each genre:
@@ -1081,7 +1081,9 @@ B %>%
 It looks like genre with the most spread, or variance, is “Crime,
 Drama”.
 
-Let’s make a histogram showing the distribution of of the “Year” column:
+On a different note, if you wanted to see how many movies were made each
+year, you could make a histogram showing the distribution of of the
+“Year” column:
 
 ``` r
 A <- formatted_data %>%
@@ -1104,7 +1106,7 @@ Let’s smooth it out with a Kernel Smoother.
 ``` r
 ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey") +
   geom_density(adjust = 0.25, size = 1) +
-  labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
+  labs(x = "Year", title = "Distribution of Movies by Year")
 ```
 
 ![](README_files/figure-gfm/3_27_6_25_2022-1.png)<!-- -->
