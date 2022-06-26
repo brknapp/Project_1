@@ -996,7 +996,10 @@ avg_imdbVotes
 
 ``` r
 sd_imdbVotes <- sd(imdbVotes)
+sd_imdbVotes
 ```
+
+    ## [1] 423035.7
 
 On average, every movie in my data set gets 332324 imdbVotes.
 
@@ -1007,7 +1010,24 @@ A<-formatted_data %>%
   select(Genre,imdbVotes) %>%
   group_by(Genre) %>%
   mutate(avg_genre = mean(imdbVotes))
+A
 ```
+
+    ## # A tibble: 152 × 3
+    ## # Groups:   Genre [30]
+    ##    Genre                      imdbVotes avg_genre
+    ##    <chr>                          <dbl>     <dbl>
+    ##  1 Drama, Romance, War           561509    561509
+    ##  2 Drama, Romance, War           561509    561509
+    ##  3 Drama, Romance, War           561509    561509
+    ##  4 Adventure, Family, Fantasy    391833    391833
+    ##  5 Adventure, Family, Fantasy    391833    391833
+    ##  6 Adventure, Family, Fantasy    391833    391833
+    ##  7 Drama, Family, Fantasy        445520    445520
+    ##  8 Drama, Family, Fantasy        445520    445520
+    ##  9 Drama, Family, Fantasy        445520    445520
+    ## 10 Biography, Crime, Drama      1117933   1117933
+    ## # … with 142 more rows
 
 ``` r
 A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)

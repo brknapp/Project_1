@@ -599,6 +599,7 @@ imdbVotes <- unique(formatted_data$imdbVotes)
 avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 sd_imdbVotes <- sd(imdbVotes)
+sd_imdbVotes
 ```
 
 On average, every movie in my data set gets 332324 imdbVotes.
@@ -610,6 +611,7 @@ A<-formatted_data %>%
   select(Genre,imdbVotes) %>%
   group_by(Genre) %>%
   mutate(avg_genre = mean(imdbVotes))
+A
 ```
 
 ```{r 1_00_6_26_2022}
