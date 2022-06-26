@@ -602,9 +602,7 @@ sd_imdbVotes <- sd(imdbVotes)
 sd_imdbVotes
 ```
 
-On average, every movie in my data set gets 332324 imdbVotes.
-
-Now, let's calculate the average number of imdbVotes for each genre:
+On average, every movie in my data set gets 332324 imdbVotes. The standard deviation is 423035.7, meaning that the number of imdbVotes varies a lot between the movies. To explore this, let's calculate the average number of imdbVotes for each genre:
 
 ```{r 12_28_6_25_2022}
 A<-formatted_data %>%
@@ -645,33 +643,11 @@ The covariance is 4539894, meaning that there is a positive linear relationship 
 
 The correlation coefficient is 0.5827316, meaning that imdbVotes and average_rating have a positive relationship.
 
+# Quantitative Data Graphs
 
+## Graphical Summaries
 
-
-
-# Box Plot
-
- Let's make a box plot showing the spread of the number of imdbVotes for every genre:
-
-```{r 11_40_6_25_2022}
-A<-data.frame(formatted_data$Genre,formatted_data$imdbVotes)
-B<-unique(A)
-genre_list=unique(B$formatted_data.Genre)
-length(genre_list) #there are 30 different genres
-```
-
-```{r 12_29_6_25_2022}
-B %>%
-  ggplot(aes(x = formatted_data.Genre, y = formatted_data.imdbVotes, fill = formatted_data.Genre)) +
-  geom_boxplot() +
-  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
-  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
-  coord_flip()
-```
-
-It looks like genre with the most spread, or variance, is "Crime, Drama". 
-
-
+### Histogram
 
 Let's make a histogram showing the distribution of of the "Year" column:
 
@@ -686,7 +662,7 @@ size = 2, binwidth = 3) +
   labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
-It looks like most of the movies in my data set were made after 1975, with a peak in the late 1980s. 
+It looks like most of the movies in my data set were made after 1975, with a peak in the late 1980s.
 
 Let's smooth it out with a Kernel Smoother. 
 
@@ -696,9 +672,11 @@ ggplot(B, aes(x = Year)) + geom_histogram(aes(y = ..density..),fill = "lightgrey
   labs(x = "Year", title = "Distribution of Movies by Year", y="Number of Movies")
 ```
 
-The line helps us see that there are two peaks, one at around 1988 and one around 2006. 
+The line helps us see that there are two peaks, one at around 1988 and one around 2006.
 
-Now, lets make a scatterplot:
+### Scatterplot
+
+Now, lets make a scatterplot comparing the amount of money a movie makes at the Box Office to the average rating:
 
 ```{r 4_07_6_25_2022,message=FALSE}
 A <- formatted_data %>%
@@ -713,23 +691,28 @@ g + geom_text(aes(label = Year)) +
 geom_smooth(method = lm, col = "Red") +
   labs(x = "Average Rating", title = "Average Rating vs. Box Office", y="Box Office") +
   geom_text(x = 40, y = 7.5e+08, size = 5, label = paste0("Correlation = ", round(correlation, 3)))
-  
 ```
 
 As you can see, as average_rating increases, so does BoxOffice. In addition, there was one movie made in 2015 that did quite well at the Box Office.
 
+### Box Plot
 
-The next graph is:
+ Let's make a box plot showing the spread of the number of imdbVotes for every genre:
 
-
-
-
-movie title in mind, like Star Wars. Here's a function you can use to get data from the OMDb API about Star Wars:
-
-
-
-This is my .Rmd file. Test. Test 2
-
-```{r plot}
-plot(iris)
+```{r 11_40_6_25_2022}
+A<-formatted_data %>%
+  select(Genre,imdbVotes)
+B<-unique(A)
+genre_list=unique(B$formatted_data.Genre)
 ```
+
+```{r 12_29_6_25_2022}
+B %>%
+  ggplot(aes(x = Genre, y = imdbVotes, fill = Genre)) +
+  geom_boxplot() +
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Genre", title = "imdbVotes By Genre", y="Number of imdbVotes") +
+  coord_flip()
+```
+
+It looks like genre with the most spread, or variance, is "Crime, Drama". 
