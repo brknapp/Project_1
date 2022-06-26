@@ -628,6 +628,22 @@ summary(A$avg_genre)
 
 So, it looks like the genre with the most number of votes on average is "Biography, Crime, Drama" and the genre with the least number of votes on average is "Documentary, Short".
 
+We can also calculate the average number of imdbVotes for each award scenerio (won and nominated, won, nominated, or no wins or nominations):
+
+```{r 2_46_6_26_2022}
+A<-formatted_data %>%
+  select(Summary_Awards,imdbVotes) %>%
+  group_by(Summary_Awards) %>%
+  mutate(avg_Summary_Awards = mean(imdbVotes))
+
+A<-A %>%
+  select(Summary_Awards,avg_Summary_Awards)
+
+A<-unique(A)
+A<-as_tibble(A)
+A
+```
+
 Let's make a box plot showing the spread of the number of imdbVotes for every genre:
 
 ```{r 11_40_6_25_2022}

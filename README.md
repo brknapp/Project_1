@@ -1001,7 +1001,7 @@ avg_imdbVotes <- mean(imdbVotes)
 avg_imdbVotes
 ```
 
-    ## [1] 332324.3
+    ## [1] 332324.2
 
 ``` r
 sd_imdbVotes <- sd(imdbVotes)
@@ -1060,7 +1060,7 @@ A %>% as_tibble %>% print(n=30)
     ## 27 Drama, Romance                            3087  
     ## 28 Short, Fantasy                              51  
     ## 29 Adventure, Horror, Thriller              37819  
-    ## 30 Documentary, Horror                       3083
+    ## 30 Documentary, Horror                       3080
 
 Now, let’s find the 5-number summary for this data set.
 
@@ -1069,11 +1069,36 @@ summary(A$avg_genre)
 ```
 
     ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##      45.6    4184.8  103222.4  281225.1  433070.8 1117933.0
+    ##      45.6    4184.8  103222.4  281225.0  433070.8 1117933.0
 
 So, it looks like the genre with the most number of votes on average is
 “Biography, Crime, Drama” and the genre with the least number of votes
 on average is “Documentary, Short”.
+
+We can also calculate the average number of imdbVotes for each award
+scenerio (won and nominated, won, nominated, or no wins or nominations):
+
+``` r
+A<-formatted_data %>%
+  select(Summary_Awards,imdbVotes) %>%
+  group_by(Summary_Awards) %>%
+  mutate(avg_Summary_Awards = mean(imdbVotes))
+
+A<-A %>%
+  select(Summary_Awards,avg_Summary_Awards)
+
+A<-unique(A)
+A<-as_tibble(A)
+A
+```
+
+    ## # A tibble: 4 × 2
+    ##   Summary_Awards    avg_Summary_Awards
+    ##   <fct>                          <dbl>
+    ## 1 won and nominated            626673.
+    ## 2 none                           2245.
+    ## 3 won                            4584.
+    ## 4 nomination                    62099.
 
 Let’s make a box plot showing the spread of the number of imdbVotes for
 every genre:
