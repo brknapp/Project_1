@@ -685,7 +685,8 @@ When I ran this, I got the following warnings:
 
 `Warning in format_data("mykey", titles, series): NAs introduced by coercion`
 
-Let’s look at the unformatted data:
+Let’s see where these warnings are coming from by looking at the
+unformatted data:
 
 ``` r
 test<-unformatted_data[grep("N/A", unformatted_data$Released), ]
@@ -702,11 +703,12 @@ test %>%
     ## #   Type <chr>, DVD <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
 The first warning (`Warning: 2 failed to parse.`) occurred because the
-function `dmy()` from `lubridate` cannot parse the two rows with “N/A”
-in it (see tibble above). This means that these two titles do not have a
-release date, so R puts a `NA` in instead. They might not have been
-released to theaters. To remove this warning, you would need to replace
-the “N/A” with a date that `dmy()` can work with.
+function `dmy()` from `lubridate` cannot parse the two rows in the
+Released column with “N/A” in it (see tibble above). This means that
+these two titles do not have a release date, so R puts a `NA` in
+instead. They might not have been released to theaters. To remove this
+warning, you would need to replace the “N/A” with a date that `dmy()`
+can work with.
 
 Let’s look at the second warning (`Warning: 12 failed to parse.`):
 
@@ -734,9 +736,15 @@ test %>%
     ## # … with 11 more variables: Ratings.Source <chr>, Ratings.Value <chr>, Metascore <chr>, imdbRating <chr>,
     ## #   imdbVotes <chr>, imdbID <chr>, Type <chr>, BoxOffice <chr>, Production <chr>, Website <chr>, Response <chr>
 
-data![Released \<- dmy(data](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;Released%20%3C-%20dmy%28data "Released <- dmy(data")Released)
+Again, the function dmy() cannot parse the twelve rows in the DVD column
+with “N/A” in it (see tibble above), so R put in an `NA` for these rows
+instead. They might not have been released to DVD. To remove this
+warning, you would need to replace the “N/A” with a date that dmy() can
+work with.
 
-Let’s find the structure of my data:
+These warnings will not effect our analysis going forward.
+
+Here is the structure of my formatted data:
 
 ``` r
 str(formatted_data)

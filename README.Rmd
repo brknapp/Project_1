@@ -485,7 +485,7 @@ When I ran this, I got the following warnings:
 
 `Warning in format_data("mykey", titles, series): NAs introduced by coercion`
 
-Let's look at the unformatted data:
+Let's see where these warnings are coming from by looking at the unformatted data:
 
 ```{r 9_58_6_25_2022}
 test<-unformatted_data[grep("N/A", unformatted_data$Released), ]
@@ -493,7 +493,7 @@ test %>%
   select(Released,everything())
 ```
 
-The first warning (`Warning: 2 failed to parse.`) occurred because the function `dmy()` from `lubridate` cannot parse the two rows with "N/A" in it (see tibble above). This means that these two titles do not have a release date, so R puts a `NA` in instead. They might not have been released to theaters. To remove this warning, you would need to replace the "N/A" with a date that `dmy()` can work with.
+The first warning (`Warning: 2 failed to parse.`) occurred because the function `dmy()` from `lubridate` cannot parse the two rows in the Released column with "N/A" in it (see tibble above). This means that these two titles do not have a release date, so R puts a `NA` in instead. They might not have been released to theaters. To remove this warning, you would need to replace the "N/A" with a date that `dmy()` can work with.
 
 Let's look at the second warning (`Warning: 12 failed to parse.`):
 
@@ -503,13 +503,11 @@ test %>%
   select(DVD,everything())
 ```
 
+Again, the function dmy() cannot parse the twelve rows in the DVD column with “N/A” in it (see tibble above), so R put in an `NA` for these rows instead. They might not have been released to DVD. To remove this warning, you would need to replace the “N/A” with a date that dmy() can work with.
 
+These warnings will not effect our analysis going forward. 
 
-data$Released <- dmy(data$Released)
-
-
-
-Let's find the structure of my data:
+Here is the structure of my formatted data:
 
 ```{r 9_51_6_25_2022}
 str(formatted_data)
