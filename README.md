@@ -25,8 +25,8 @@ Project 1
         -   [Histogram](#histogram)
     -   [Quantitative Data with Two
         Variables](#quantitative-data-with-two-variables)
-    -   [Scatterplot](#scatterplot)
-    -   [Box Plot](#box-plot)
+        -   [Scatterplot](#scatterplot)
+        -   [Box Plot](#box-plot)
 
 # Lets Get Started: OMDb API Key
 
@@ -1128,7 +1128,7 @@ relationship between imdbVotes and average_rating.
 The correlation coefficient is 0.5827316, meaning that imdbVotes and
 average_rating have a positive relationship.
 
-## Scatterplot
+### Scatterplot
 
 Now, lets make a scatterplot comparing the amount of money a movie makes
 at the Box Office to the average rating:
@@ -1154,7 +1154,7 @@ As you can see, as average_rating increases, so does BoxOffice. In
 addition, there was one movie made in 2015 that did quite well at the
 Box Office.
 
-## Box Plot
+### Box Plot
 
 Let’s make a box plot showing the spread of the number of imdbVotes for
 every genre:
