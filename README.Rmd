@@ -488,10 +488,9 @@ When I ran this, I got the following warnings:
 Let's look at the unformatted data:
 
 ```{r 9_58_6_25_2022}
-#unformatted_data[rowSums(is.na(unformatted_data)) > 0, ]
 test<-unformatted_data[grep("N/A", unformatted_data$Released), ]
-test
-#unformatted_data$Released
+test %>%
+  select(Released,everything())
 ```
 
 The first warning (`Warning: 2 failed to parse.`) occurred because the function `dmy()` from `lubridate` cannot parse the two rows with "N/A" in it (see tibble above). This means that these two titles do not have a release date, so R puts a `NA` in instead. They might not have been released to theaters. To remove this warning, you would need to replace the "N/A" with a date that `dmy()` can work with.
@@ -500,7 +499,8 @@ Let's look at the second warning (`Warning: 12 failed to parse.`):
 
 ```{r 11_33_6_25_2022}
 test<-unformatted_data[grep("N/A", unformatted_data$DVD), ]
-test
+test %>%
+  select(DVD,everything())
 ```
 
 
