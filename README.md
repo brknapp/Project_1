@@ -17,8 +17,8 @@ Project 1
 -   [Exploratory Data Analysis](#exploratory-data-analysis)
     -   [Contingency Tables](#contingency-tables)
     -   [Bar Plots](#bar-plots)
-    -   [Measures of Center and Spread (Box Plot and
-        Histogram)](#measures-of-center-and-spread-box-plot-and-histogram)
+    -   [Measures of Center and Spread (Histogram and Box
+        Plot)](#measures-of-center-and-spread-histogram-and-box-plot)
     -   [Covariance and Correlation](#covariance-and-correlation)
     -   [Scatterplot](#scatterplot)
 
@@ -970,7 +970,7 @@ It looks like, for all 4 of George Lucas’ movies, all of them won and
 were nominated for awards. Out of the 4 movies Francis Ford Coppola
 made, 3 won and were nominated and 1 did not win nor was nominated.
 
-## Measures of Center and Spread (Box Plot and Histogram)
+## Measures of Center and Spread (Histogram and Box Plot)
 
 For quantitative data with one variable, we can calculate measures of
 center (e.g., mean) and spread (e.g., Variance). We can summarize
@@ -1159,7 +1159,22 @@ A
     ## 4 nomination                    62099.
 
 It looks like the movies that both won awards and were nominated for
-awards recieved the most number of imdbVotes on average.
+awards received the most number of imdbVotes on average.
+
+``` r
+A<-formatted_data %>%
+  select(Summary_Awards,imdbVotes)
+B<-unique(A)
+
+B %>%
+  ggplot(aes(x = Summary_Awards, y = imdbVotes, fill = Summary_Awards)) +
+  geom_boxplot() +
+  theme(legend.position = "none",axis.text.x = element_text(angle = 90)) +
+  labs(x = "Award Status", title = "imdbVotes By Award Status", y="Number of imdbVotes") +
+  coord_flip()
+```
+
+![](README_files/figure-gfm/3_01_6_26_2022-1.png)<!-- -->
 
 ## Covariance and Correlation
 
